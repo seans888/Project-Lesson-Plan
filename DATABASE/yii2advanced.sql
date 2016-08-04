@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2016 at 08:44 AM
+-- Generation Time: Aug 04, 2016 at 09:20 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -17,56 +17,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `yii2advanced`
+-- Database: `registrar_system`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `employee`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `employee` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` smallint(6) NOT NULL DEFAULT '10',
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'odabalon', 'Too6xNbzkRU9_Z9d0RrRnSag4g2MCQm6', '$2y$13$mTfPyFdTVMj9O.8DDvf4oOGava7d.g7iOW.jIwwmeY4EMdV/ccuyu', NULL, 'abalonjonathan@gmail.com', 10, 1470292923, 1470292923);
+  `emp_job` varchar(45) NOT NULL,
+  `emp_fname` varchar(45) NOT NULL,
+  `emp_lname` varchar(45) NOT NULL,
+  `emp_mname` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `user`
+-- Indexes for table `employee`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `password_reset_token` (`password_reset_token`);
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
