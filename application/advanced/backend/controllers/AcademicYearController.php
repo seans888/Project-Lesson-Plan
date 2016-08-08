@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\AcademicYear;
-use backend\models\AcademicYearSearch;
+use common\models\AcademicYear;
+use common\models\AcademicYearSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
