@@ -18,6 +18,9 @@ use Yii;
  * @property string $quart3_end_period
  * @property string $quart4_start_period
  * @property string $quart4_end_period
+ *
+ * @property Grade[] $grades
+ * @property Sched[] $scheds
  */
 class AcademicYear extends \yii\db\ActiveRecord
 {
@@ -59,5 +62,21 @@ class AcademicYear extends \yii\db\ActiveRecord
             'quart4_start_period' => 'Quart4 Start Period',
             'quart4_end_period' => 'Quart4 End Period',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGrades()
+    {
+        return $this->hasMany(Grade::className(), ['acad_year_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getScheds()
+    {
+        return $this->hasMany(Sched::className(), ['acad_year_id' => 'id']);
     }
 }
