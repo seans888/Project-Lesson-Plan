@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Grade;
+use common\models\Sched;
 
 /**
- * GradeSearch represents the model behind the search form about `common\models\Grade`.
+ * SchedPost represents the model behind the search form about `common\models\Sched`.
  */
-class GradeSearch extends Grade
+class SchedPost extends Sched
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class GradeSearch extends Grade
     public function rules()
     {
         return [
-            [['acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'integer'],
+            [['id', 'sub_id', 'sec_id', 'acad_year_id'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class GradeSearch extends Grade
      */
     public function search($params)
     {
-        $query = Grade::find();
+        $query = Sched::find();
 
         // add conditions that should always apply here
 
@@ -58,11 +58,10 @@ class GradeSearch extends Grade
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'acad_year_id' => $this->acad_year_id,
-            'grade' => $this->grade,
-            'stud_id' => $this->stud_id,
-            'emp_id' => $this->emp_id,
+            'id' => $this->id,
             'sub_id' => $this->sub_id,
+            'sec_id' => $this->sec_id,
+            'acad_year_id' => $this->acad_year_id,
         ]);
 
         return $dataProvider;

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\AcademicYearSearch */
+/* @var $searchModel common\models\AcademicYearPost */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Academic Years';

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\GradeSearch */
+/* @var $model common\models\GradePost */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

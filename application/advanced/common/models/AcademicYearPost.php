@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Subject;
+use common\models\AcademicYear;
 
 /**
- * SubjectSearch represents the model behind the search form about `common\models\Subject`.
+ * AcademicYearPost represents the model behind the search form about `common\models\AcademicYear`.
  */
-class SubjectSearch extends Subject
+class AcademicYearPost extends AcademicYear
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SubjectSearch extends Subject
     public function rules()
     {
         return [
-            [['id', 'emp_id'], 'integer'],
-            [['sub_name', 'sub_time'], 'safe'],
+            [['id'], 'integer'],
+            [['acad_year_start', 'acad_year_end', 'quart1_start_period', 'quart1_end_period', 'quart2_start_period', 'quart2_end_period', 'quart3_start_period', 'quart3_end_period', 'quart4_start_period', 'quart4_end_period'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SubjectSearch extends Subject
      */
     public function search($params)
     {
-        $query = Subject::find();
+        $query = AcademicYear::find();
 
         // add conditions that should always apply here
 
@@ -60,11 +60,17 @@ class SubjectSearch extends Subject
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'emp_id' => $this->emp_id,
-            'sub_time' => $this->sub_time,
+            'acad_year_start' => $this->acad_year_start,
+            'acad_year_end' => $this->acad_year_end,
+            'quart1_start_period' => $this->quart1_start_period,
+            'quart1_end_period' => $this->quart1_end_period,
+            'quart2_start_period' => $this->quart2_start_period,
+            'quart2_end_period' => $this->quart2_end_period,
+            'quart3_start_period' => $this->quart3_start_period,
+            'quart3_end_period' => $this->quart3_end_period,
+            'quart4_start_period' => $this->quart4_start_period,
+            'quart4_end_period' => $this->quart4_end_period,
         ]);
-
-        $query->andFilterWhere(['like', 'sub_name', $this->sub_name]);
 
         return $dataProvider;
     }

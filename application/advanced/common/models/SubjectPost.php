@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Log;
+use common\models\Subject;
 
 /**
- * LogSearch represents the model behind the search form about `backend\models\Log`.
+ * SubjectPost represents the model behind the search form about `common\models\Subject`.
  */
-class LogSearch extends Log
+class SubjectPost extends Subject
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class LogSearch extends Log
     {
         return [
             [['id', 'emp_id'], 'integer'],
-            [['trans_date', 'trans_time'], 'safe'],
+            [['sub_name', 'sub_time'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class LogSearch extends Log
      */
     public function search($params)
     {
-        $query = Log::find();
+        $query = Subject::find();
 
         // add conditions that should always apply here
 
@@ -61,9 +61,10 @@ class LogSearch extends Log
         $query->andFilterWhere([
             'id' => $this->id,
             'emp_id' => $this->emp_id,
-            'trans_date' => $this->trans_date,
-            'trans_time' => $this->trans_time,
+            'sub_time' => $this->sub_time,
         ]);
+
+        $query->andFilterWhere(['like', 'sub_name', $this->sub_name]);
 
         return $dataProvider;
     }

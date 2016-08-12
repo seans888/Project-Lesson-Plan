@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\AcademicYear;
-use common\models\AcademicYearSearch;
+use common\models\AcademicYearPost;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class AcademicYearController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AcademicYearSearch();
+        $searchModel = new AcademicYearPost();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

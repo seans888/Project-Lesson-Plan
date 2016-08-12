@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\AcademicYear;
+use common\models\Log;
 
 /**
- * AcademicYearSearch represents the model behind the search form about `common\models\AcademicYear`.
+ * LogPost represents the model behind the search form about `common\models\Log`.
  */
-class AcademicYearSearch extends AcademicYear
+class LogPost extends Log
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class AcademicYearSearch extends AcademicYear
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['acad_year_start', 'acad_year_end', 'quart1_start_period', 'quart1_end_period', 'quart2_start_period', 'quart2_end_period', 'quart3_start_period', 'quart3_end_period', 'quart4_start_period', 'quart4_end_period'], 'safe'],
+            [['id', 'emp_id'], 'integer'],
+            [['trans_date', 'trans_time'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AcademicYearSearch extends AcademicYear
      */
     public function search($params)
     {
-        $query = AcademicYear::find();
+        $query = Log::find();
 
         // add conditions that should always apply here
 
@@ -60,16 +60,9 @@ class AcademicYearSearch extends AcademicYear
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'acad_year_start' => $this->acad_year_start,
-            'acad_year_end' => $this->acad_year_end,
-            'quart1_start_period' => $this->quart1_start_period,
-            'quart1_end_period' => $this->quart1_end_period,
-            'quart2_start_period' => $this->quart2_start_period,
-            'quart2_end_period' => $this->quart2_end_period,
-            'quart3_start_period' => $this->quart3_start_period,
-            'quart3_end_period' => $this->quart3_end_period,
-            'quart4_start_period' => $this->quart4_start_period,
-            'quart4_end_period' => $this->quart4_end_period,
+            'emp_id' => $this->emp_id,
+            'trans_date' => $this->trans_date,
+            'trans_time' => $this->trans_time,
         ]);
 
         return $dataProvider;

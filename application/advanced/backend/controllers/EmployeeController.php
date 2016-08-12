@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Employee;
-use common\models\EmployeeSearch;
+use common\models\EmployeePost;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class EmployeeController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new EmployeeSearch();
+        $searchModel = new EmployeePost();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

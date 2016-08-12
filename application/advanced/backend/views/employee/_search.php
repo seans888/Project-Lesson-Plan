@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\EmployeeSearch */
+/* @var $model common\models\EmployeePost */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, 'emp_id') ?>
 
     <?= $form->field($model, 'emp_job') ?>
 
@@ -24,8 +24,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'emp_lname') ?>
 
     <?= $form->field($model, 'emp_mname') ?>
-
-    <?php // echo $form->field($model, 'email') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

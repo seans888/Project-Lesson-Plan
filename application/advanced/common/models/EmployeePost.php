@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Section;
+use common\models\Employee;
 
 /**
- * SectionSearch represents the model behind the search form about `common\models\Section`.
+ * EmployeePost represents the model behind the search form about `common\models\Employee`.
  */
-class SectionSearch extends Section
+class EmployeePost extends Employee
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SectionSearch extends Section
     public function rules()
     {
         return [
-            [['id', 'advise_emp_id'], 'integer'],
-            [['sec_name'], 'safe'],
+            [['emp_id'], 'integer'],
+            [['emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SectionSearch extends Section
      */
     public function search($params)
     {
-        $query = Section::find();
+        $query = Employee::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +59,13 @@ class SectionSearch extends Section
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'advise_emp_id' => $this->advise_emp_id,
+            'emp_id' => $this->emp_id,
         ]);
 
-        $query->andFilterWhere(['like', 'sec_name', $this->sec_name]);
+        $query->andFilterWhere(['like', 'emp_job', $this->emp_job])
+            ->andFilterWhere(['like', 'emp_fname', $this->emp_fname])
+            ->andFilterWhere(['like', 'emp_lname', $this->emp_lname])
+            ->andFilterWhere(['like', 'emp_mname', $this->emp_mname]);
 
         return $dataProvider;
     }

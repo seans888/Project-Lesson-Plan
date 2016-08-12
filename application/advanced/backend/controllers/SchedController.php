@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Sched;
-use common\models\SchedSearch;
+use common\models\SchedPost;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class SchedController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SchedSearch();
+        $searchModel = new SchedPost();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

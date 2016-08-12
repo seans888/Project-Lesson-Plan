@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\AcademicYear */
+/* @var $model common\models\AcademicYear */
 
 $this->title = 'Update Academic Year: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Academic Years', 'url' => ['index']];

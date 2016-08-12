@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\AcademicYear */
+/* @var $model common\models\AcademicYear */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
