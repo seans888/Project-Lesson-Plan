@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `academic_year` (
   `quart3_end_period` date NOT NULL,
   `quart4_start_period` date NOT NULL,
   `quart4_end_period` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -47,13 +47,13 @@ CREATE TABLE IF NOT EXISTS `academic_year` (
 --
 
 CREATE TABLE IF NOT EXISTS `employee` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL ,
   `emp_id` int(11) NOT NULL,
   `emp_job` varchar(45) NOT NULL,
   `emp_fname` varchar(45) NOT NULL,
   `emp_lname` varchar(45) NOT NULL,
   `emp_mname` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -62,13 +62,13 @@ CREATE TABLE IF NOT EXISTS `employee` (
 --
 
 CREATE TABLE IF NOT EXISTS `grade` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL ,
   `acad_year_id` int(11) NOT NULL,
   `grade` int(11) NOT NULL,
   `stud_id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `sub_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `emp_id` int(11) NOT NULL,
   `trans_date` date NOT NULL,
   `trans_time` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -109,11 +109,11 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sched` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL ,
   `sub_id` int(11) NOT NULL,
   `sec_id` int(11) NOT NULL,
   `acad_year_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `section` (
   `id` int(11) NOT NULL,
   `sec_name` varchar(45) NOT NULL,
   `advise_emp_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -134,14 +134,14 @@ CREATE TABLE IF NOT EXISTS `section` (
 --
 
 CREATE TABLE IF NOT EXISTS `student` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL ,
   `stud_id_num` int(11) NOT NULL,
   `stud_fname` varchar(45) NOT NULL,
   `stud_lname` varchar(45) NOT NULL,
   `stud_mname` varchar(45) DEFAULT NULL,
   `sec_id` int(11) NOT NULL,
   `email` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -150,11 +150,11 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 CREATE TABLE IF NOT EXISTS `subject` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL ,
   `sub_name` varchar(45) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `sub_time` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL ,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
