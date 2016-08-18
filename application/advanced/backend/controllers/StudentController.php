@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Student;
-use common\models\StudentPost;
+use common\models\StudentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class StudentController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new StudentPost();
+        $searchModel = new StudentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

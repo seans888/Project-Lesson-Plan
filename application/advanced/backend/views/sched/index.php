@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\SchedPost */
+/* @var $searchModel common\models\SchedSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Scheds';

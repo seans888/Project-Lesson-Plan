@@ -33,7 +33,7 @@ class Section extends \yii\db\ActiveRecord
             [['id', 'sec_name', 'advise_emp_id'], 'required'],
             [['id', 'advise_emp_id'], 'integer'],
             [['sec_name'], 'string', 'max' => 45],
-            [['advise_emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['advise_emp_id' => 'emp_id']],
+            [['advise_emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['advise_emp_id' => 'id']],
         ];
     }
 
@@ -62,6 +62,6 @@ class Section extends \yii\db\ActiveRecord
      */
     public function getAdviseEmp()
     {
-        return $this->hasOne(Employee::className(), ['emp_id' => 'advise_emp_id']);
+        return $this->hasOne(Employee::className(), ['id' => 'advise_emp_id']);
     }
 }

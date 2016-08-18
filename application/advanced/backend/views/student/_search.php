@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\StudentPost */
+/* @var $model common\models\StudentSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -17,13 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'stud_id_num') ?>
+
     <?= $form->field($model, 'stud_fname') ?>
 
     <?= $form->field($model, 'stud_lname') ?>
 
     <?= $form->field($model, 'stud_mname') ?>
 
-    <?= $form->field($model, 'sec_id') ?>
+    <?php // echo $form->field($model, 'sec_id') ?>
 
     <?php // echo $form->field($model, 'email') ?>
 

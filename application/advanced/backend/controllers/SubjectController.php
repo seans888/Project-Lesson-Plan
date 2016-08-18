@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Subject;
-use common\models\SubjectPost;
+use common\models\SubjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class SubjectController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SubjectPost();
+        $searchModel = new SubjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

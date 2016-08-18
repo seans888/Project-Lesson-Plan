@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Log;
+use common\models\Sched;
 
 /**
- * LogPost represents the model behind the search form about `common\models\Log`.
+ * SchedSearch represents the model behind the search form about `common\models\Sched`.
  */
-class LogPost extends Log
+class SchedSearch extends Sched
 {
     /**
      * @inheritdoc
@@ -18,8 +18,7 @@ class LogPost extends Log
     public function rules()
     {
         return [
-            [['id', 'emp_id'], 'integer'],
-            [['trans_date', 'trans_time'], 'safe'],
+            [['id', 'sub_id', 'sec_id', 'acad_year_id'], 'integer'],
         ];
     }
 
@@ -41,7 +40,7 @@ class LogPost extends Log
      */
     public function search($params)
     {
-        $query = Log::find();
+        $query = Sched::find();
 
         // add conditions that should always apply here
 
@@ -60,9 +59,9 @@ class LogPost extends Log
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'emp_id' => $this->emp_id,
-            'trans_date' => $this->trans_date,
-            'trans_time' => $this->trans_time,
+            'sub_id' => $this->sub_id,
+            'sec_id' => $this->sec_id,
+            'acad_year_id' => $this->acad_year_id,
         ]);
 
         return $dataProvider;

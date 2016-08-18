@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\GradePost;
+use common\models\Employee;
 
 /**
- * GradeSearch represents the model behind the search form about `common\models\GradePost`.
+ * EmployeeSearch represents the model behind the search form about `common\models\Employee`.
  */
-class GradeSearch extends GradePost
+class EmployeeSearch extends Employee
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class GradeSearch extends GradePost
     public function rules()
     {
         return [
-            [['acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'integer'],
+            [['id', 'emp_id'], 'integer'],
+            [['emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class GradeSearch extends GradePost
      */
     public function search($params)
     {
-        $query = GradePost::find();
+        $query = Employee::find();
 
         // add conditions that should always apply here
 
@@ -58,12 +59,14 @@ class GradeSearch extends GradePost
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'acad_year_id' => $this->acad_year_id,
-            'grade' => $this->grade,
-            'stud_id' => $this->stud_id,
+            'id' => $this->id,
             'emp_id' => $this->emp_id,
-            'sub_id' => $this->sub_id,
         ]);
+
+        $query->andFilterWhere(['like', 'emp_job', $this->emp_job])
+            ->andFilterWhere(['like', 'emp_fname', $this->emp_fname])
+            ->andFilterWhere(['like', 'emp_lname', $this->emp_lname])
+            ->andFilterWhere(['like', 'emp_mname', $this->emp_mname]);
 
         return $dataProvider;
     }

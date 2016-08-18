@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\LogPost;
+use common\models\Grade;
 
 /**
- * LogSearch represents the model behind the search form about `common\models\LogPost`.
+ * GradeSearch represents the model behind the search form about `common\models\Grade`.
  */
-class LogSearch extends LogPost
+class GradeSearch extends Grade
 {
     /**
      * @inheritdoc
@@ -18,8 +18,7 @@ class LogSearch extends LogPost
     public function rules()
     {
         return [
-            [['id', 'emp_id'], 'integer'],
-            [['trans_date', 'trans_time'], 'safe'],
+            [['id', 'acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'integer'],
         ];
     }
 
@@ -41,7 +40,7 @@ class LogSearch extends LogPost
      */
     public function search($params)
     {
-        $query = LogPost::find();
+        $query = Grade::find();
 
         // add conditions that should always apply here
 
@@ -60,9 +59,11 @@ class LogSearch extends LogPost
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'acad_year_id' => $this->acad_year_id,
+            'grade' => $this->grade,
+            'stud_id' => $this->stud_id,
             'emp_id' => $this->emp_id,
-            'trans_date' => $this->trans_date,
-            'trans_time' => $this->trans_time,
+            'sub_id' => $this->sub_id,
         ]);
 
         return $dataProvider;

@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Sched;
+use common\models\AcademicYear;
 
 /**
- * SchedPost represents the model behind the search form about `common\models\Sched`.
+ * AcademicYearSearch represents the model behind the search form about `common\models\AcademicYear`.
  */
-class SchedPost extends Sched
+class AcademicYearSearch extends AcademicYear
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class SchedPost extends Sched
     public function rules()
     {
         return [
-            [['id', 'sub_id', 'sec_id', 'acad_year_id'], 'integer'],
+            [['id'], 'integer'],
+            [['acad_year_start', 'acad_year_end', 'quart1_start_period', 'quart1_end_period', 'quart2_start_period', 'quart2_end_period', 'quart3_start_period', 'quart3_end_period', 'quart4_start_period', 'quart4_end_period'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class SchedPost extends Sched
      */
     public function search($params)
     {
-        $query = Sched::find();
+        $query = AcademicYear::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +60,16 @@ class SchedPost extends Sched
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sub_id' => $this->sub_id,
-            'sec_id' => $this->sec_id,
-            'acad_year_id' => $this->acad_year_id,
+            'acad_year_start' => $this->acad_year_start,
+            'acad_year_end' => $this->acad_year_end,
+            'quart1_start_period' => $this->quart1_start_period,
+            'quart1_end_period' => $this->quart1_end_period,
+            'quart2_start_period' => $this->quart2_start_period,
+            'quart2_end_period' => $this->quart2_end_period,
+            'quart3_start_period' => $this->quart3_start_period,
+            'quart3_end_period' => $this->quart3_end_period,
+            'quart4_start_period' => $this->quart4_start_period,
+            'quart4_end_period' => $this->quart4_end_period,
         ]);
 
         return $dataProvider;

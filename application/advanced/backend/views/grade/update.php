@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Grade */
 
-$this->title = 'Update Grade: ' . $model->acad_year_id;
+$this->title = 'Update Grade: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Grades', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->acad_year_id, 'url' => ['view', 'id' => $model->acad_year_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="grade-update">

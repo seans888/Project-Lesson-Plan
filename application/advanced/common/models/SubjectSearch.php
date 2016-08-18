@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use common\models\Subject;
 
 /**
- * SubjectPost represents the model behind the search form about `common\models\Subject`.
+ * SubjectSearch represents the model behind the search form about `common\models\Subject`.
  */
-class SubjectPost extends Subject
+class SubjectSearch extends Subject
 {
     /**
      * @inheritdoc

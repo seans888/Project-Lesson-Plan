@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\GradePost */
+/* @var $searchModel common\models\GradeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Grades';
@@ -24,11 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'id',
             'acad_year_id',
             'grade',
             'stud_id',
             'emp_id',
-            'sub_id',
+            // 'sub_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -36,7 +36,7 @@ class Subject extends \yii\db\ActiveRecord
             [['id', 'emp_id'], 'integer'],
             [['sub_time'], 'safe'],
             [['sub_name'], 'string', 'max' => 45],
-            [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['emp_id' => 'emp_id']],
+            [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['emp_id' => 'id']],
         ];
     }
 
@@ -74,6 +74,6 @@ class Subject extends \yii\db\ActiveRecord
      */
     public function getEmp()
     {
-        return $this->hasOne(Employee::className(), ['emp_id' => 'emp_id']);
+        return $this->hasOne(Employee::className(), ['id' => 'emp_id']);
     }
 }

@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "grade".
  *
+ * @property integer $id
  * @property integer $acad_year_id
  * @property integer $grade
  * @property integer $stud_id
@@ -34,11 +35,11 @@ class Grade extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'required'],
-            [['acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'integer'],
+            [['id', 'acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'required'],
+            [['id', 'acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'integer'],
             [['acad_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['acad_year_id' => 'id']],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['stud_id' => 'id']],
-            [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['emp_id' => 'emp_id']],
+            [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['emp_id' => 'id']],
             [['sub_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['sub_id' => 'id']],
         ];
     }
@@ -49,6 +50,7 @@ class Grade extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'acad_year_id' => 'Acad Year ID',
             'grade' => 'Grade',
             'stud_id' => 'Stud ID',
@@ -78,7 +80,7 @@ class Grade extends \yii\db\ActiveRecord
      */
     public function getEmp()
     {
-        return $this->hasOne(Employee::className(), ['emp_id' => 'emp_id']);
+        return $this->hasOne(Employee::className(), ['id' => 'emp_id']);
     }
 
     /**

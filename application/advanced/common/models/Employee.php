@@ -7,13 +7,13 @@ use Yii;
 /**
  * This is the model class for table "employee".
  *
+ * @property integer $id
  * @property integer $emp_id
  * @property string $emp_job
  * @property string $emp_fname
  * @property string $emp_lname
  * @property string $emp_mname
  *
- * @property User $emp
  * @property Grade[] $grades
  * @property Log[] $logs
  * @property Section[] $sections
@@ -35,10 +35,9 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['emp_id', 'emp_job', 'emp_fname', 'emp_lname'], 'required'],
-            [['emp_id'], 'integer'],
+            [['id', 'emp_id', 'emp_job', 'emp_fname', 'emp_lname'], 'required'],
+            [['id', 'emp_id'], 'integer'],
             [['emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'string', 'max' => 45],
-            [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['emp_id' => 'id']],
         ];
     }
 
@@ -48,6 +47,7 @@ class Employee extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'emp_id' => 'Emp ID',
             'emp_job' => 'Emp Job',
             'emp_fname' => 'Emp Fname',
@@ -59,17 +59,9 @@ class Employee extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmp()
-    {
-        return $this->hasOne(User::className(), ['id' => 'emp_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getGrades()
     {
-        return $this->hasMany(Grade::className(), ['emp_id' => 'emp_id']);
+        return $this->hasMany(Grade::className(), ['emp_id' => 'id']);
     }
 
     /**
@@ -77,7 +69,7 @@ class Employee extends \yii\db\ActiveRecord
      */
     public function getLogs()
     {
-        return $this->hasMany(Log::className(), ['emp_id' => 'emp_id']);
+        return $this->hasMany(Log::className(), ['emp_id' => 'id']);
     }
 
     /**
@@ -85,7 +77,7 @@ class Employee extends \yii\db\ActiveRecord
      */
     public function getSections()
     {
-        return $this->hasMany(Section::className(), ['advise_emp_id' => 'emp_id']);
+        return $this->hasMany(Section::className(), ['advise_emp_id' => 'id']);
     }
 
     /**
@@ -93,6 +85,6 @@ class Employee extends \yii\db\ActiveRecord
      */
     public function getSubjects()
     {
-        return $this->hasMany(Subject::className(), ['emp_id' => 'emp_id']);
+        return $this->hasMany(Subject::className(), ['emp_id' => 'id']);
     }
 }

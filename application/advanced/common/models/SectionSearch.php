@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\StudentPost;
+use common\models\Section;
 
 /**
- * StudentSearch represents the model behind the search form about `common\models\StudentPost`.
+ * SectionSearch represents the model behind the search form about `common\models\Section`.
  */
-class StudentSearch extends StudentPost
+class SectionSearch extends Section
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class StudentSearch extends StudentPost
     public function rules()
     {
         return [
-            [['id', 'sec_id'], 'integer'],
-            [['stud_fname', 'stud_lname', 'stud_mname', 'email'], 'safe'],
+            [['id', 'advise_emp_id'], 'integer'],
+            [['sec_name'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class StudentSearch extends StudentPost
      */
     public function search($params)
     {
-        $query = StudentPost::find();
+        $query = Section::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,10 @@ class StudentSearch extends StudentPost
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sec_id' => $this->sec_id,
+            'advise_emp_id' => $this->advise_emp_id,
         ]);
 
-        $query->andFilterWhere(['like', 'stud_fname', $this->stud_fname])
-            ->andFilterWhere(['like', 'stud_lname', $this->stud_lname])
-            ->andFilterWhere(['like', 'stud_mname', $this->stud_mname])
-            ->andFilterWhere(['like', 'email', $this->email]);
+        $query->andFilterWhere(['like', 'sec_name', $this->sec_name]);
 
         return $dataProvider;
     }

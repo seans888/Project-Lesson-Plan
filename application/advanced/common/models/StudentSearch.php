@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\SchedPost;
+use common\models\Student;
 
 /**
- * SchedSearch represents the model behind the search form about `common\models\SchedPost`.
+ * StudentSearch represents the model behind the search form about `common\models\Student`.
  */
-class SchedSearch extends SchedPost
+class StudentSearch extends Student
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class SchedSearch extends SchedPost
     public function rules()
     {
         return [
-            [['id', 'sub_id', 'sec_id', 'acad_year_id'], 'integer'],
+            [['id', 'stud_id_num', 'sec_id'], 'integer'],
+            [['stud_fname', 'stud_lname', 'stud_mname', 'email'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class SchedSearch extends SchedPost
      */
     public function search($params)
     {
-        $query = SchedPost::find();
+        $query = Student::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +60,14 @@ class SchedSearch extends SchedPost
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sub_id' => $this->sub_id,
+            'stud_id_num' => $this->stud_id_num,
             'sec_id' => $this->sec_id,
-            'acad_year_id' => $this->acad_year_id,
         ]);
+
+        $query->andFilterWhere(['like', 'stud_fname', $this->stud_fname])
+            ->andFilterWhere(['like', 'stud_lname', $this->stud_lname])
+            ->andFilterWhere(['like', 'stud_mname', $this->stud_mname])
+            ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;
     }

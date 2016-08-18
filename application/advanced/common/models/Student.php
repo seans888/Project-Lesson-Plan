@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "student".
  *
  * @property integer $id
+ * @property integer $stud_id_num
  * @property string $stud_fname
  * @property string $stud_lname
  * @property string $stud_mname
@@ -15,7 +16,6 @@ use Yii;
  * @property string $email
  *
  * @property Grade[] $grades
- * @property User $id0
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -33,10 +33,9 @@ class Student extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'stud_fname', 'stud_lname', 'sec_id', 'email'], 'required'],
-            [['id', 'sec_id'], 'integer'],
+            [['id', 'stud_id_num', 'stud_fname', 'stud_lname', 'sec_id', 'email'], 'required'],
+            [['id', 'stud_id_num', 'sec_id'], 'integer'],
             [['stud_fname', 'stud_lname', 'stud_mname', 'email'], 'string', 'max' => 45],
-            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id' => 'id']],
         ];
     }
 
@@ -47,6 +46,7 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'stud_id_num' => 'Stud Id Num',
             'stud_fname' => 'Stud Fname',
             'stud_lname' => 'Stud Lname',
             'stud_mname' => 'Stud Mname',
@@ -61,13 +61,5 @@ class Student extends \yii\db\ActiveRecord
     public function getGrades()
     {
         return $this->hasMany(Grade::className(), ['stud_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getId0()
-    {
-        return $this->hasOne(User::className(), ['id' => 'id']);
     }
 }
