@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `academic_year` (
 --
 
 CREATE TABLE IF NOT EXISTS `employee` (
+  `id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `emp_job` varchar(45) NOT NULL,
   `emp_fname` varchar(45) NOT NULL,
@@ -61,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
 --
 
 CREATE TABLE IF NOT EXISTS `grade` (
+  `id` int(11) NOT NULL,
   `acad_year_id` int(11) NOT NULL,
   `grade` int(11) NOT NULL,
   `stud_id` int(11) NOT NULL,
@@ -133,6 +135,7 @@ CREATE TABLE IF NOT EXISTS `section` (
 
 CREATE TABLE IF NOT EXISTS `student` (
   `id` int(11) NOT NULL,
+  `stud_id_num` int(11) NOT NULL,
   `stud_fname` varchar(45) NOT NULL,
   `stud_lname` varchar(45) NOT NULL,
   `stud_mname` varchar(45) DEFAULT NULL,
@@ -194,7 +197,7 @@ ALTER TABLE `academic_year`
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
-  ADD PRIMARY KEY (`emp_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `grade`
@@ -206,7 +209,7 @@ ALTER TABLE `grade`
 -- Indexes for table `log`
 --
 ALTER TABLE `log`
-  ADD KEY `emp_id` (`emp_id`);
+  ADD KEY `emp_id` (`id`);
 
 --
 -- Indexes for table `migration`
@@ -260,8 +263,7 @@ ALTER TABLE `user`
 --
 -- Constraints for table `employee`
 --
-ALTER TABLE `employee`
-ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `user` (`id`);
+
 
 --
 -- Constraints for table `grade`
@@ -269,14 +271,14 @@ ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `user` (`id`)
 ALTER TABLE `grade`
 ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_year` (`id`),
 ADD CONSTRAINT `grade_ibfk_2` FOREIGN KEY (`stud_id`) REFERENCES `student` (`id`),
-ADD CONSTRAINT `grade_ibfk_3` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`),
+ADD CONSTRAINT `grade_ibfk_3` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`),
 ADD CONSTRAINT `grade_ibfk_4` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`);
 
 --
 -- Constraints for table `log`
 --
 ALTER TABLE `log`
-ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`);
+ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`);
 
 --
 -- Constraints for table `sched`
@@ -290,19 +292,18 @@ ADD CONSTRAINT `sched_ibfk_3` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_
 -- Constraints for table `section`
 --
 ALTER TABLE `section`
-ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`advise_emp_id`) REFERENCES `employee` (`emp_id`);
+ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`advise_emp_id`) REFERENCES `employee` (`id`);
 
 --
 -- Constraints for table `student`
 --
-ALTER TABLE `student`
-ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`);
+
 
 --
 -- Constraints for table `subject`
 --
 ALTER TABLE `subject`
-ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`);
+ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
