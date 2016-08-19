@@ -2,22 +2,21 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'VILLE ST. JOHN ACADEMY';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
     <font color="efec1f">
+    <body style="font-family: Andale Mono;" > 
         <h1><b>WELCOME TO VILLE ST. JOHN ACADEMY</b></h1>
         </font>
+        </body>
     </div>
 
     <div class="body-content">
 <font size="4">
-        <div class="row">
-            <div class="col-lg-4">
-            
-                
+             
                 <p>Ville St. John Academy is a Catholic school owned and managed by the Sisters of St. John the Baptist. 
                 It is situated in the most tranquil end of Marcelo Green Village, Maharlika Avenue, Phase V, Parañaque City.
                  It has the utmost conducive atmosphere free from the hassle of the city. It fosters the “Family Spirit” which 

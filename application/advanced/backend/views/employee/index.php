@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'emp_job',
             'emp_fname',
             'emp_lname',
-            // 'emp_mname',
+            'emp_mname',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
