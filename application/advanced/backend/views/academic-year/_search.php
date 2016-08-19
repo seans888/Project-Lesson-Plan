@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'quart4_start_period') ?>
 
-    <?php // echo $form->field($model, 'quart4_end_period') ?>
+    <?php // echo $form->field($model, 'quart14_end_period') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

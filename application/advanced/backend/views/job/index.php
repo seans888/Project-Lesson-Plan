@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\SchedSearch */
+/* @var $searchModel common\models\JobSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Scheds';
+$this->title = 'Jobs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sched-index">
+<div class="job-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Sched', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Job', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,9 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'sub_id',
-            'sec_id',
-            'acad_year_id',
+            'job_description',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

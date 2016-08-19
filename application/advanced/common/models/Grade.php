@@ -9,10 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property integer $acad_year_id
- * @property integer $grade
  * @property integer $stud_id
  * @property integer $emp_id
  * @property integer $sub_id
+ * @property integer $grade
  *
  * @property AcademicYear $acadYear
  * @property Student $stud
@@ -35,8 +35,8 @@ class Grade extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'required'],
-            [['id', 'acad_year_id', 'grade', 'stud_id', 'emp_id', 'sub_id'], 'integer'],
+            [['acad_year_id', 'stud_id', 'emp_id', 'sub_id', 'grade'], 'required'],
+            [['acad_year_id', 'stud_id', 'emp_id', 'sub_id', 'grade'], 'integer'],
             [['acad_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['acad_year_id' => 'id']],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['stud_id' => 'id']],
             [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['emp_id' => 'id']],
@@ -52,10 +52,10 @@ class Grade extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'acad_year_id' => 'Acad Year ID',
-            'grade' => 'Grade',
             'stud_id' => 'Stud ID',
             'emp_id' => 'Emp ID',
             'sub_id' => 'Sub ID',
+            'grade' => 'Grade',
         ];
     }
 

@@ -17,10 +17,10 @@ use Yii;
  * @property string $quart3_start_period
  * @property string $quart3_end_period
  * @property string $quart4_start_period
- * @property string $quart4_end_period
+ * @property string $quart14_end_period
  *
  * @property Grade[] $grades
- * @property Sched[] $scheds
+ * @property Schedule[] $schedules
  */
 class AcademicYear extends \yii\db\ActiveRecord
 {
@@ -38,9 +38,8 @@ class AcademicYear extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'acad_year_start', 'acad_year_end', 'quart1_start_period', 'quart1_end_period', 'quart2_start_period', 'quart2_end_period', 'quart3_start_period', 'quart3_end_period', 'quart4_start_period', 'quart4_end_period'], 'required'],
-            [['id'], 'integer'],
-            [['acad_year_start', 'acad_year_end', 'quart1_start_period', 'quart1_end_period', 'quart2_start_period', 'quart2_end_period', 'quart3_start_period', 'quart3_end_period', 'quart4_start_period', 'quart4_end_period'], 'safe'],
+            [['acad_year_start', 'acad_year_end', 'quart1_start_period', 'quart1_end_period', 'quart2_start_period', 'quart2_end_period', 'quart3_start_period', 'quart3_end_period', 'quart4_start_period', 'quart14_end_period'], 'required'],
+            [['acad_year_start', 'acad_year_end', 'quart1_start_period', 'quart1_end_period', 'quart2_start_period', 'quart2_end_period', 'quart3_start_period', 'quart3_end_period', 'quart4_start_period', 'quart14_end_period'], 'safe'],
         ];
     }
 
@@ -60,7 +59,7 @@ class AcademicYear extends \yii\db\ActiveRecord
             'quart3_start_period' => 'Quart3 Start Period',
             'quart3_end_period' => 'Quart3 End Period',
             'quart4_start_period' => 'Quart4 Start Period',
-            'quart4_end_period' => 'Quart4 End Period',
+            'quart14_end_period' => 'Quart14 End Period',
         ];
     }
 
@@ -75,8 +74,8 @@ class AcademicYear extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getScheds()
+    public function getSchedules()
     {
-        return $this->hasMany(Sched::className(), ['acad_year_id' => 'id']);
+        return $this->hasMany(Schedule::className(), ['acad_year_id' => 'id']);
     }
 }

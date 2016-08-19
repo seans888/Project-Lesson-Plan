@@ -9,12 +9,14 @@ use Yii;
  *
  * @property integer $id
  * @property string $sub_name
- * @property integer $emp_id
+ * @property integer $teach_emp_id
  * @property string $sub_time
+ * @property integer $sub_class_id
  *
  * @property Grade[] $grades
- * @property Sched[] $scheds
- * @property Employee $emp
+ * @property Schedule[] $schedules
+ * @property Employee $teachEmp
+ * @property Section $subClass
  */
 class Subject extends \yii\db\ActiveRecord
 {
@@ -32,11 +34,12 @@ class Subject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'sub_name', 'emp_id', 'sub_time'], 'required'],
-            [['id', 'emp_id'], 'integer'],
+            [['sub_name', 'teach_emp_id', 'sub_time', 'sub_class_id'], 'required'],
+            [['teach_emp_id', 'sub_class_id'], 'integer'],
             [['sub_time'], 'safe'],
-            [['sub_name'], 'string', 'max' => 45],
-            [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['emp_id' => 'id']],
+            [['sub_name'], 'string', 'max' => 35],
+            [['teach_emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['teach_emp_id' => 'id']],
+            [['sub_class_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['sub_class_id' => 'id']],
         ];
     }
 
@@ -48,8 +51,9 @@ class Subject extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'sub_name' => 'Sub Name',
-            'emp_id' => 'Emp ID',
+            'teach_emp_id' => 'Teach Emp ID',
             'sub_time' => 'Sub Time',
+            'sub_class_id' => 'Sub Class ID',
         ];
     }
 
@@ -64,16 +68,24 @@ class Subject extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getScheds()
+    public function getSchedules()
     {
-        return $this->hasMany(Sched::className(), ['sub_id' => 'id']);
+        return $this->hasMany(Schedule::className(), ['sub_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmp()
+    public function getTeachEmp()
     {
-        return $this->hasOne(Employee::className(), ['id' => 'emp_id']);
+        return $this->hasOne(Employee::className(), ['id' => 'teach_emp_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubClass()
+    {
+        return $this->hasOne(Section::className(), ['id' => 'sub_class_id']);
     }
 }

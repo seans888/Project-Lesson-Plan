@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
-
     <?= $form->field($model, 'acad_year_start')->textInput() ?>
 
     <?= $form->field($model, 'acad_year_end')->textInput() ?>
@@ -32,7 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'quart4_start_period')->textInput() ?>
 
-    <?= $form->field($model, 'quart4_end_period')->textInput() ?>
+    <?= $form->field($model, 'quart14_end_period')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -11,8 +11,10 @@ use Yii;
  * @property string $sec_name
  * @property integer $advise_emp_id
  *
- * @property Sched[] $scheds
+ * @property Schedule[] $schedules
  * @property Employee $adviseEmp
+ * @property Student[] $students
+ * @property Subject[] $subjects
  */
 class Section extends \yii\db\ActiveRecord
 {
@@ -30,9 +32,9 @@ class Section extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'sec_name', 'advise_emp_id'], 'required'],
-            [['id', 'advise_emp_id'], 'integer'],
-            [['sec_name'], 'string', 'max' => 45],
+            [['sec_name', 'advise_emp_id'], 'required'],
+            [['advise_emp_id'], 'integer'],
+            [['sec_name'], 'string', 'max' => 35],
             [['advise_emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['advise_emp_id' => 'id']],
         ];
     }
@@ -52,9 +54,9 @@ class Section extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getScheds()
+    public function getSchedules()
     {
-        return $this->hasMany(Sched::className(), ['sec_id' => 'id']);
+        return $this->hasMany(Schedule::className(), ['sec_id' => 'id']);
     }
 
     /**
@@ -63,5 +65,21 @@ class Section extends \yii\db\ActiveRecord
     public function getAdviseEmp()
     {
         return $this->hasOne(Employee::className(), ['id' => 'advise_emp_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStudents()
+    {
+        return $this->hasMany(Student::className(), ['sec_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubjects()
+    {
+        return $this->hasMany(Subject::className(), ['sub_class_id' => 'id']);
     }
 }

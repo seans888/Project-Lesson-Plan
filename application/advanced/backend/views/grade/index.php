@@ -26,10 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'acad_year_id',
-            'grade',
             'stud_id',
             'emp_id',
-            // 'sub_id',
+            'sub_id',
+            // 'grade',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

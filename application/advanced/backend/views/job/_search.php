@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\LogSearch */
+/* @var $model common\models\JobSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="log-search">
+<div class="job-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,11 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'emp_id') ?>
-
-    <?= $form->field($model, 'trans_date') ?>
-
-    <?= $form->field($model, 'trans_time') ?>
+    <?= $form->field($model, 'job_description') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

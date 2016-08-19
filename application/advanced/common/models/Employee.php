@@ -8,14 +8,14 @@ use Yii;
  * This is the model class for table "employee".
  *
  * @property integer $id
- * @property integer $emp_id
- * @property string $emp_job
- * @property string $emp_fname
- * @property string $emp_lname
- * @property string $emp_mname
+ * @property integer $emp_id_num
+ * @property integer $emp_job
+ * @property integer $emp_fname
+ * @property integer $emp_lname
+ * @property integer $emp_mname
  *
+ * @property Job $empJob
  * @property Grade[] $grades
- * @property Log[] $logs
  * @property Section[] $sections
  * @property Subject[] $subjects
  */
@@ -35,9 +35,9 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'emp_id', 'emp_job', 'emp_fname', 'emp_lname'], 'required'],
-            [['id', 'emp_id'], 'integer'],
-            [['emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'string', 'max' => 45],
+            [['emp_id_num', 'emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'required'],
+            [['emp_id_num', 'emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'integer'],
+            [['emp_job'], 'exist', 'skipOnError' => true, 'targetClass' => Job::className(), 'targetAttribute' => ['emp_job' => 'id']],
         ];
     }
 
@@ -48,7 +48,7 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'emp_id' => 'Emp ID',
+            'emp_id_num' => 'Emp Id Num',
             'emp_job' => 'Emp Job',
             'emp_fname' => 'Emp Fname',
             'emp_lname' => 'Emp Lname',
@@ -59,17 +59,17 @@ class Employee extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGrades()
+    public function getEmpJob()
     {
-        return $this->hasMany(Grade::className(), ['emp_id' => 'id']);
+        return $this->hasOne(Job::className(), ['id' => 'emp_job']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLogs()
+    public function getGrades()
     {
-        return $this->hasMany(Log::className(), ['emp_id' => 'id']);
+        return $this->hasMany(Grade::className(), ['emp_id' => 'id']);
     }
 
     /**
@@ -85,6 +85,6 @@ class Employee extends \yii\db\ActiveRecord
      */
     public function getSubjects()
     {
-        return $this->hasMany(Subject::className(), ['emp_id' => 'id']);
+        return $this->hasMany(Subject::className(), ['teach_emp_id' => 'id']);
     }
 }

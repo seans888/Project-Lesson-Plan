@@ -4,15 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Sched */
+/* @var $model common\models\Schedule */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="sched-form">
+<div class="schedule-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'id')->textInput() ?>
 
     <?= $form->field($model, 'sub_id')->textInput() ?>
 

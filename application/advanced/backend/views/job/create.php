@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Log */
+/* @var $model common\models\Job */
 
-$this->title = 'Create Log';
-$this->params['breadcrumbs'][] = ['label' => 'Logs', 'url' => ['index']];
+$this->title = 'Create Job';
+$this->params['breadcrumbs'][] = ['label' => 'Jobs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="log-create">
+<div class="job-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

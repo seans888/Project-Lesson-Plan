@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Sched;
-use common\models\SchedSearch;
+use common\models\Schedule;
+use common\models\ScheduleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SchedController implements the CRUD actions for Sched model.
+ * ScheduleController implements the CRUD actions for Schedule model.
  */
-class SchedController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class SchedController extends Controller
     }
 
     /**
-     * Lists all Sched models.
+     * Lists all Schedule models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SchedSearch();
+        $searchModel = new ScheduleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class SchedController extends Controller
     }
 
     /**
-     * Displays a single Sched model.
+     * Displays a single Schedule model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class SchedController extends Controller
     }
 
     /**
-     * Creates a new Sched model.
+     * Creates a new Schedule model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Sched();
+        $model = new Schedule();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class SchedController extends Controller
     }
 
     /**
-     * Updates an existing Sched model.
+     * Updates an existing Schedule model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class SchedController extends Controller
     }
 
     /**
-     * Deletes an existing Sched model.
+     * Deletes an existing Schedule model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class SchedController extends Controller
     }
 
     /**
-     * Finds the Sched model based on its primary key value.
+     * Finds the Schedule model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Sched the loaded model
+     * @return Schedule the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Sched::findOne($id)) !== null) {
+        if (($model = Schedule::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

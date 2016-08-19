@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Sched;
+use common\models\Job;
 
 /**
- * SchedSearch represents the model behind the search form about `common\models\Sched`.
+ * JobSearch represents the model behind the search form about `common\models\Job`.
  */
-class SchedSearch extends Sched
+class JobSearch extends Job
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class SchedSearch extends Sched
     public function rules()
     {
         return [
-            [['id', 'sub_id', 'sec_id', 'acad_year_id'], 'integer'],
+            [['id', 'job_description'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class SchedSearch extends Sched
      */
     public function search($params)
     {
-        $query = Sched::find();
+        $query = Job::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +59,7 @@ class SchedSearch extends Sched
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sub_id' => $this->sub_id,
-            'sec_id' => $this->sec_id,
-            'acad_year_id' => $this->acad_year_id,
+            'job_description' => $this->job_description,
         ]);
 
         return $dataProvider;

@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Log;
-use common\models\LogSearch;
+use common\models\Job;
+use common\models\JobSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * LogController implements the CRUD actions for Log model.
+ * JobController implements the CRUD actions for Job model.
  */
-class LogController extends Controller
+class JobController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class LogController extends Controller
     }
 
     /**
-     * Lists all Log models.
+     * Lists all Job models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new LogSearch();
+        $searchModel = new JobSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class LogController extends Controller
     }
 
     /**
-     * Displays a single Log model.
+     * Displays a single Job model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class LogController extends Controller
     }
 
     /**
-     * Creates a new Log model.
+     * Creates a new Job model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Log();
+        $model = new Job();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class LogController extends Controller
     }
 
     /**
-     * Updates an existing Log model.
+     * Updates an existing Job model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class LogController extends Controller
     }
 
     /**
-     * Deletes an existing Log model.
+     * Deletes an existing Job model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class LogController extends Controller
     }
 
     /**
-     * Finds the Log model based on its primary key value.
+     * Finds the Job model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Log the loaded model
+     * @return Job the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Log::findOne($id)) !== null) {
+        if (($model = Job::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

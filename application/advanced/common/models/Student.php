@@ -16,6 +16,7 @@ use Yii;
  * @property string $email
  *
  * @property Grade[] $grades
+ * @property Section $sec
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -33,9 +34,11 @@ class Student extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'stud_id_num', 'stud_fname', 'stud_lname', 'sec_id', 'email'], 'required'],
-            [['id', 'stud_id_num', 'sec_id'], 'integer'],
-            [['stud_fname', 'stud_lname', 'stud_mname', 'email'], 'string', 'max' => 45],
+            [['stud_id_num', 'stud_fname', 'stud_lname', 'stud_mname', 'sec_id', 'email'], 'required'],
+            [['stud_id_num', 'sec_id'], 'integer'],
+            [['stud_fname', 'stud_lname', 'stud_mname'], 'string', 'max' => 35],
+            [['email'], 'string', 'max' => 255],
+            [['sec_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['sec_id' => 'id']],
         ];
     }
 
@@ -61,5 +64,13 @@ class Student extends \yii\db\ActiveRecord
     public function getGrades()
     {
         return $this->hasMany(Grade::className(), ['stud_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSec()
+    {
+        return $this->hasOne(Section::className(), ['id' => 'sec_id']);
     }
 }

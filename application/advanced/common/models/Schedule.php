@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "sched".
+ * This is the model class for table "schedule".
  *
  * @property integer $id
  * @property integer $sub_id
@@ -16,14 +16,14 @@ use Yii;
  * @property Section $sec
  * @property AcademicYear $acadYear
  */
-class Sched extends \yii\db\ActiveRecord
+class Schedule extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'sched';
+        return 'schedule';
     }
 
     /**
@@ -32,8 +32,8 @@ class Sched extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'sub_id', 'sec_id', 'acad_year_id'], 'required'],
-            [['id', 'sub_id', 'sec_id', 'acad_year_id'], 'integer'],
+            [['sub_id', 'sec_id', 'acad_year_id'], 'required'],
+            [['sub_id', 'sec_id', 'acad_year_id'], 'integer'],
             [['sub_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['sub_id' => 'id']],
             [['sec_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['sec_id' => 'id']],
             [['acad_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['acad_year_id' => 'id']],
