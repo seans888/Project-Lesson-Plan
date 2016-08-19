@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2016 at 05:50 PM
+-- Generation Time: Aug 19, 2016 at 07:16 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -68,6 +68,17 @@ CREATE TABLE IF NOT EXISTS `grade` (
   `emp_id` int(11) NOT NULL,
   `sub_id` int(11) NOT NULL,
   `grade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job`
+--
+
+CREATE TABLE IF NOT EXISTS `job` (
+  `id` int(11) NOT NULL,
+  `job_description` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -139,13 +150,19 @@ ALTER TABLE `academic_year`
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `emp_job` (`emp_job`);
 
 --
 -- Indexes for table `grade`
 --
 ALTER TABLE `grade`
   ADD PRIMARY KEY (`id`), ADD KEY `acad_year_id` (`acad_year_id`), ADD KEY `stud_id` (`stud_id`), ADD KEY `emp_id` (`emp_id`), ADD KEY `sub_id` (`sub_id`);
+
+--
+-- Indexes for table `job`
+--
+ALTER TABLE `job`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `schedule`
@@ -191,6 +208,11 @@ ALTER TABLE `employee`
 ALTER TABLE `grade`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `job`
+--
+ALTER TABLE `job`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -213,6 +235,12 @@ ALTER TABLE `subject`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `employee`
+--
+ALTER TABLE `employee`
+ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`emp_job`) REFERENCES `job` (`id`);
 
 --
 -- Constraints for table `grade`
