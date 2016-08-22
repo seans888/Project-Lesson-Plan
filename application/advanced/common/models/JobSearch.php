@@ -18,7 +18,8 @@ class JobSearch extends Job
     public function rules()
     {
         return [
-            [['id', 'job_description'], 'integer'],
+            [['id'], 'integer'],
+            [['job_description'], 'safe'],
         ];
     }
 
@@ -59,8 +60,9 @@ class JobSearch extends Job
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'job_description' => $this->job_description,
         ]);
+
+        $query->andFilterWhere(['like', 'job_description', $this->job_description]);
 
         return $dataProvider;
     }

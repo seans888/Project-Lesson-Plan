@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "job".
  *
  * @property integer $id
- * @property integer $job_description
+ * @property string $job_description
  *
  * @property Employee[] $employees
  */
@@ -29,7 +29,7 @@ class Job extends \yii\db\ActiveRecord
     {
         return [
             [['job_description'], 'required'],
-            [['job_description'], 'integer'],
+            [['job_description'], 'string', 'max' => 45],
         ];
     }
 

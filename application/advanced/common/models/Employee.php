@@ -10,9 +10,9 @@ use Yii;
  * @property integer $id
  * @property integer $emp_id_num
  * @property integer $emp_job
- * @property integer $emp_fname
- * @property integer $emp_lname
- * @property integer $emp_mname
+ * @property string $emp_fname
+ * @property string $emp_lname
+ * @property string $emp_mname
  *
  * @property Job $empJob
  * @property Grade[] $grades
@@ -36,7 +36,8 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             [['emp_id_num', 'emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'required'],
-            [['emp_id_num', 'emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'integer'],
+            [['emp_id_num', 'emp_job'], 'integer'],
+            [['emp_fname', 'emp_lname', 'emp_mname'], 'string', 'max' => 45],
             [['emp_job'], 'exist', 'skipOnError' => true, 'targetClass' => Job::className(), 'targetAttribute' => ['emp_job' => 'id']],
         ];
     }
