@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2016 at 07:16 AM
+-- Generation Time: Aug 22, 2016 at 04:06 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `system`
+-- Database: `registrar_system`
 --
 
 -- --------------------------------------------------------
@@ -50,9 +50,9 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `id` int(11) NOT NULL,
   `emp_id_num` int(11) NOT NULL,
   `emp_job` int(11) NOT NULL,
-  `emp_fname` int(11) NOT NULL,
-  `emp_lname` int(11) NOT NULL,
-  `emp_mname` int(11) NOT NULL
+  `emp_fname` varchar(35) NOT NULL,
+  `emp_lname` varchar(35) NOT NULL,
+  `emp_mname` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
