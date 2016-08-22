@@ -50,16 +50,16 @@ class AcademicYear extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'acad_year_start' => 'Acad Year Start',
-            'acad_year_end' => 'Acad Year End',
-            'quart1_start_period' => 'Quart1 Start Period',
-            'quart1_end_period' => 'Quart1 End Period',
-            'quart2_start_period' => 'Quart2 Start Period',
-            'quart2_end_period' => 'Quart2 End Period',
-            'quart3_start_period' => 'Quart3 Start Period',
-            'quart3_end_period' => 'Quart3 End Period',
-            'quart4_start_period' => 'Quart4 Start Period',
-            'quart14_end_period' => 'Quart14 End Period',
+            'acad_year_start' => 'Academic Year Start',
+            'acad_year_end' => 'Academic Year End',
+            'quart1_start_period' => 'Quarter1 Start Period',
+            'quart1_end_period' => 'Quarter1 End Period',
+            'quart2_start_period' => 'Quarter2 Start Period',
+            'quart2_end_period' => 'Quarter2 End Period',
+            'quart3_start_period' => 'Quarter3 Start Period',
+            'quart3_end_period' => 'Quarter3 End Period',
+            'quart4_start_period' => 'Quarter4 Start Period',
+            'quart14_end_period' => 'Quarter4 End Period',
         ];
     }
 
