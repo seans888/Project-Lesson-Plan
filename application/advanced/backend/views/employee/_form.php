@@ -16,7 +16,6 @@ use common\models\Job;
 
     <?= $form->field($model, 'emp_id_num')->textInput() ?>
 
-    <?= $form->field($model, 'emp_job')->textInput() ?>
     <?= $form->field($model, 'emp_job')->dropDownList(
         ArrayHelper::map(Job::find()->all(),'id','job_description'),
         ['prompt' => 'Select Job']
