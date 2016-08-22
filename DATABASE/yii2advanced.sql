@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2016 at 08:11 AM
+-- Generation Time: Aug 22, 2016 at 03:39 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -30,14 +30,7 @@ CREATE TABLE IF NOT EXISTS `academic_year` (
   `id` int(11) NOT NULL,
   `acad_year_start` date NOT NULL,
   `acad_year_end` date NOT NULL,
-  `quart1_start_period` date NOT NULL,
-  `quart1_end_period` date NOT NULL,
-  `quart2_start_period` date NOT NULL,
-  `quart2_end_period` date NOT NULL,
-  `quart3_start_period` date NOT NULL,
-  `quart3_end_period` date NOT NULL,
-  `quart4_start_period` date NOT NULL,
-  `quart14_end_period` date NOT NULL
+  `School_Year` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -74,7 +67,8 @@ CREATE TABLE IF NOT EXISTS `grade` (
   `stud_id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `sub_id` int(11) NOT NULL,
-  `grade` int(11) NOT NULL
+  `grade` int(11) NOT NULL,
+  `quarter` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -113,6 +107,20 @@ CREATE TABLE IF NOT EXISTS `migration` (
 INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m000000_000000_base', 1471607180),
 ('m130524_201442_init', 1471607185);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quarter`
+--
+
+CREATE TABLE IF NOT EXISTS `quarter` (
+  `id` int(11) NOT NULL,
+  `School_Year` int(11) NOT NULL,
+  `quarter` int(11) NOT NULL,
+  `quarter_start` date NOT NULL,
+  `quarter_end` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -230,6 +238,12 @@ ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
+-- Indexes for table `quarter`
+--
+ALTER TABLE `quarter`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -283,6 +297,11 @@ ALTER TABLE `grade`
 --
 ALTER TABLE `job`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `quarter`
+--
+ALTER TABLE `quarter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
