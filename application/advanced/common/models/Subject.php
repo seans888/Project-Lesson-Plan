@@ -53,7 +53,7 @@ class Subject extends \yii\db\ActiveRecord
             'sub_name' => 'Subject Name',
             'teach_emp_id' => 'Teacher',
             'sub_time' => 'Subject Time',
-            'sub_class_id' => 'Sub Class ID',
+            'sub_class_id' => 'Assigned Subjects Section',
         ];
     }
 

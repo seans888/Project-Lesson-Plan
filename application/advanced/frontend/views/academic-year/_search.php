@@ -21,21 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'acad_year_end') ?>
 
-    <?= $form->field($model, 'quart1_start_period') ?>
-
-    <?= $form->field($model, 'quart1_end_period') ?>
-
-    <?php // echo $form->field($model, 'quart2_start_period') ?>
-
-    <?php // echo $form->field($model, 'quart2_end_period') ?>
-
-    <?php // echo $form->field($model, 'quart3_start_period') ?>
-
-    <?php // echo $form->field($model, 'quart3_end_period') ?>
-
-    <?php // echo $form->field($model, 'quart4_start_period') ?>
-
-    <?php // echo $form->field($model, 'quart14_end_period') ?>
+    <?= $form->field($model, 'School_Year') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

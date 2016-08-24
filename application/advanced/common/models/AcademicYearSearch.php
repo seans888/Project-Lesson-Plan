@@ -19,7 +19,7 @@ class AcademicYearSearch extends AcademicYear
     {
         return [
             [['id'], 'integer'],
-            [['acad_year_start', 'acad_year_end', 'quart1_start_period', 'quart1_end_period', 'quart2_start_period', 'quart2_end_period', 'quart3_start_period', 'quart3_end_period', 'quart4_start_period', 'quart14_end_period'], 'safe'],
+            [['acad_year_start', 'acad_year_end', 'School_Year'], 'safe'],
         ];
     }
 
@@ -62,15 +62,9 @@ class AcademicYearSearch extends AcademicYear
             'id' => $this->id,
             'acad_year_start' => $this->acad_year_start,
             'acad_year_end' => $this->acad_year_end,
-            'quart1_start_period' => $this->quart1_start_period,
-            'quart1_end_period' => $this->quart1_end_period,
-            'quart2_start_period' => $this->quart2_start_period,
-            'quart2_end_period' => $this->quart2_end_period,
-            'quart3_start_period' => $this->quart3_start_period,
-            'quart3_end_period' => $this->quart3_end_period,
-            'quart4_start_period' => $this->quart4_start_period,
-            'quart14_end_period' => $this->quart14_end_period,
         ]);
+
+        $query->andFilterWhere(['like', 'School_Year', $this->School_Year]);
 
         return $dataProvider;
     }

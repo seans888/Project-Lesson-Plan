@@ -16,21 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'acad_year_end')->textInput() ?>
 
-    <?= $form->field($model, 'quart1_start_period')->textInput() ?>
-
-    <?= $form->field($model, 'quart1_end_period')->textInput() ?>
-
-    <?= $form->field($model, 'quart2_start_period')->textInput() ?>
-
-    <?= $form->field($model, 'quart2_end_period')->textInput() ?>
-
-    <?= $form->field($model, 'quart3_start_period')->textInput() ?>
-
-    <?= $form->field($model, 'quart3_end_period')->textInput() ?>
-
-    <?= $form->field($model, 'quart4_start_period')->textInput() ?>
-
-    <?= $form->field($model, 'quart14_end_period')->textInput() ?>
+    <?= $form->field($model, 'School_Year')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

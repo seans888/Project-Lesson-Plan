@@ -31,14 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'acad_year_start',
             'acad_year_end',
-            'quart1_start_period',
-            'quart1_end_period',
-            'quart2_start_period',
-            'quart2_end_period',
-            'quart3_start_period',
-            'quart3_end_period',
-            'quart4_start_period',
-            'quart14_end_period',
+            'School_Year',
         ],
     ]) ?>
 

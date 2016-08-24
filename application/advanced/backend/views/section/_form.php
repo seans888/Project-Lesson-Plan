@@ -18,7 +18,7 @@ use common\models\Employee;
 
     <?= $form->field($model, 'advise_emp_id')->dropDownList(
         ArrayHelper::map(Employee::find()->all(),'id','emp_lname'),
-        ['prompt' => 'Select Employee']
+        ['prompt' => 'Select Class Adviser']
         ) ?>
 
     <div class="form-group">

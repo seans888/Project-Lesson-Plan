@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\Employee;
+use common\models\Section;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Subject */
@@ -24,7 +25,13 @@ use common\models\Employee;
 
     <?= $form->field($model, 'sub_time')->textInput() ?>
 
-    <?= $form->field($model, 'sub_class_id')->textInput() ?>
+     <?= $form->field($model, 'sub_class_id')->dropDownList(
+
+        ArrayHelper::map(Section::find()->all(),'id','sec_name'),
+        ['prompt' => 'Select Section']
+        ) ?>
+
+     
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
