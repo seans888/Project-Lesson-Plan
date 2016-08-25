@@ -19,7 +19,7 @@ use common\models\Section;
 
     <?= $form->field($model, 'teach_emp_id')->dropDownList(
 
-        ArrayHelper::map(Employee::find()->all(),'id','emp_lname'),
+        ArrayHelper::map(Employee::find()->all(),'id','emp_lname','emp_fname'),
         ['prompt' => 'Select Teacher']
         ) ?>
 
