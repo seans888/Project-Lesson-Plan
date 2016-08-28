@@ -47,9 +47,9 @@ class Schedule extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'sub_id' => 'Subject ID',
-            'sec_id' => 'Section ID',
-            'acad_year_id' => 'Academic Year ID',
+            'sub_id' => 'Subject',
+            'sec_id' => 'Section',
+            'acad_year_id' => 'Academic Year',
         ];
     }
 

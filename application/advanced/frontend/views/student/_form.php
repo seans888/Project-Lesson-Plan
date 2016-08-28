@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\Section;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Student */
@@ -20,7 +22,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stud_mname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sec_id')->textInput() ?>
+     <?= $form->field($model, 'sec_id')->dropDownList(
+        ArrayHelper::map(Section::find()->all(),'id','sec_name'),
+        ['prompt' => 'Select Section']
+        ) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 

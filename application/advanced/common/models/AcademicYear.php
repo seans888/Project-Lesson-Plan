@@ -44,8 +44,8 @@ class AcademicYear extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'acad_year_start' => 'Acad Year Start',
-            'acad_year_end' => 'Acad Year End',
+            'acad_year_start' => 'Academic Year Start (YY/MM/DD)',
+            'acad_year_end' => 'Academic Year End (YY/MM/DD)',
             'School_Year' => 'School  Year',
         ];
     }
