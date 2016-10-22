@@ -14,6 +14,17 @@ use Yii;
  * @property string $stud_mname
  * @property integer $sec_id
  * @property string $email
+ * @property string $mothers_name
+ * @property string $fathers_name
+ * @property string $guardians_name
+ * @property integer $mothers_contact_number
+ * @property integer $fathers_contact_number
+ * @property integer $guardians_contact_number
+ * @property string $nationality
+ * @property string $gender
+ * @property string $birthdate
+ * @property string $religion
+ * @property string $birth_place
  *
  * @property Grade[] $grades
  * @property Section $sec
@@ -34,8 +45,10 @@ class Student extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['stud_id_num', 'stud_fname', 'stud_lname', 'stud_mname', 'sec_id', 'email'], 'required'],
-            [['stud_id_num', 'sec_id'], 'integer'],
+            [['stud_id_num', 'stud_fname', 'stud_lname', 'sec_id', 'email', 'guardians_name', 'guardians_contact_number', 'nationality', 'gender', 'birthdate', 'religion', 'birth_place'], 'required'],
+            [['stud_id_num', 'sec_id', 'mothers_contact_number', 'fathers_contact_number', 'guardians_contact_number'], 'integer'],
+            [['mothers_name', 'fathers_name', 'guardians_name', 'nationality', 'gender', 'religion', 'birth_place'], 'string'],
+            [['birthdate'], 'safe'],
             [['stud_fname', 'stud_lname', 'stud_mname'], 'string', 'max' => 35],
             [['email'], 'string', 'max' => 255],
             [['sec_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['sec_id' => 'id']],
@@ -49,12 +62,23 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'stud_id_num' => 'ID Number',
+            'stud_id_num' => 'Student Number',
             'stud_fname' => 'First Name',
             'stud_lname' => 'Last Name',
             'stud_mname' => 'Middle Name',
             'sec_id' => 'Section',
             'email' => 'Email',
+            'mothers_name' => 'Mothers Name',
+            'fathers_name' => 'Fathers Name',
+            'guardians_name' => 'Guardians Name',
+            'mothers_contact_number' => 'Mothers Contact Number',
+            'fathers_contact_number' => 'Fathers Contact Number',
+            'guardians_contact_number' => 'Guardians Contact Number',
+            'nationality' => 'Nationality',
+            'gender' => 'Gender',
+            'birthdate' => 'Birthdate',
+            'religion' => 'Religion',
+            'birth_place' => 'Birth Place',
         ];
     }
 

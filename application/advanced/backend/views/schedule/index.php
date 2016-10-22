@@ -23,13 +23,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            
-            'acadYear.School_Year',
+
+            //'id',
+            //'sub_id',
             'sub.sub_name',
-            'sec.sec_name',
-            'sub.sub_time',
-            //'sec.students.stud_lname',
-            //'sec.students.stud_fname',
+            'sub_time_start:datetime',
+            'sub_time_end:datetime',
+            'sec_id',
+            // 'teach_id',
+            // 'acad_year_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

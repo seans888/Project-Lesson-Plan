@@ -21,8 +21,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'teach_emp_id') ?>
 
-    <?= $form->field($model, 'sub_time') ?>
-
     <?= $form->field($model, 'sub_class_id') ?>
 
     <div class="form-group">

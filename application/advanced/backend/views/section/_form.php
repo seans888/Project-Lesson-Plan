@@ -16,7 +16,7 @@ use common\models\Employee;
 
     <?= $form->field($model, 'sec_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'advise_emp_id')->dropDownList(
+     <?= $form->field($model, 'advise_emp_id')->dropDownList(
         ArrayHelper::map(Employee::find()->all(),'id','emp_lname','emp_fname'),
         ['prompt' => 'Select Class Adviser']
         ) ?>

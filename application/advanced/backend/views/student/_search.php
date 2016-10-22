@@ -29,6 +29,28 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'email') ?>
 
+    <?php // echo $form->field($model, 'mothers_name') ?>
+
+    <?php // echo $form->field($model, 'fathers_name') ?>
+
+    <?php // echo $form->field($model, 'guardians_name') ?>
+
+    <?php // echo $form->field($model, 'mothers_contact_number') ?>
+
+    <?php // echo $form->field($model, 'fathers_contact_number') ?>
+
+    <?php // echo $form->field($model, 'guardians_contact_number') ?>
+
+    <?php // echo $form->field($model, 'nationality') ?>
+
+    <?php // echo $form->field($model, 'gender') ?>
+
+    <?php // echo $form->field($model, 'birthdate') ?>
+
+    <?php // echo $form->field($model, 'religion') ?>
+
+    <?php // echo $form->field($model, 'birth_place') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

@@ -18,8 +18,8 @@ class StudentSearch extends Student
     public function rules()
     {
         return [
-            [['id', 'stud_id_num', 'sec_id'], 'integer'],
-            [['stud_fname', 'stud_lname', 'stud_mname', 'email'], 'safe'],
+            [['id', 'stud_id_num', 'sec_id', 'mothers_contact_number', 'fathers_contact_number', 'guardians_contact_number'], 'integer'],
+            [['stud_fname', 'stud_lname', 'stud_mname', 'email', 'mothers_name', 'fathers_name', 'guardians_name', 'nationality', 'gender', 'birthdate', 'religion', 'birth_place'], 'safe'],
         ];
     }
 
@@ -62,12 +62,23 @@ class StudentSearch extends Student
             'id' => $this->id,
             'stud_id_num' => $this->stud_id_num,
             'sec_id' => $this->sec_id,
+            'mothers_contact_number' => $this->mothers_contact_number,
+            'fathers_contact_number' => $this->fathers_contact_number,
+            'guardians_contact_number' => $this->guardians_contact_number,
+            'birthdate' => $this->birthdate,
         ]);
 
         $query->andFilterWhere(['like', 'stud_fname', $this->stud_fname])
             ->andFilterWhere(['like', 'stud_lname', $this->stud_lname])
             ->andFilterWhere(['like', 'stud_mname', $this->stud_mname])
-            ->andFilterWhere(['like', 'email', $this->email]);
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'mothers_name', $this->mothers_name])
+            ->andFilterWhere(['like', 'fathers_name', $this->fathers_name])
+            ->andFilterWhere(['like', 'guardians_name', $this->guardians_name])
+            ->andFilterWhere(['like', 'nationality', $this->nationality])
+            ->andFilterWhere(['like', 'gender', $this->gender])
+            ->andFilterWhere(['like', 'religion', $this->religion])
+            ->andFilterWhere(['like', 'birth_place', $this->birth_place]);
 
         return $dataProvider;
     }

@@ -9,7 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property integer $sub_id
+ * @property integer $sub_time_start
+ * @property integer $sub_time_end
  * @property integer $sec_id
+ * @property integer $teach_id
  * @property integer $acad_year_id
  *
  * @property Subject $sub
@@ -32,8 +35,8 @@ class Schedule extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sub_id', 'sec_id', 'acad_year_id'], 'required'],
-            [['sub_id', 'sec_id', 'acad_year_id'], 'integer'],
+            [['sub_id', 'sub_time_start', 'sub_time_end', 'sec_id', 'teach_id', 'acad_year_id'], 'required'],
+            [['sub_id', 'sub_time_start', 'sub_time_end', 'sec_id', 'teach_id', 'acad_year_id'], 'integer'],
             [['sub_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['sub_id' => 'id']],
             [['sec_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['sec_id' => 'id']],
             [['acad_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['acad_year_id' => 'id']],
@@ -47,8 +50,11 @@ class Schedule extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'sub_id' => 'Subject',
+            'sub_id' => 'Subject Name',
+            'sub_time_start' => 'Time Start',
+            'sub_time_end' => 'Time End',
             'sec_id' => 'Section',
+            'teach_id' => 'Teach ID',
             'acad_year_id' => 'Academic Year',
         ];
     }

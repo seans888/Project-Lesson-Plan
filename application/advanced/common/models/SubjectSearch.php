@@ -19,7 +19,7 @@ class SubjectSearch extends Subject
     {
         return [
             [['id', 'teach_emp_id', 'sub_class_id'], 'integer'],
-            [['sub_name', 'sub_time'], 'safe'],
+            [['sub_name'], 'safe'],
         ];
     }
 
@@ -61,7 +61,6 @@ class SubjectSearch extends Subject
         $query->andFilterWhere([
             'id' => $this->id,
             'teach_emp_id' => $this->teach_emp_id,
-            'sub_time' => $this->sub_time,
             'sub_class_id' => $this->sub_class_id,
         ]);
 

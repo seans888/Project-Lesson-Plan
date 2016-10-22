@@ -13,6 +13,7 @@ use Yii;
  * @property integer $emp_id
  * @property integer $sub_id
  * @property integer $grade
+ * @property integer $quarter
  *
  * @property AcademicYear $acadYear
  * @property Student $stud
@@ -35,8 +36,8 @@ class Grade extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['acad_year_id', 'stud_id', 'emp_id', 'sub_id', 'grade'], 'required'],
-            [['acad_year_id', 'stud_id', 'emp_id', 'sub_id', 'grade'], 'integer'],
+            [['acad_year_id', 'stud_id', 'emp_id', 'sub_id', 'grade', 'quarter'], 'required'],
+            [['acad_year_id', 'stud_id', 'emp_id', 'sub_id', 'grade', 'quarter'], 'integer'],
             [['acad_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['acad_year_id' => 'id']],
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['stud_id' => 'id']],
             [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['emp_id' => 'id']],
@@ -56,6 +57,7 @@ class Grade extends \yii\db\ActiveRecord
             'emp_id' => 'Teacher',
             'sub_id' => 'Subject',
             'grade' => 'Grade',
+            'quarter' => 'Quarter',
         ];
     }
 

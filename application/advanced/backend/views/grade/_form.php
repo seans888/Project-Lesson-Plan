@@ -7,6 +7,7 @@ use common\models\AcademicYear;
 use common\models\Student;
 use common\models\Employee;
 use common\models\Subject;
+use common\models\Quarter;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Grade */
@@ -22,7 +23,7 @@ use common\models\Subject;
         ['prompt' => 'Select Academic Year']
         ) ?>
 
-     <?= $form->field($model, 'stud_id')->dropDownList(
+    <?= $form->field($model, 'stud_id')->dropDownList(
         ArrayHelper::map(Student::find()->all(),'id','stud_lname','stud_fname'),
         ['prompt' => 'Select Student']
         ) ?>
@@ -32,12 +33,15 @@ use common\models\Subject;
         ['prompt' => 'Select Teacher']
         ) ?>
 
-     <?= $form->field($model, 'sub_id')->dropDownList(
+    <?= $form->field($model, 'sub_id')->dropDownList(
         ArrayHelper::map(Subject::find()->all(),'id','sub_name'),
         ['prompt' => 'Select Subject']
         ) ?>
 
+
     <?= $form->field($model, 'grade')->textInput() ?>
+
+    <?= $form->field($model, 'quarter')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -29,7 +29,7 @@ class Job extends \yii\db\ActiveRecord
     {
         return [
             [['job_description'], 'required'],
-            [['job_description'], 'string', 'max' => 45],
+            [['job_description'], 'string', 'max' => 35],
         ];
     }
 

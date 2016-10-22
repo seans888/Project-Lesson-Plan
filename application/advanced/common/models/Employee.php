@@ -35,7 +35,7 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['emp_id_num', 'emp_job', 'emp_fname', 'emp_lname', 'emp_mname'], 'required'],
+            [['emp_id_num', 'emp_job', 'emp_fname', 'emp_lname'], 'required'],
             [['emp_id_num', 'emp_job'], 'integer'],
             [['emp_fname', 'emp_lname', 'emp_mname'], 'string', 'max' => 45],
             [['emp_job'], 'exist', 'skipOnError' => true, 'targetClass' => Job::className(), 'targetAttribute' => ['emp_job' => 'id']],
