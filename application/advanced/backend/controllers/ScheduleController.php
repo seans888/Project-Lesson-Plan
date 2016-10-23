@@ -8,6 +8,7 @@ use common\models\ScheduleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * ScheduleController implements the CRUD actions for Schedule model.
@@ -63,7 +64,9 @@ class ScheduleController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Schedule();
+        if(Yii::$app->user->can( 'add schedule'))
+        {
+             $model = new Schedule();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -71,6 +74,11 @@ class ScheduleController extends Controller
             return $this->render('create', [
                 'model' => $model,
             ]);
+        }
+       
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
     }
 

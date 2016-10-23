@@ -8,6 +8,7 @@ use common\models\EmployeeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * EmployeeController implements the CRUD actions for Employee model.
@@ -63,15 +64,23 @@ class EmployeeController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Employee();
+        if(Yii::$app->user->can( 'add employee'))
+        {
+                 $model = new Employee();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+
         }
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+       
     }
 
     /**

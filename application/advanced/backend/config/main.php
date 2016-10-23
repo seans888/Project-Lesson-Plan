@@ -26,6 +26,12 @@ return [
                 ],
             ],
         ],
+        
+        'authManager'=>
+            [
+                'class'=>'yii\rbac\DbManager',
+                'defaultRoles'=>['guest'],
+            ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
