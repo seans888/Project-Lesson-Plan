@@ -41,7 +41,10 @@ use common\models\Quarter;
 
     <?= $form->field($model, 'grade')->textInput() ?>
 
-    <?= $form->field($model, 'quarter')->textInput() ?>
+ <?= $form->field($model, 'quarter')->dropDownList(
+        ArrayHelper::map(Quarter::find()->all(),'id','quarter'),
+        ['prompt' => 'Select Quarter']
+        ) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

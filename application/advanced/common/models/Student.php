@@ -76,7 +76,7 @@ class Student extends \yii\db\ActiveRecord
             'guardians_contact_number' => 'Guardians Contact Number',
             'nationality' => 'Nationality',
             'gender' => 'Gender',
-            'birthdate' => 'Birthdate',
+            'birthdate' => 'Birthdate (YY/MM/DD)',
             'religion' => 'Religion',
             'birth_place' => 'Birth Place',
         ];

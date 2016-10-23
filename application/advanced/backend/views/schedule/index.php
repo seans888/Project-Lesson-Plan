@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'sub.sub_name',
             'sub_time_start:datetime',
             'sub_time_end:datetime',
-            'sec_id',
+            'sec.sec_name',
             // 'teach_id',
             // 'acad_year_id',
 

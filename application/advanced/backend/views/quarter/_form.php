@@ -16,8 +16,9 @@ use common\models\AcademicYear;
 
     <?= $form->field($model, 'School_Year')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->all(),'id','School_Year'),
-        ['prompt' => 'Select School Year']
+        ['prompt' => 'Select Academic Year']
         ) ?>
+
 
     <?= $form->field($model, 'quarter')->textInput() ?>
 
