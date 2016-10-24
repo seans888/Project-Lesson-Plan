@@ -36,13 +36,20 @@ class GradeController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new GradeSearch();
+        if(Yii::$app->user->can( 'add grade'))
+        {
+         $searchModel = new GradeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ]);   
+    }else
+    {
+        throw new ForbiddenHttpException;
+    }
+        
     }
 
     /**

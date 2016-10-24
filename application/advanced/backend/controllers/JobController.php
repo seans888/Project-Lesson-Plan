@@ -36,13 +36,20 @@ class JobController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new JobSearch();
+        if(Yii::$app->user->can( 'add job'))
+        {
+              $searchModel = new JobSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+      
     }
 
     /**

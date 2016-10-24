@@ -35,13 +35,20 @@ class QuarterController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new QuarterSearch();
+        if(Yii::$app->user->can( 'add quarter'))
+        {
+              $searchModel = new QuarterSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }else
+    {
+        throw new ForbiddenHttpException;
+    }
+      
     }
 
     /**

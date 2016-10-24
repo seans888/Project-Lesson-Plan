@@ -36,13 +36,20 @@ class ScheduleController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ScheduleSearch();
+        if(Yii::$app->user->can( 'add schedule'))
+        {
+             $searchModel = new ScheduleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }else
+    {
+        throw new ForbiddenHttpException;
+    }
+       
     }
 
     /**

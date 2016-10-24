@@ -36,13 +36,20 @@ class SubjectController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SubjectSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(Yii::$app->user->can( 'add subject'))
+        {
+         $searchModel = new SubjectSearch();
+                $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+       
     }
 
     /**

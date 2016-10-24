@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2016 at 04:11 PM
+-- Generation Time: Oct 24, 2016 at 02:32 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -31,6 +31,107 @@ CREATE TABLE IF NOT EXISTS `academic_year` (
   `acad_year_start` date NOT NULL,
   `acad_year_end` date NOT NULL,
   `School_Year` varchar(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `academic_year`
+--
+
+INSERT INTO `academic_year` (`id`, `acad_year_start`, `acad_year_end`, `School_Year`) VALUES
+(1, '2014-12-16', '2014-12-16', '2016-2017');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_assignment`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_assignment` (
+  `item_name` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `created_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `auth_assignment`
+--
+
+INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
+('add section', '4', NULL),
+('registrar', '5', NULL),
+('student', '6', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_item`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_item` (
+  `name` varchar(64) NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text,
+  `rule_name` varchar(64) DEFAULT NULL,
+  `data` text,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `auth_item`
+--
+
+INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
+('add academic year', 9, 'allowed to add academic year', NULL, NULL, NULL, NULL),
+('add employee', 2, 'allowed to add employee', NULL, NULL, NULL, NULL),
+('add job', 4, 'allowed to add job', NULL, NULL, NULL, NULL),
+('add quarter', 5, 'allowed to add quarter', NULL, NULL, NULL, NULL),
+('add schedule', 6, 'allowed to add schedule', NULL, NULL, NULL, NULL),
+('add section', 7, 'allowed to add section', NULL, NULL, NULL, NULL),
+('add student', 1, 'allowed to add student', NULL, NULL, NULL, NULL),
+('add subject', 8, 'allowed to add subject', NULL, NULL, NULL, NULL),
+('department_head', 11, 'dept.head can add schedule', NULL, NULL, NULL, NULL),
+('HR', 14, 'HR can add job and employee', NULL, NULL, NULL, NULL),
+('registrar', 10, 'registrar can add schedule, quarter, student,and section.', NULL, NULL, NULL, NULL),
+('student', 13, 'student can view only', NULL, NULL, NULL, NULL),
+('teacher', 12, 'teacher can add grade,', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_item_child`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_item_child` (
+  `parent` varchar(64) NOT NULL,
+  `child` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `auth_item_child`
+--
+
+INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
+('HR', 'add employee'),
+('HR', 'add job'),
+('registrar', 'add quarter'),
+('department_head', 'add schedule'),
+('registrar', 'add schedule'),
+('registrar', 'add section'),
+('registrar', 'add student'),
+('registrar', 'add subject');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_rule`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_rule` (
+  `name` varchar(64) NOT NULL,
+  `data` text,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -46,7 +147,15 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `emp_fname` varchar(45) NOT NULL,
   `emp_lname` varchar(45) NOT NULL,
   `emp_mname` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `emp_id_num`, `emp_job`, `emp_fname`, `emp_lname`, `emp_mname`) VALUES
+(1, 2014100300, 1, 'Moses', 'Malone', ''),
+(2, 2014100302, 4, 'Joshua ', 'Lavarro', '');
 
 -- --------------------------------------------------------
 
@@ -73,14 +182,17 @@ CREATE TABLE IF NOT EXISTS `grade` (
 CREATE TABLE IF NOT EXISTS `job` (
   `id` int(11) NOT NULL,
   `job_description` varchar(35) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `job`
 --
 
 INSERT INTO `job` (`id`, `job_description`) VALUES
-(1, 'Registrar');
+(1, 'Registrar'),
+(2, 'Principal'),
+(3, 'Teacher'),
+(4, 'Department Head');
 
 -- --------------------------------------------------------
 
@@ -113,7 +225,14 @@ CREATE TABLE IF NOT EXISTS `quarter` (
   `quarter` int(11) NOT NULL,
   `quarter_start` date NOT NULL,
   `quarter_end` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `quarter`
+--
+
+INSERT INTO `quarter` (`id`, `School_Year`, `quarter`, `quarter_start`, `quarter_end`) VALUES
+(1, 1, 1, '2016-12-16', '2016-12-16');
 
 -- --------------------------------------------------------
 
@@ -129,7 +248,14 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `sec_id` int(11) NOT NULL,
   `teach_id` int(11) NOT NULL,
   `acad_year_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `sub_id`, `sub_time_start`, `sub_time_end`, `sec_id`, `teach_id`, `acad_year_id`) VALUES
+(1, 1, 3, 3, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -141,7 +267,15 @@ CREATE TABLE IF NOT EXISTS `section` (
   `id` int(11) NOT NULL,
   `sec_name` varchar(35) NOT NULL,
   `advise_emp_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`id`, `sec_name`, `advise_emp_id`) VALUES
+(1, 'IV-Mangga', 1),
+(2, 'V-Apple', 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +302,15 @@ CREATE TABLE IF NOT EXISTS `student` (
   `birthdate` date NOT NULL,
   `religion` text NOT NULL,
   `birth_place` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `stud_id_num`, `stud_fname`, `stud_lname`, `stud_mname`, `sec_id`, `email`, `mothers_name`, `fathers_name`, `guardians_name`, `mothers_contact_number`, `fathers_contact_number`, `guardians_contact_number`, `nationality`, `gender`, `birthdate`, `religion`, `birth_place`) VALUES
+(1, 2014100300, 'Neil', 'Cueto', 'Reyes', 1, 'cueto@gmail.com', 'Whitney Houston', 'Barack Obama', 'Barack Obama', 2147483647, 2147483647, 2147483647, 'Filipino', 'Male', '1990-12-07', 'Islam', 'Iraq'),
+(2, 2014100356, 'Aaron', 'Dagatan', 'Cadpa', 1, 'aarond@gmail.com', 'sample', 'sampletest', 'sample1', 123456789, 987654321, 12381244, 'Filipino', 'M', '1996-12-04', 'Roman Catholic', 'Quezon City');
 
 -- --------------------------------------------------------
 
@@ -181,7 +323,14 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `sub_name` varchar(35) NOT NULL,
   `teach_emp_id` int(11) NOT NULL,
   `sub_class_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`id`, `sub_name`, `teach_emp_id`, `sub_class_id`) VALUES
+(1, 'Math', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -191,8 +340,15 @@ CREATE TABLE IF NOT EXISTS `subject` (
 
 CREATE TABLE IF NOT EXISTS `time` (
   `id` int(11) NOT NULL,
-  `time` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `time` varchar(6) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `time`
+--
+
+INSERT INTO `time` (`id`, `time`) VALUES
+(3, '730');
 
 -- --------------------------------------------------------
 
@@ -205,21 +361,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `permission` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` smallint(6) NOT NULL DEFAULT '10',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'nrcueto', '5GTKgQCSZTdND3_xaaxi50lY6K9WUiR5', '$2y$13$wAf6g6bAPQqHgqWegAdD5eZEhQeP7TGbr4zXVVe10rNmc23UtmfzO', NULL, 'neilcueto101@gmail.com', 10, 1471607622, 1471607622),
-(2, 'odabalon', 'fV0l1FCMMG6xSZxd0CzR3tlQvx9jxq2r', '$2y$13$dVaxA4oTsrb7zgj9QaYUXebyqcVuNK8NeEQOxg96y/uqKmor7bagG', NULL, 'abalonjonathan@gmail.com', 10, 1471833403, 1471833403),
-(3, 'hehehe', 'fRRTnZ9SYa1Ap3r3Lkl_lqNj0n5D-_Ra', '$2y$13$Vlb8qVi5sclqUmZIEHvrk.sgQi1fxs0lMhVuuG6GwqWUcPtVeB8VO', NULL, 'jonathan@outlook.com', 10, 1477064283, 1477064283);
+INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `permission`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
+(4, 'odabalon', '3D62-ROIetdzJbDapRJWUbuwAh3u16fN', '$2y$13$YO8mJ0DDUaOgUqxBZruhcevMbLx0gTTX0HhoFAjguUgtl/9hyZVM2', '', NULL, 'odabalon@student.apc.edu.ph', 10, 1477217057, 1477217057),
+(5, 'nrcueto', 'Q9H6XJy0YxuwLR52DPl1MT9blEItGOSx', '$2y$13$j8R/F0ODaNCh.nZ.7m.dF.5dB1M20ud13wwErWhg5RYuYSIxXKQt6', '', NULL, 'nrcueto@gmail.com', 10, 1477263960, 1477263960),
+(6, 'rcdagatan', 'n3LEIEqTzm-6ysS835IgoHBsFwlwgbDp', '$2y$13$QOPrStvSh6V.0EF/i9X99u6SRRvvLZkEnu8BqrhGW2tWp8hs5fi.u', '', NULL, 'rcdagatan@gmail.com', 10, 1477266616, 1477266616);
 
 --
 -- Indexes for dumped tables
@@ -230,6 +387,30 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_res
 --
 ALTER TABLE `academic_year`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `auth_assignment`
+--
+ALTER TABLE `auth_assignment`
+  ADD PRIMARY KEY (`item_name`,`user_id`);
+
+--
+-- Indexes for table `auth_item`
+--
+ALTER TABLE `auth_item`
+  ADD PRIMARY KEY (`name`), ADD KEY `rule_name` (`rule_name`), ADD KEY `type` (`type`);
+
+--
+-- Indexes for table `auth_item_child`
+--
+ALTER TABLE `auth_item_child`
+  ADD PRIMARY KEY (`parent`,`child`), ADD KEY `child` (`child`);
+
+--
+-- Indexes for table `auth_rule`
+--
+ALTER TABLE `auth_rule`
+  ADD PRIMARY KEY (`name`);
 
 --
 -- Indexes for table `employee`
@@ -305,12 +486,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `academic_year`
 --
 ALTER TABLE `academic_year`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `grade`
 --
@@ -320,45 +501,64 @@ ALTER TABLE `grade`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `quarter`
 --
 ALTER TABLE `quarter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `time`
 --
 ALTER TABLE `time`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `auth_assignment`
+--
+ALTER TABLE `auth_assignment`
+ADD CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `auth_item`
+--
+ALTER TABLE `auth_item`
+ADD CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `auth_item_child`
+--
+ALTER TABLE `auth_item_child`
+ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `employee`

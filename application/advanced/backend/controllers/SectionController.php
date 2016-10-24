@@ -35,13 +35,20 @@ class SectionController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SectionSearch();
+        if(Yii::$app->user->can( 'add section'))
+        {
+             $searchModel = new SectionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }else
+    {
+        throw new ForbiddenHttpException;
+    }
+       
     }
 
     /**

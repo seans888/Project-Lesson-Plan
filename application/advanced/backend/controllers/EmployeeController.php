@@ -36,13 +36,19 @@ class EmployeeController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new EmployeeSearch();
+        if(Yii::$app->user->can( 'add employee')){
+             $searchModel = new EmployeeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }else
+    {
+        throw new ForbiddenHttpException;
+    }
+       
     }
 
     /**

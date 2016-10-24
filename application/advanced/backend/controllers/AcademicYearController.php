@@ -35,14 +35,23 @@ class AcademicYearController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AcademicYearSearch();
+        if(Yii::$app->user->can( 'add academic year'))
+        {
+           $searchModel = new AcademicYearSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ]);  
+        }else
+    {
+        throw new ForbiddenHttpException;
+        
+       
     }
+    }
+
 
     /**
      * Displays a single AcademicYear model.
