@@ -11,10 +11,7 @@ use Yii;
  * @property string $sec_name
  * @property integer $advise_emp_id
  *
- * @property Schedule[] $schedules
  * @property Employee $adviseEmp
- * @property Student[] $students
- * @property Subject[] $subjects
  */
 class Section extends \yii\db\ActiveRecord
 {
@@ -54,32 +51,8 @@ class Section extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSchedules()
-    {
-        return $this->hasMany(Schedule::className(), ['sec_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getAdviseEmp()
     {
         return $this->hasOne(Employee::className(), ['id' => 'advise_emp_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getStudents()
-    {
-        return $this->hasMany(Student::className(), ['sec_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubjects()
-    {
-        return $this->hasMany(Subject::className(), ['sub_class_id' => 'id']);
     }
 }

@@ -9,13 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property string $sub_name
- * @property integer $teach_emp_id
- * @property integer $sub_class_id
+ * @property string $subject_description
  *
  * @property Grade[] $grades
  * @property Schedule[] $schedules
- * @property Employee $teachEmp
- * @property Section $subClass
  */
 class Subject extends \yii\db\ActiveRecord
 {
@@ -33,11 +30,9 @@ class Subject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sub_name', 'teach_emp_id', 'sub_class_id'], 'required'],
-            [['teach_emp_id', 'sub_class_id'], 'integer'],
+            [['sub_name', 'subject_description'], 'required'],
             [['sub_name'], 'string', 'max' => 35],
-            [['teach_emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['teach_emp_id' => 'id']],
-            [['sub_class_id'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['sub_class_id' => 'id']],
+            [['subject_description'], 'string', 'max' => 200],
         ];
     }
 
@@ -49,8 +44,7 @@ class Subject extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'sub_name' => 'Sub Name',
-            'teach_emp_id' => 'Teach Emp ID',
-            'sub_class_id' => 'Sub Class ID',
+            'subject_description' => 'Subject Description',
         ];
     }
 
@@ -68,21 +62,5 @@ class Subject extends \yii\db\ActiveRecord
     public function getSchedules()
     {
         return $this->hasMany(Schedule::className(), ['sub_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTeachEmp()
-    {
-        return $this->hasOne(Employee::className(), ['id' => 'teach_emp_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubClass()
-    {
-        return $this->hasOne(Section::className(), ['id' => 'sub_class_id']);
     }
 }

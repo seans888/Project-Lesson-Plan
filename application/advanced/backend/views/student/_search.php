@@ -25,7 +25,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stud_mname') ?>
 
-    <?php // echo $form->field($model, 'sec_id') ?>
+    <?php // echo $form->field($model, 'home_number') ?>
+
+    <?php // echo $form->field($model, 'city_name') ?>
+
+    <?php // echo $form->field($model, 'province') ?>
+
+    <?php // echo $form->field($model, 'zip_code') ?>
+
+    <?php // echo $form->field($model, 'birthdate') ?>
+
+    <?php // echo $form->field($model, 'religion') ?>
+
+    <?php // echo $form->field($model, 'gender') ?>
+
+    <?php // echo $form->field($model, 'nationality') ?>
 
     <?php // echo $form->field($model, 'email') ?>
 
@@ -40,14 +54,6 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'fathers_contact_number') ?>
 
     <?php // echo $form->field($model, 'guardians_contact_number') ?>
-
-    <?php // echo $form->field($model, 'nationality') ?>
-
-    <?php // echo $form->field($model, 'gender') ?>
-
-    <?php // echo $form->field($model, 'birthdate') ?>
-
-    <?php // echo $form->field($model, 'religion') ?>
 
     <?php // echo $form->field($model, 'birth_place') ?>
 

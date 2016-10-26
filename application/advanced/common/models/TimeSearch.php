@@ -18,7 +18,8 @@ class TimeSearch extends Time
     public function rules()
     {
         return [
-            [['id', 'time'], 'integer'],
+            [['id'], 'integer'],
+            [['time'], 'safe'],
         ];
     }
 

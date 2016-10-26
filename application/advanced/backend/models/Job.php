@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $job_description
+ * @property string $job_definition
  *
  * @property Employee[] $employees
  */
@@ -30,6 +31,7 @@ class Job extends \yii\db\ActiveRecord
         return [
             [['job_description'], 'required'],
             [['job_description'], 'string', 'max' => 35],
+            [['job_definition'], 'string', 'max' => 200],
         ];
     }
 
@@ -41,6 +43,7 @@ class Job extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'job_description' => 'Job Description',
+            'job_definition' => 'Job Definition',
         ];
     }
 

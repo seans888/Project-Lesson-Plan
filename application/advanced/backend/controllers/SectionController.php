@@ -8,7 +8,7 @@ use common\models\SectionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\ForbiddenHttpException;
+
 /**
  * SectionController implements the CRUD actions for Section model.
  */
@@ -35,20 +35,13 @@ class SectionController extends Controller
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->can( 'add section'))
-        {
-             $searchModel = new SectionSearch();
+        $searchModel = new SectionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }else
-    {
-        throw new ForbiddenHttpException;
-    }
-       
     }
 
     /**
@@ -70,9 +63,7 @@ class SectionController extends Controller
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can( 'add section'))
-        {
-             $model = new Section();
+        $model = new Section();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -80,11 +71,6 @@ class SectionController extends Controller
             return $this->render('create', [
                 'model' => $model,
             ]);
-        }
-       
-        }else
-        {
-            throw new ForbiddenHttpException;
         }
     }
 

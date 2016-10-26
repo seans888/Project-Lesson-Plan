@@ -17,11 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
+    <?= $form->field($model, 'School_Year') ?>
+
+    <?= $form->field($model, 'School_Year_End') ?>
+
     <?= $form->field($model, 'acad_year_start') ?>
 
     <?= $form->field($model, 'acad_year_end') ?>
-
-    <?= $form->field($model, 'School_Year') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -19,7 +19,7 @@ class AcademicYearSearch extends AcademicYear
     {
         return [
             [['id'], 'integer'],
-            [['acad_year_start', 'acad_year_end', 'School_Year'], 'safe'],
+            [['School_Year', 'School_Year_End', 'acad_year_start', 'acad_year_end'], 'safe'],
         ];
     }
 
@@ -60,11 +60,11 @@ class AcademicYearSearch extends AcademicYear
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'School_Year' => $this->School_Year,
+            'School_Year_End' => $this->School_Year_End,
             'acad_year_start' => $this->acad_year_start,
             'acad_year_end' => $this->acad_year_end,
         ]);
-
-        $query->andFilterWhere(['like', 'School_Year', $this->School_Year]);
 
         return $dataProvider;
     }

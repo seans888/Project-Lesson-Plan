@@ -8,7 +8,6 @@ use common\models\GradeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\ForbiddenHttpException;
 
 /**
  * GradeController implements the CRUD actions for Grade model.
@@ -36,20 +35,13 @@ class GradeController extends Controller
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->can( 'add grade'))
-        {
-         $searchModel = new GradeSearch();
+        $searchModel = new GradeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);   
-    }else
-    {
-        throw new ForbiddenHttpException;
-    }
-        
+        ]);
     }
 
     /**
@@ -69,23 +61,16 @@ class GradeController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-     public function actionCreate()
+    public function actionCreate()
     {
-        if(Yii::$app->user->can( 'teacher'))
-        {
-                 $model = new Employee();
+        $model = new Grade();
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                ]);
-
-        }
-        }else
-        {
-            throw new ForbiddenHttpException;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
     }
 
