@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Quarter;
-use common\modelsQuarterSearch;
+use common\models\QuarterSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class QuarterController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new modelsQuarterSearch();
+        $searchModel = new QuarterSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

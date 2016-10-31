@@ -44,8 +44,8 @@ class Quarter extends \yii\db\ActiveRecord
             'id' => 'ID',
             'School_Year' => 'School  Year',
             'quarter' => 'Quarter',
-            'quarter_start' => 'Quarter Start',
-            'quarter_end' => 'Quarter End',
+            'quarter_start' => 'Quarter Start (YY/MM/DD)',
+            'quarter_end' => 'Quarter End (YY/MM/DD)',
         ];
     }
 }

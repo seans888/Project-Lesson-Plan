@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "time".
  *
  * @property integer $id
- * @property string $time
+ * @property integer $time
  */
 class Time extends \yii\db\ActiveRecord
 {
@@ -27,7 +27,7 @@ class Time extends \yii\db\ActiveRecord
     {
         return [
             [['time'], 'required'],
-            [['time'], 'safe'],
+            [['time'], 'integer'],
         ];
     }
 

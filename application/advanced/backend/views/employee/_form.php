@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\Job;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Employee */
@@ -14,7 +16,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'emp_id_num')->textInput() ?>
 
-    <?= $form->field($model, 'emp_job')->textInput() ?>
+     <?= $form->field($model, 'emp_job')->dropDownList(
+        ArrayHelper::map(Job::find()->all(),'id','job_description'),
+        ['prompt' => 'Select Job']
+        ) ?>
 
     <?= $form->field($model, 'emp_fname')->textInput(['maxlength' => true]) ?>
 

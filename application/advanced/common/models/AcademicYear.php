@@ -9,7 +9,6 @@ use Yii;
  *
  * @property integer $id
  * @property string $School_Year
- * @property string $School_Year_End
  * @property string $acad_year_start
  * @property string $acad_year_end
  *
@@ -32,8 +31,9 @@ class AcademicYear extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['School_Year', 'School_Year_End', 'acad_year_start', 'acad_year_end'], 'required'],
-            [['School_Year', 'School_Year_End', 'acad_year_start', 'acad_year_end'], 'safe'],
+            [['School_Year', 'acad_year_start', 'acad_year_end'], 'required'],
+            [['acad_year_start', 'acad_year_end'], 'safe'],
+            [['School_Year'], 'string', 'max' => 9],
         ];
     }
 
@@ -45,7 +45,6 @@ class AcademicYear extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'School_Year' => 'School  Year',
-            'School_Year_End' => 'School  Year  End',
             'acad_year_start' => 'Acad Year Start',
             'acad_year_end' => 'Acad Year End',
         ];

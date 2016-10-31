@@ -8,6 +8,7 @@ use common\models\SubjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * SubjectController implements the CRUD actions for Subject model.
@@ -35,13 +36,20 @@ class SubjectController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SubjectSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(Yii::$app->user->can( 'add subject'))
+        {
+         $searchModel = new SubjectSearch();
+                $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
+        }else
+        {
+            throw new ForbiddenHttpException;
+        }
+       
     }
 
     /**
@@ -63,7 +71,9 @@ class SubjectController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Subject();
+        if(Yii::$app->user->can( 'add subject'))
+        {
+             $model = new Subject();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -71,6 +81,11 @@ class SubjectController extends Controller
             return $this->render('create', [
                 'model' => $model,
             ]);
+        }
+       
+        }else
+        {
+            throw new ForbiddenHttpException;
         }
     }
 

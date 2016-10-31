@@ -19,8 +19,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'School_Year') ?>
 
-    <?= $form->field($model, 'School_Year_End') ?>
-
     <?= $form->field($model, 'acad_year_start') ?>
 
     <?= $form->field($model, 'acad_year_end') ?>

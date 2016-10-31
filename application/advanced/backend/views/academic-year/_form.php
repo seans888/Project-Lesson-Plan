@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'School_Year')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'School_Year_End')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'acad_year_start')->textInput() ?>
 
     <?= $form->field($model, 'acad_year_end')->textInput() ?>
