@@ -8,7 +8,7 @@ use common\models\StudentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\ForbiddenHttpException;
+
 /**
  * StudentController implements the CRUD actions for Student model.
  */
@@ -35,20 +35,13 @@ class StudentController extends Controller
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->can( 'add student'))
-        {
-             $searchModel = new StudentSearch();
+        $searchModel = new StudentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }else
-    {
-        throw new ForbiddenHttpException;
-    }
-       
     }
 
     /**
@@ -70,21 +63,14 @@ class StudentController extends Controller
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can( 'add student'))
-        {
-            $model = new Student();
+        $model = new Student();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-            ]);  
-        }
-        
-        }else
-        {
-            throw new ForbiddenHttpException;
+            ]);
         }
     }
 

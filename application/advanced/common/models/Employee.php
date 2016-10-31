@@ -13,11 +13,12 @@ use Yii;
  * @property string $emp_fname
  * @property string $emp_lname
  * @property string $emp_mname
+ * @property string $email
+ * @property string $contact_number
  *
  * @property Job $empJob
  * @property Grade[] $grades
  * @property Section[] $sections
- * @property Subject[] $subjects
  */
 class Employee extends \yii\db\ActiveRecord
 {
@@ -35,9 +36,11 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['emp_id_num', 'emp_job', 'emp_fname', 'emp_lname'], 'required'],
+            [['emp_id_num', 'emp_job', 'emp_fname', 'emp_lname', 'email', 'contact_number'], 'required'],
             [['emp_id_num', 'emp_job'], 'integer'],
-            [['emp_fname', 'emp_lname', 'emp_mname'], 'string', 'max' => 45],
+            [['emp_fname', 'emp_lname', 'emp_mname'], 'string', 'max' => 60],
+            [['email'], 'string', 'max' => 100],
+            [['contact_number'], 'string', 'max' => 11],
             [['emp_job'], 'exist', 'skipOnError' => true, 'targetClass' => Job::className(), 'targetAttribute' => ['emp_job' => 'id']],
         ];
     }
@@ -54,6 +57,8 @@ class Employee extends \yii\db\ActiveRecord
             'emp_fname' => 'First Name',
             'emp_lname' => 'Last Name',
             'emp_mname' => 'Middle Name',
+            'email' => 'Email',
+            'contact_number' => 'Contact Number',
         ];
     }
 
@@ -79,13 +84,5 @@ class Employee extends \yii\db\ActiveRecord
     public function getSections()
     {
         return $this->hasMany(Section::className(), ['advise_emp_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubjects()
-    {
-        return $this->hasMany(Subject::className(), ['teach_emp_id' => 'id']);
     }
 }

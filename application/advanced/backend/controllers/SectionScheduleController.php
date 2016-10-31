@@ -3,17 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Schedule;
-use common\models\ScheduleSearch;
+use common\models\SectionSchedule;
+use common\models\SectionScheduleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\ForbiddenHttpException;
 
 /**
- * ScheduleController implements the CRUD actions for Schedule model.
+ * SectionScheduleController implements the CRUD actions for SectionSchedule model.
  */
-class ScheduleController extends Controller
+class SectionScheduleController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,29 +30,22 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Lists all Schedule models.
+     * Lists all SectionSchedule models.
      * @return mixed
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->can( 'add schedule'))
-        {
-             $searchModel = new ScheduleSearch();
+        $searchModel = new SectionScheduleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }else
-    {
-        throw new ForbiddenHttpException;
-    }
-       
     }
 
     /**
-     * Displays a single Schedule model.
+     * Displays a single SectionSchedule model.
      * @param integer $id
      * @return mixed
      */
@@ -65,15 +57,13 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Creates a new Schedule model.
+     * Creates a new SectionSchedule model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can( 'add schedule'))
-        {
-             $model = new Schedule();
+        $model = new SectionSchedule();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -82,15 +72,10 @@ class ScheduleController extends Controller
                 'model' => $model,
             ]);
         }
-       
-        }else
-        {
-            throw new ForbiddenHttpException;
-        }
     }
 
     /**
-     * Updates an existing Schedule model.
+     * Updates an existing SectionSchedule model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -109,7 +94,7 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Deletes an existing Schedule model.
+     * Deletes an existing SectionSchedule model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -122,15 +107,15 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Finds the Schedule model based on its primary key value.
+     * Finds the SectionSchedule model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Schedule the loaded model
+     * @return SectionSchedule the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Schedule::findOne($id)) !== null) {
+        if (($model = SectionSchedule::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

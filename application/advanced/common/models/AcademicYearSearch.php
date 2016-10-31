@@ -19,7 +19,7 @@ class AcademicYearSearch extends AcademicYear
     {
         return [
             [['id'], 'integer'],
-            [['acad_year_start', 'acad_year_end', 'School_Year'], 'safe'],
+            [['School_Year', 'acad_year_start', 'acad_year_end'], 'safe'],
         ];
     }
 

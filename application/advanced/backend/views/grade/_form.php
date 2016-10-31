@@ -9,6 +9,7 @@ use common\models\Employee;
 use common\models\Subject;
 use common\models\Quarter;
 
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Grade */
 /* @var $form yii\widgets\ActiveForm */
@@ -18,26 +19,27 @@ use common\models\Quarter;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'acad_year_id')->dropDownList(
+       <?= $form->field($model, 'acad_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->all(),'id','School_Year'),
         ['prompt' => 'Select Academic Year']
         ) ?>
 
-    <?= $form->field($model, 'stud_id')->dropDownList(
+
+   <?= $form->field($model, 'stud_id')->dropDownList(
         ArrayHelper::map(Student::find()->all(),'id','stud_lname','stud_fname'),
         ['prompt' => 'Select Student']
         ) ?>
 
+    
     <?= $form->field($model, 'emp_id')->dropDownList(
         ArrayHelper::map(Employee::find()->all(),'id','emp_lname','emp_fname'),
         ['prompt' => 'Select Teacher']
         ) ?>
 
-    <?= $form->field($model, 'sub_id')->dropDownList(
+     <?= $form->field($model, 'sub_id')->dropDownList(
         ArrayHelper::map(Subject::find()->all(),'id','sub_name'),
         ['prompt' => 'Select Subject']
         ) ?>
-
 
     <?= $form->field($model, 'grade')->textInput() ?>
 

@@ -23,9 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sub_time_end') ?>
 
-    <?= $form->field($model, 'sec_id') ?>
-
-    <?php // echo $form->field($model, 'teach_id') ?>
+    <?= $form->field($model, 'teach_id') ?>
 
     <?php // echo $form->field($model, 'acad_year_id') ?>
 

@@ -18,7 +18,7 @@ class ScheduleSearch extends Schedule
     public function rules()
     {
         return [
-            [['id', 'sub_id', 'sub_time_start', 'sub_time_end', 'sec_id', 'teach_id', 'acad_year_id'], 'integer'],
+            [['id', 'sub_id', 'sub_time_start', 'sub_time_end', 'teach_id', 'acad_year_id'], 'integer'],
         ];
     }
 
@@ -62,7 +62,6 @@ class ScheduleSearch extends Schedule
             'sub_id' => $this->sub_id,
             'sub_time_start' => $this->sub_time_start,
             'sub_time_end' => $this->sub_time_end,
-            'sec_id' => $this->sec_id,
             'teach_id' => $this->teach_id,
             'acad_year_id' => $this->acad_year_id,
         ]);

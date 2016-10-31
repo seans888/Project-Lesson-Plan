@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2016 at 02:32 AM
+-- Generation Time: Oct 31, 2016 at 12:04 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -28,17 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `academic_year` (
   `id` int(11) NOT NULL,
+  `School_Year` varchar(9) NOT NULL,
   `acad_year_start` date NOT NULL,
-  `acad_year_end` date NOT NULL,
-  `School_Year` varchar(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `acad_year_end` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `academic_year`
 --
 
-INSERT INTO `academic_year` (`id`, `acad_year_start`, `acad_year_end`, `School_Year`) VALUES
-(1, '2014-12-16', '2014-12-16', '2016-2017');
+INSERT INTO `academic_year` (`id`, `School_Year`, `acad_year_start`, `acad_year_end`) VALUES
+(4, '2016-2017', '2016-01-05', '2017-03-20');
 
 -- --------------------------------------------------------
 
@@ -144,18 +144,19 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `id` int(11) NOT NULL,
   `emp_id_num` int(11) NOT NULL,
   `emp_job` int(11) NOT NULL,
-  `emp_fname` varchar(45) NOT NULL,
-  `emp_lname` varchar(45) NOT NULL,
-  `emp_mname` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `emp_fname` varchar(60) NOT NULL,
+  `emp_lname` varchar(60) NOT NULL,
+  `emp_mname` varchar(60) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `contact_number` varchar(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `emp_id_num`, `emp_job`, `emp_fname`, `emp_lname`, `emp_mname`) VALUES
-(1, 2014100300, 1, 'Moses', 'Malone', ''),
-(2, 2014100302, 4, 'Joshua ', 'Lavarro', '');
+INSERT INTO `employee` (`id`, `emp_id_num`, `emp_job`, `emp_fname`, `emp_lname`, `emp_mname`, `email`, `contact_number`) VALUES
+(1, 2014100300, 3, 'Aaron', 'Dagatan', 'Cadpa ', 'aaron@gmail.com', '123456789');
 
 -- --------------------------------------------------------
 
@@ -181,18 +182,19 @@ CREATE TABLE IF NOT EXISTS `grade` (
 
 CREATE TABLE IF NOT EXISTS `job` (
   `id` int(11) NOT NULL,
-  `job_description` varchar(35) NOT NULL
+  `job_description` varchar(35) NOT NULL,
+  `job_definition` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `job`
 --
 
-INSERT INTO `job` (`id`, `job_description`) VALUES
-(1, 'Registrar'),
-(2, 'Principal'),
-(3, 'Teacher'),
-(4, 'Department Head');
+INSERT INTO `job` (`id`, `job_description`, `job_definition`) VALUES
+(1, 'Registrar', NULL),
+(2, 'Principal', NULL),
+(3, 'Teacher', NULL),
+(4, 'Department Head', NULL);
 
 -- --------------------------------------------------------
 
@@ -225,14 +227,7 @@ CREATE TABLE IF NOT EXISTS `quarter` (
   `quarter` int(11) NOT NULL,
   `quarter_start` date NOT NULL,
   `quarter_end` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `quarter`
---
-
-INSERT INTO `quarter` (`id`, `School_Year`, `quarter`, `quarter_start`, `quarter_end`) VALUES
-(1, 1, 1, '2016-12-16', '2016-12-16');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -245,17 +240,9 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `sub_id` int(11) NOT NULL,
   `sub_time_start` int(11) NOT NULL,
   `sub_time_end` int(11) NOT NULL,
-  `sec_id` int(11) NOT NULL,
   `teach_id` int(11) NOT NULL,
   `acad_year_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `schedule`
---
-
-INSERT INTO `schedule` (`id`, `sub_id`, `sub_time_start`, `sub_time_end`, `sec_id`, `teach_id`, `acad_year_id`) VALUES
-(1, 1, 3, 3, 1, 1, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -267,15 +254,33 @@ CREATE TABLE IF NOT EXISTS `section` (
   `id` int(11) NOT NULL,
   `sec_name` varchar(35) NOT NULL,
   `advise_emp_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `section`
+-- Table structure for table `section_schedule`
 --
 
-INSERT INTO `section` (`id`, `sec_name`, `advise_emp_id`) VALUES
-(1, 'IV-Mangga', 1),
-(2, 'V-Apple', 1);
+CREATE TABLE IF NOT EXISTS `section_schedule` (
+  `id` int(11) NOT NULL,
+  `section_name` int(11) NOT NULL,
+  `subject` int(11) NOT NULL,
+  `subject_time_start` int(11) NOT NULL,
+  `subject_time_end` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section_student`
+--
+
+CREATE TABLE IF NOT EXISTS `section_student` (
+  `id` int(11) NOT NULL,
+  `section_name` int(11) NOT NULL,
+  `section_student` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -286,31 +291,26 @@ INSERT INTO `section` (`id`, `sec_name`, `advise_emp_id`) VALUES
 CREATE TABLE IF NOT EXISTS `student` (
   `id` int(11) NOT NULL,
   `stud_id_num` int(11) NOT NULL,
-  `stud_fname` varchar(35) NOT NULL,
-  `stud_lname` varchar(35) NOT NULL,
-  `stud_mname` varchar(35) DEFAULT NULL,
-  `sec_id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `mothers_name` text,
-  `fathers_name` text,
-  `guardians_name` text NOT NULL,
-  `mothers_contact_number` int(15) DEFAULT NULL,
-  `fathers_contact_number` int(15) DEFAULT NULL,
-  `guardians_contact_number` int(15) NOT NULL,
-  `nationality` text NOT NULL,
-  `gender` text NOT NULL,
+  `stud_fname` varchar(64) NOT NULL,
+  `stud_lname` varchar(64) NOT NULL,
+  `stud_mname` varchar(64) DEFAULT NULL,
+  `home_number` varchar(70) NOT NULL,
+  `city_name` varchar(64) NOT NULL,
+  `province` varchar(64) NOT NULL,
+  `zip_code` int(4) NOT NULL,
   `birthdate` date NOT NULL,
-  `religion` text NOT NULL,
-  `birth_place` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`id`, `stud_id_num`, `stud_fname`, `stud_lname`, `stud_mname`, `sec_id`, `email`, `mothers_name`, `fathers_name`, `guardians_name`, `mothers_contact_number`, `fathers_contact_number`, `guardians_contact_number`, `nationality`, `gender`, `birthdate`, `religion`, `birth_place`) VALUES
-(1, 2014100300, 'Neil', 'Cueto', 'Reyes', 1, 'cueto@gmail.com', 'Whitney Houston', 'Barack Obama', 'Barack Obama', 2147483647, 2147483647, 2147483647, 'Filipino', 'Male', '1990-12-07', 'Islam', 'Iraq'),
-(2, 2014100356, 'Aaron', 'Dagatan', 'Cadpa', 1, 'aarond@gmail.com', 'sample', 'sampletest', 'sample1', 123456789, 987654321, 12381244, 'Filipino', 'M', '1996-12-04', 'Roman Catholic', 'Quezon City');
+  `religion` varchar(30) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `nationality` varchar(64) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mothers_name` varchar(64) DEFAULT NULL,
+  `fathers_name` varchar(64) DEFAULT NULL,
+  `guardians_name` varchar(64) NOT NULL,
+  `mothers_contact_number` int(11) DEFAULT NULL,
+  `fathers_contact_number` int(11) DEFAULT NULL,
+  `guardians_contact_number` int(11) NOT NULL,
+  `birth_place` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -321,16 +321,8 @@ INSERT INTO `student` (`id`, `stud_id_num`, `stud_fname`, `stud_lname`, `stud_mn
 CREATE TABLE IF NOT EXISTS `subject` (
   `id` int(11) NOT NULL,
   `sub_name` varchar(35) NOT NULL,
-  `teach_emp_id` int(11) NOT NULL,
-  `sub_class_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `subject`
---
-
-INSERT INTO `subject` (`id`, `sub_name`, `teach_emp_id`, `sub_class_id`) VALUES
-(1, 'Math', 1, 1);
+  `subject_description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -340,7 +332,7 @@ INSERT INTO `subject` (`id`, `sub_name`, `teach_emp_id`, `sub_class_id`) VALUES
 
 CREATE TABLE IF NOT EXISTS `time` (
   `id` int(11) NOT NULL,
-  `time` varchar(6) NOT NULL
+  `time` time(5) NOT NULL DEFAULT '00:00:00.00000'
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -348,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `time` (
 --
 
 INSERT INTO `time` (`id`, `time`) VALUES
-(3, '730');
+(3, '07:30:00.00000');
 
 -- --------------------------------------------------------
 
@@ -446,7 +438,7 @@ ALTER TABLE `quarter`
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `sec_id` (`sec_id`), ADD KEY `acad_year_id` (`acad_year_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `acad_year_id` (`acad_year_id`);
 
 --
 -- Indexes for table `section`
@@ -455,16 +447,28 @@ ALTER TABLE `section`
   ADD PRIMARY KEY (`id`), ADD KEY `advise_emp_id` (`advise_emp_id`);
 
 --
+-- Indexes for table `section_schedule`
+--
+ALTER TABLE `section_schedule`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `section_student`
+--
+ALTER TABLE `section_student`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`id`), ADD KEY `sec_id` (`sec_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `subject`
 --
 ALTER TABLE `subject`
-  ADD PRIMARY KEY (`id`), ADD KEY `teach_emp_id` (`teach_emp_id`), ADD KEY `sub_class_id` (`sub_class_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `time`
@@ -486,12 +490,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `academic_year`
 --
 ALTER TABLE `academic_year`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `grade`
 --
@@ -506,27 +510,37 @@ ALTER TABLE `job`
 -- AUTO_INCREMENT for table `quarter`
 --
 ALTER TABLE `quarter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `section_schedule`
+--
+ALTER TABLE `section_schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `section_student`
+--
+ALTER TABLE `section_student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `time`
 --
@@ -580,7 +594,6 @@ ADD CONSTRAINT `grade_ibfk_4` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`)
 --
 ALTER TABLE `schedule`
 ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`),
-ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`sec_id`) REFERENCES `section` (`id`),
 ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_year` (`id`);
 
 --
@@ -588,19 +601,6 @@ ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`acad_year_id`) REFERENCES `academ
 --
 ALTER TABLE `section`
 ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`advise_emp_id`) REFERENCES `employee` (`id`);
-
---
--- Constraints for table `student`
---
-ALTER TABLE `student`
-ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`sec_id`) REFERENCES `section` (`id`);
-
---
--- Constraints for table `subject`
---
-ALTER TABLE `subject`
-ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`teach_emp_id`) REFERENCES `employee` (`id`),
-ADD CONSTRAINT `subject_ibfk_2` FOREIGN KEY (`sub_class_id`) REFERENCES `section` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

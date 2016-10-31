@@ -19,7 +19,7 @@ class JobSearch extends Job
     {
         return [
             [['id'], 'integer'],
-            [['job_description'], 'safe'],
+            [['job_description', 'job_definition'], 'safe'],
         ];
     }
 
@@ -62,7 +62,8 @@ class JobSearch extends Job
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'job_description', $this->job_description]);
+        $query->andFilterWhere(['like', 'job_description', $this->job_description])
+            ->andFilterWhere(['like', 'job_definition', $this->job_definition]);
 
         return $dataProvider;
     }

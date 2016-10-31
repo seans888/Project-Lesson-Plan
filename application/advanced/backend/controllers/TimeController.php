@@ -8,7 +8,6 @@ use common\models\TimeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\ForbiddenHttpException;
 
 /**
  * TimeController implements the CRUD actions for Time model.
@@ -36,20 +35,13 @@ class TimeController extends Controller
      */
     public function actionIndex()
     {
-        if(Yii::$app->user->can( 'add student'))
-        {
-           $searchModel = new TimeSearch();
+        $searchModel = new TimeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]); 
-    }else
-    {
-        throw new ForbiddenHttpException;
-    }
-        
+        ]);
     }
 
     /**
