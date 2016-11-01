@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\AcademicYear;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Schedule */
@@ -20,10 +22,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'teach_id')->textInput() ?>
 
-    <?= $form->field($model, 'acad_year_id')->textInput() ?>
+    
+     <?= $form->field($model, 'acad_year_id')->dropDownList(
+        ArrayHelper::map(AcademicYear::find()->all(),'id','School_Year'),
+        ['prompt' => 'Select Academic Year']
+        ) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Add Schedule' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

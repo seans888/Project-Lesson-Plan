@@ -52,11 +52,11 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'emp_id_num' => 'Emp Id Num',
-            'emp_job' => 'Emp Job',
-            'emp_fname' => 'Emp Fname',
-            'emp_lname' => 'Emp Lname',
-            'emp_mname' => 'Emp Mname',
+            'emp_id_num' => 'ID Number',
+            'emp_job' => 'Job Description',
+            'emp_fname' => 'First Name',
+            'emp_lname' => 'Last Name',
+            'emp_mname' => 'Middle Name',
             'email' => 'Email',
             'contact_number' => 'Contact Number',
         ];
