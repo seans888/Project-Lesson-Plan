@@ -9,7 +9,6 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
-use backend\views\site\signup;
 
 AppAsset::register($this);
 ?>
@@ -37,12 +36,9 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['registrar/frontend/web/views/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

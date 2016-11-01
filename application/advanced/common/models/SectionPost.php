@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use common\models\Section;
 
 /**
- * SectionSearch represents the model behind the search form about `common\models\Section`.
+ * SectionPost represents the model behind the search form about `common\models\Section`.
  */
-class SectionSearch extends Section
+class SectionPost extends Section
 {
     /**
      * @inheritdoc

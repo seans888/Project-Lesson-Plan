@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\SubjectSearch */
+/* @var $searchModel common\models\SubjectPost */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Subjects';
@@ -24,11 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            'id',
             'sub_name',
-            'teachEmp.emp_fname',
-            'teachEmp.emp_lname',
-            //'subClass.sec_name',
+            'subject_description',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

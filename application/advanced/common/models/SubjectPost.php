@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use common\models\Subject;
 
 /**
- * SubjectSearch represents the model behind the search form about `common\models\Subject`.
+ * SubjectPost represents the model behind the search form about `common\models\Subject`.
  */
-class SubjectSearch extends Subject
+class SubjectPost extends Subject
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SubjectSearch extends Subject
     public function rules()
     {
         return [
-            [['id', 'teach_emp_id', 'sub_class_id'], 'integer'],
-            [['sub_name'], 'safe'],
+            [['id'], 'integer'],
+            [['sub_name', 'subject_description'], 'safe'],
         ];
     }
 
@@ -60,11 +60,10 @@ class SubjectSearch extends Subject
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'teach_emp_id' => $this->teach_emp_id,
-            'sub_class_id' => $this->sub_class_id,
         ]);
 
-        $query->andFilterWhere(['like', 'sub_name', $this->sub_name]);
+        $query->andFilterWhere(['like', 'sub_name', $this->sub_name])
+            ->andFilterWhere(['like', 'subject_description', $this->subject_description]);
 
         return $dataProvider;
     }
