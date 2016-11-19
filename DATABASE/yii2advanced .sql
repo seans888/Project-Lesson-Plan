@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2016 at 04:50 AM
+-- Generation Time: Nov 19, 2016 at 06:52 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -326,7 +326,8 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `sub_time_start` int(11) NOT NULL,
   `sub_time_end` int(11) NOT NULL,
   `teach_id` int(11) NOT NULL,
-  `acad_year_id` int(11) NOT NULL
+  `acad_year_id` int(11) NOT NULL,
+  `section_name` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -339,20 +340,6 @@ CREATE TABLE IF NOT EXISTS `section` (
   `id` int(11) NOT NULL,
   `sec_name` varchar(35) NOT NULL,
   `advise_emp_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `section_schedule`
---
-
-CREATE TABLE IF NOT EXISTS `section_schedule` (
-  `id` int(11) NOT NULL,
-  `section_name` int(11) NOT NULL,
-  `subject` int(11) NOT NULL,
-  `subject_time_start` int(11) NOT NULL,
-  `subject_time_end` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -555,19 +542,13 @@ ALTER TABLE `quarter`
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `acad_year_id` (`acad_year_id`), ADD KEY `teach_id` (`teach_id`), ADD KEY `sub_time_end` (`sub_time_end`), ADD KEY `sub_time_start` (`sub_time_start`);
+  ADD PRIMARY KEY (`id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `acad_year_id` (`acad_year_id`), ADD KEY `teach_id` (`teach_id`), ADD KEY `sub_time_end` (`sub_time_end`), ADD KEY `sub_time_start` (`sub_time_start`), ADD KEY `section_name` (`section_name`);
 
 --
 -- Indexes for table `section`
 --
 ALTER TABLE `section`
   ADD PRIMARY KEY (`id`), ADD KEY `advise_emp_id` (`advise_emp_id`);
-
---
--- Indexes for table `section_schedule`
---
-ALTER TABLE `section_schedule`
-  ADD PRIMARY KEY (`id`), ADD KEY `section_name` (`section_name`), ADD KEY `subject` (`subject`), ADD KEY `subject_time_start` (`subject_time_start`), ADD KEY `subject_time_end` (`subject_time_end`), ADD KEY `subject_time_start_2` (`subject_time_start`), ADD KEY `subject_time_end_2` (`subject_time_end`), ADD KEY `section_name_2` (`section_name`), ADD KEY `subject_2` (`subject`), ADD KEY `subject_time_start_3` (`subject_time_start`), ADD KEY `subject_time_end_3` (`subject_time_end`), ADD KEY `section_name_3` (`section_name`), ADD KEY `subject_3` (`subject`), ADD KEY `subject_time_start_4` (`subject_time_start`), ADD KEY `subject_time_end_4` (`subject_time_end`);
 
 --
 -- Indexes for table `section_student`
@@ -659,11 +640,6 @@ ALTER TABLE `schedule`
 ALTER TABLE `section`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `section_schedule`
---
-ALTER TABLE `section_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `section_student`
 --
 ALTER TABLE `section_student`
@@ -741,22 +717,14 @@ ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`i
 ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_year` (`id`),
 ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`teach_id`) REFERENCES `employee` (`id`),
 ADD CONSTRAINT `schedule_ibfk_5` FOREIGN KEY (`sub_time_start`) REFERENCES `time` (`id`),
-ADD CONSTRAINT `schedule_ibfk_6` FOREIGN KEY (`sub_time_end`) REFERENCES `time` (`id`);
+ADD CONSTRAINT `schedule_ibfk_6` FOREIGN KEY (`sub_time_end`) REFERENCES `time` (`id`),
+ADD CONSTRAINT `schedule_ibfk_7` FOREIGN KEY (`section_name`) REFERENCES `section` (`id`);
 
 --
 -- Constraints for table `section`
 --
 ALTER TABLE `section`
 ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`advise_emp_id`) REFERENCES `employee` (`id`);
-
---
--- Constraints for table `section_schedule`
---
-ALTER TABLE `section_schedule`
-ADD CONSTRAINT `section_schedule_ibfk_1` FOREIGN KEY (`section_name`) REFERENCES `section` (`id`),
-ADD CONSTRAINT `section_schedule_ibfk_2` FOREIGN KEY (`subject`) REFERENCES `subject` (`id`),
-ADD CONSTRAINT `section_schedule_ibfk_3` FOREIGN KEY (`subject_time_start`) REFERENCES `time` (`id`),
-ADD CONSTRAINT `section_schedule_ibfk_4` FOREIGN KEY (`subject_time_end`) REFERENCES `time` (`id`);
 
 --
 -- Constraints for table `section_student`
