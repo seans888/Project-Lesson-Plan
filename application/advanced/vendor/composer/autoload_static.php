@@ -23,6 +23,10 @@ class ComposerStaticInit97f60f486aee3c9bc14072d1bbd961d8
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'd' => 
+        array (
+            'dosamigos\\datepicker\\' => 21,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -65,6 +69,10 @@ class ComposerStaticInit97f60f486aee3c9bc14072d1bbd961d8
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'dosamigos\\datepicker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-date-picker-widget',
         ),
         'cebe\\markdown\\' => 
         array (
