@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2016 at 12:04 PM
+-- Generation Time: Nov 19, 2016 at 04:50 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -137,6 +137,46 @@ CREATE TABLE IF NOT EXISTS `auth_rule` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `birthplace`
+--
+
+CREATE TABLE IF NOT EXISTS `birthplace` (
+  `id` int(11) NOT NULL,
+  `birthplace` varchar(35) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `birthplace`
+--
+
+INSERT INTO `birthplace` (`id`, `birthplace`) VALUES
+(1, 'Paranaque City'),
+(2, 'Pasay City');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `city`
+--
+
+CREATE TABLE IF NOT EXISTS `city` (
+  `id` int(11) NOT NULL,
+  `city_name` varchar(35) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `city`
+--
+
+INSERT INTO `city` (`id`, `city_name`) VALUES
+(1, 'Paranaque City'),
+(2, 'Pasay City'),
+(3, 'Las Pinas City'),
+(4, 'Makati City');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employee`
 --
 
@@ -149,14 +189,33 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `emp_mname` varchar(60) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `contact_number` varchar(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`id`, `emp_id_num`, `emp_job`, `emp_fname`, `emp_lname`, `emp_mname`, `email`, `contact_number`) VALUES
-(1, 2014100300, 3, 'Aaron', 'Dagatan', 'Cadpa ', 'aaron@gmail.com', '123456789');
+(2, 2014200600, 3, 'Aaron', 'Dagatan', 'Cadpa', 'rcdagatan@student.apc.edu.ph', '09177756644');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gender`
+--
+
+CREATE TABLE IF NOT EXISTS `gender` (
+  `id` int(11) NOT NULL,
+  `gender` varchar(35) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gender`
+--
+
+INSERT INTO `gender` (`id`, `gender`) VALUES
+(1, 'Male'),
+(2, 'Female');
 
 -- --------------------------------------------------------
 
@@ -218,16 +277,42 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `province`
+--
+
+CREATE TABLE IF NOT EXISTS `province` (
+  `id` int(11) NOT NULL,
+  `province` varchar(35) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `province`
+--
+
+INSERT INTO `province` (`id`, `province`) VALUES
+(1, 'Metro Manila'),
+(2, 'Metro Manila');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `quarter`
 --
 
 CREATE TABLE IF NOT EXISTS `quarter` (
   `id` int(11) NOT NULL,
-  `School_Year` int(11) NOT NULL,
-  `quarter` int(11) NOT NULL,
+  `academic_year` int(11) NOT NULL,
+  `quarter` varchar(20) NOT NULL,
   `quarter_start` date NOT NULL,
   `quarter_end` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `quarter`
+--
+
+INSERT INTO `quarter` (`id`, `academic_year`, `quarter`, `quarter_start`, `quarter_end`) VALUES
+(1, 4, '4', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -295,22 +380,30 @@ CREATE TABLE IF NOT EXISTS `student` (
   `stud_lname` varchar(64) NOT NULL,
   `stud_mname` varchar(64) DEFAULT NULL,
   `home_number` varchar(70) NOT NULL,
-  `city_name` varchar(64) NOT NULL,
-  `province` varchar(64) NOT NULL,
+  `city_name` int(11) NOT NULL,
+  `province` int(11) NOT NULL,
   `zip_code` int(4) NOT NULL,
   `birthdate` date NOT NULL,
   `religion` varchar(30) NOT NULL,
-  `gender` varchar(10) NOT NULL,
+  `gender` int(11) NOT NULL,
   `nationality` varchar(64) NOT NULL,
   `email` varchar(255) NOT NULL,
   `mothers_name` varchar(64) DEFAULT NULL,
   `fathers_name` varchar(64) DEFAULT NULL,
   `guardians_name` varchar(64) NOT NULL,
-  `mothers_contact_number` int(11) DEFAULT NULL,
-  `fathers_contact_number` int(11) DEFAULT NULL,
-  `guardians_contact_number` int(11) NOT NULL,
-  `birth_place` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `mothers_contact_number` varchar(11) DEFAULT NULL,
+  `fathers_contact_number` varchar(11) DEFAULT NULL,
+  `guardians_contact_number` varchar(11) NOT NULL,
+  `birth_place` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `stud_id_num`, `stud_fname`, `stud_lname`, `stud_mname`, `home_number`, `city_name`, `province`, `zip_code`, `birthdate`, `religion`, `gender`, `nationality`, `email`, `mothers_name`, `fathers_name`, `guardians_name`, `mothers_contact_number`, `fathers_contact_number`, `guardians_contact_number`, `birth_place`) VALUES
+(5, 2014100356, 'Jonathan', 'Abalon', 'Dawal', 'L. 5 Blk. 5, Countryside Village, Sunvalley', 1, 1, 1700, '1998-09-18', 'Roman Catholic', 1, 'Filipino', 'odabalon@student.apc.edu.ph', 'Eva Abalon', '', 'Eva Abalon', '09122517593', '', '09122517593', 1),
+(6, 2014100377, 'Neil', 'Cueto', 'Reyes', '1234124', 1, 1, 12345, '1996-12-07', 'Roman Catholic', 1, 'Filipino', 'neilcueto101@gmail.com', 'qwe', '23424', 'wer', 'qwe', '1231', 'qewweqw', 1);
 
 -- --------------------------------------------------------
 
@@ -405,16 +498,34 @@ ALTER TABLE `auth_rule`
   ADD PRIMARY KEY (`name`);
 
 --
+-- Indexes for table `birthplace`
+--
+ALTER TABLE `birthplace`
+  ADD PRIMARY KEY (`id`), ADD KEY `birthplace` (`birthplace`);
+
+--
+-- Indexes for table `city`
+--
+ALTER TABLE `city`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`), ADD KEY `emp_job` (`emp_job`);
 
 --
+-- Indexes for table `gender`
+--
+ALTER TABLE `gender`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `grade`
 --
 ALTER TABLE `grade`
-  ADD PRIMARY KEY (`id`), ADD KEY `acad_year_id` (`acad_year_id`), ADD KEY `stud_id` (`stud_id`), ADD KEY `emp_id` (`emp_id`), ADD KEY `sub_id` (`sub_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `acad_year_id` (`acad_year_id`), ADD KEY `stud_id` (`stud_id`), ADD KEY `emp_id` (`emp_id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `acad_year_id_2` (`acad_year_id`), ADD KEY `stud_id_2` (`stud_id`), ADD KEY `emp_id_2` (`emp_id`), ADD KEY `sub_id_2` (`sub_id`), ADD KEY `grade` (`grade`), ADD KEY `quarter` (`quarter`);
 
 --
 -- Indexes for table `job`
@@ -429,16 +540,22 @@ ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
+-- Indexes for table `province`
+--
+ALTER TABLE `province`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `quarter`
 --
 ALTER TABLE `quarter`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `academic_year` (`academic_year`);
 
 --
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `acad_year_id` (`acad_year_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `acad_year_id` (`acad_year_id`), ADD KEY `teach_id` (`teach_id`), ADD KEY `sub_time_end` (`sub_time_end`), ADD KEY `sub_time_start` (`sub_time_start`);
 
 --
 -- Indexes for table `section`
@@ -450,19 +567,19 @@ ALTER TABLE `section`
 -- Indexes for table `section_schedule`
 --
 ALTER TABLE `section_schedule`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `section_name` (`section_name`), ADD KEY `subject` (`subject`), ADD KEY `subject_time_start` (`subject_time_start`), ADD KEY `subject_time_end` (`subject_time_end`), ADD KEY `subject_time_start_2` (`subject_time_start`), ADD KEY `subject_time_end_2` (`subject_time_end`), ADD KEY `section_name_2` (`section_name`), ADD KEY `subject_2` (`subject`), ADD KEY `subject_time_start_3` (`subject_time_start`), ADD KEY `subject_time_end_3` (`subject_time_end`), ADD KEY `section_name_3` (`section_name`), ADD KEY `subject_3` (`subject`), ADD KEY `subject_time_start_4` (`subject_time_start`), ADD KEY `subject_time_end_4` (`subject_time_end`);
 
 --
 -- Indexes for table `section_student`
 --
 ALTER TABLE `section_student`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `section_name` (`section_name`), ADD KEY `section_student` (`section_student`);
 
 --
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `city_name` (`city_name`), ADD KEY `birth_place` (`birth_place`), ADD KEY `gender` (`gender`), ADD KEY `province` (`province`), ADD KEY `province_2` (`province`);
 
 --
 -- Indexes for table `subject`
@@ -492,10 +609,25 @@ ALTER TABLE `user`
 ALTER TABLE `academic_year`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `birthplace`
+--
+ALTER TABLE `birthplace`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `city`
+--
+ALTER TABLE `city`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `gender`
+--
+ALTER TABLE `gender`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `grade`
 --
@@ -507,10 +639,15 @@ ALTER TABLE `grade`
 ALTER TABLE `job`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `province`
+--
+ALTER TABLE `province`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `quarter`
 --
 ALTER TABLE `quarter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
@@ -535,7 +672,7 @@ ALTER TABLE `section_student`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `subject`
 --
@@ -587,20 +724,55 @@ ALTER TABLE `grade`
 ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_year` (`id`),
 ADD CONSTRAINT `grade_ibfk_2` FOREIGN KEY (`stud_id`) REFERENCES `student` (`id`),
 ADD CONSTRAINT `grade_ibfk_3` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`id`),
-ADD CONSTRAINT `grade_ibfk_4` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`);
+ADD CONSTRAINT `grade_ibfk_4` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`),
+ADD CONSTRAINT `grade_ibfk_5` FOREIGN KEY (`quarter`) REFERENCES `quarter` (`id`);
+
+--
+-- Constraints for table `quarter`
+--
+ALTER TABLE `quarter`
+ADD CONSTRAINT `quarter_ibfk_1` FOREIGN KEY (`academic_year`) REFERENCES `academic_year` (`id`);
 
 --
 -- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
 ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`),
-ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_year` (`id`);
+ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_year` (`id`),
+ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`teach_id`) REFERENCES `employee` (`id`),
+ADD CONSTRAINT `schedule_ibfk_5` FOREIGN KEY (`sub_time_start`) REFERENCES `time` (`id`),
+ADD CONSTRAINT `schedule_ibfk_6` FOREIGN KEY (`sub_time_end`) REFERENCES `time` (`id`);
 
 --
 -- Constraints for table `section`
 --
 ALTER TABLE `section`
 ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`advise_emp_id`) REFERENCES `employee` (`id`);
+
+--
+-- Constraints for table `section_schedule`
+--
+ALTER TABLE `section_schedule`
+ADD CONSTRAINT `section_schedule_ibfk_1` FOREIGN KEY (`section_name`) REFERENCES `section` (`id`),
+ADD CONSTRAINT `section_schedule_ibfk_2` FOREIGN KEY (`subject`) REFERENCES `subject` (`id`),
+ADD CONSTRAINT `section_schedule_ibfk_3` FOREIGN KEY (`subject_time_start`) REFERENCES `time` (`id`),
+ADD CONSTRAINT `section_schedule_ibfk_4` FOREIGN KEY (`subject_time_end`) REFERENCES `time` (`id`);
+
+--
+-- Constraints for table `section_student`
+--
+ALTER TABLE `section_student`
+ADD CONSTRAINT `section_student_ibfk_1` FOREIGN KEY (`section_name`) REFERENCES `section` (`id`),
+ADD CONSTRAINT `section_student_ibfk_2` FOREIGN KEY (`section_student`) REFERENCES `student` (`id`);
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`city_name`) REFERENCES `city` (`id`),
+ADD CONSTRAINT `student_ibfk_3` FOREIGN KEY (`gender`) REFERENCES `gender` (`id`),
+ADD CONSTRAINT `student_ibfk_4` FOREIGN KEY (`province`) REFERENCES `province` (`id`),
+ADD CONSTRAINT `student_ibfk_5` FOREIGN KEY (`birth_place`) REFERENCES `birthplace` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

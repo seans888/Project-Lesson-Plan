@@ -9,7 +9,6 @@ use common\models\Employee;
 use common\models\Subject;
 use common\models\Quarter;
 
-
 /* @var $this yii\web\View */
 /* @var $model common\models\Grade */
 /* @var $form yii\widgets\ActiveForm */
@@ -19,34 +18,39 @@ use common\models\Quarter;
 
     <?php $form = ActiveForm::begin(); ?>
 
-       <?= $form->field($model, 'acad_year_id')->dropDownList(
+        <?= $form->field($model, 'acad_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->all(),'id','School_Year'),
-        ['prompt' => 'Select Academic Year']
+        ['prompt' => 'Choose Academic Year']
+        ) ?>
+
+    <?= $form->field($model, 'stud_id')->dropDownList(
+        ArrayHelper::map(Student::find()->all(),'id','stud_lname','stud_fname'),
+        ['prompt' => 'Choose Student']
         ) ?>
 
 
-   <?= $form->field($model, 'stud_id')->dropDownList(
-        ArrayHelper::map(Student::find()->all(),'id','stud_lname','stud_fname'),
-        ['prompt' => 'Select Student']
+    <?= $form->field($model, 'emp_id')->dropDownList(
+        ArrayHelper::map(Employee::find()->all(),'id','emp_lname','emp_fname'),
+        ['prompt' => 'Choose Teacher']
         ) ?>
 
     
-    <?= $form->field($model, 'emp_id')->dropDownList(
-        ArrayHelper::map(Employee::find()->all(),'id','emp_lname','emp_fname'),
-        ['prompt' => 'Select Teacher']
+    <?= $form->field($model, 'sub_id')->dropDownList(
+        ArrayHelper::map(Subject::find()->all(),'id','subject_name'),
+        ['prompt' => 'Choose Subject']
         ) ?>
 
-     <?= $form->field($model, 'sub_id')->dropDownList(
-        ArrayHelper::map(Subject::find()->all(),'id','sub_name'),
-        ['prompt' => 'Select Subject']
-        ) ?>
-
-    <?= $form->field($model, 'grade')->textInput() ?>
-
- <?= $form->field($model, 'quarter')->dropDownList(
+    
+    <?= $form->field($model, 'quarter')->dropDownList(
         ArrayHelper::map(Quarter::find()->all(),'id','quarter'),
-        ['prompt' => 'Select Quarter']
+        ['prompt' => 'Choose Quarter']
         ) ?>
+
+        <?= $form->field($model, 'grade')->textInput() ?>
+
+
+
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\QuarterSearch */
+/* @var $searchModel common\models\QuarterSeach */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Quarters';
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'School_Year',
+            'academic_year',
             'quarter',
             'quarter_start',
             'quarter_end',

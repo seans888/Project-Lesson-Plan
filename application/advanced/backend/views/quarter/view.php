@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'School_Year',
+            'academic_year',
             'quarter',
             'quarter_start',
             'quarter_end',

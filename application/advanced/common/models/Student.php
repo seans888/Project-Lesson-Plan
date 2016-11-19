@@ -13,23 +13,28 @@ use Yii;
  * @property string $stud_lname
  * @property string $stud_mname
  * @property string $home_number
- * @property string $city_name
- * @property string $province
+ * @property integer $city_name
+ * @property integer $province
  * @property integer $zip_code
  * @property string $birthdate
  * @property string $religion
- * @property string $gender
+ * @property integer $gender
  * @property string $nationality
  * @property string $email
  * @property string $mothers_name
  * @property string $fathers_name
  * @property string $guardians_name
- * @property integer $mothers_contact_number
- * @property integer $fathers_contact_number
- * @property integer $guardians_contact_number
- * @property string $birth_place
+ * @property string $mothers_contact_number
+ * @property string $fathers_contact_number
+ * @property string $guardians_contact_number
+ * @property integer $birth_place
  *
  * @property Grade[] $grades
+ * @property SectionStudent[] $sectionStudents
+ * @property City $cityName
+ * @property Gender $gender0
+ * @property Province $province0
+ * @property Birthplace $birthPlace
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -48,13 +53,17 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             [['stud_id_num', 'stud_fname', 'stud_lname', 'home_number', 'city_name', 'province', 'zip_code', 'birthdate', 'religion', 'gender', 'nationality', 'email', 'guardians_name', 'guardians_contact_number', 'birth_place'], 'required'],
-            [['stud_id_num', 'zip_code', 'mothers_contact_number', 'fathers_contact_number', 'guardians_contact_number'], 'integer'],
+            [['stud_id_num', 'city_name', 'province', 'zip_code', 'gender', 'birth_place'], 'integer'],
             [['birthdate'], 'safe'],
-            [['stud_fname', 'stud_lname', 'stud_mname', 'city_name', 'province', 'nationality', 'mothers_name', 'fathers_name', 'guardians_name', 'birth_place'], 'string', 'max' => 64],
+            [['stud_fname', 'stud_lname', 'stud_mname', 'nationality', 'mothers_name', 'fathers_name', 'guardians_name'], 'string', 'max' => 64],
             [['home_number'], 'string', 'max' => 70],
             [['religion'], 'string', 'max' => 30],
-            [['gender'], 'string', 'max' => 10],
             [['email'], 'string', 'max' => 255],
+            [['mothers_contact_number', 'fathers_contact_number', 'guardians_contact_number'], 'string', 'max' => 11],
+            [['city_name'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_name' => 'id']],
+            [['gender'], 'exist', 'skipOnError' => true, 'targetClass' => Gender::className(), 'targetAttribute' => ['gender' => 'id']],
+            [['province'], 'exist', 'skipOnError' => true, 'targetClass' => Province::className(), 'targetAttribute' => ['province' => 'id']],
+            [['birth_place'], 'exist', 'skipOnError' => true, 'targetClass' => Birthplace::className(), 'targetAttribute' => ['birth_place' => 'id']],
         ];
     }
 
@@ -65,10 +74,10 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'stud_id_num' => 'Stud Id Num',
-            'stud_fname' => 'Stud Fname',
-            'stud_lname' => 'Stud Lname',
-            'stud_mname' => 'Stud Mname',
+            'stud_id_num' => 'Student Number',
+            'stud_fname' => 'Firstname',
+            'stud_lname' => 'Lastname',
+            'stud_mname' => 'Middlename',
             'home_number' => 'Home Number',
             'city_name' => 'City Name',
             'province' => 'Province',
@@ -95,4 +104,47 @@ class Student extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Grade::className(), ['stud_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSectionStudents()
+    {
+        return $this->hasMany(SectionStudent::className(), ['section_student' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCityName()
+    {
+        return $this->hasOne(City::className(), ['id' => 'city_name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGender0()
+    {
+        return $this->hasOne(Gender::className(), ['id' => 'gender']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProvince0()
+    {
+        return $this->hasOne(Province::className(), ['id' => 'province']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBirthPlace()
+    {
+        return $this->hasOne(Birthplace::className(), ['id' => 'birth_place']);
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
 }

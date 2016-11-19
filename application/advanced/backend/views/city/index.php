@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\GradeSearch */
+/* @var $searchModel common\models\CitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Grades';
+$this->title = 'Cities';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="grade-index">
+<div class="city-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Grade', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create City', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,13 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
-            'acadYear.School_Year',
-            'stud_id',
-            'emp_id',
-            'sub_id',
-            'grade',
-            // 'quarter',
+            'id',
+            'city_name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

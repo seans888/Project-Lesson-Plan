@@ -16,6 +16,9 @@ use Yii;
  *
  * @property Subject $sub
  * @property AcademicYear $acadYear
+ * @property Employee $teach
+ * @property Time $subTimeStart
+ * @property Time $subTimeEnd
  */
 class Schedule extends \yii\db\ActiveRecord
 {
@@ -37,6 +40,9 @@ class Schedule extends \yii\db\ActiveRecord
             [['sub_id', 'sub_time_start', 'sub_time_end', 'teach_id', 'acad_year_id'], 'integer'],
             [['sub_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['sub_id' => 'id']],
             [['acad_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['acad_year_id' => 'id']],
+            [['teach_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['teach_id' => 'id']],
+            [['sub_time_start'], 'exist', 'skipOnError' => true, 'targetClass' => Time::className(), 'targetAttribute' => ['sub_time_start' => 'id']],
+            [['sub_time_end'], 'exist', 'skipOnError' => true, 'targetClass' => Time::className(), 'targetAttribute' => ['sub_time_end' => 'id']],
         ];
     }
 
@@ -69,5 +75,29 @@ class Schedule extends \yii\db\ActiveRecord
     public function getAcadYear()
     {
         return $this->hasOne(AcademicYear::className(), ['id' => 'acad_year_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTeach()
+    {
+        return $this->hasOne(Employee::className(), ['id' => 'teach_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubTimeStart()
+    {
+        return $this->hasOne(Time::className(), ['id' => 'sub_time_start']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubTimeEnd()
+    {
+        return $this->hasOne(Time::className(), ['id' => 'sub_time_end']);
     }
 }

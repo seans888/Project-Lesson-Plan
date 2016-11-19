@@ -13,6 +13,7 @@ use Yii;
  * @property string $acad_year_end
  *
  * @property Grade[] $grades
+ * @property Quarter[] $quarters
  * @property Schedule[] $schedules
  */
 class AcademicYear extends \yii\db\ActiveRecord
@@ -45,8 +46,8 @@ class AcademicYear extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'School_Year' => 'School  Year',
-            'acad_year_start' => 'Acad Year Start',
-            'acad_year_end' => 'Acad Year End',
+            'acad_year_start' => 'Academic Year Start',
+            'acad_year_end' => 'Academic Year End',
         ];
     }
 
@@ -56,6 +57,14 @@ class AcademicYear extends \yii\db\ActiveRecord
     public function getGrades()
     {
         return $this->hasMany(Grade::className(), ['acad_year_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuarters()
+    {
+        return $this->hasMany(Quarter::className(), ['academic_year' => 'id']);
     }
 
     /**

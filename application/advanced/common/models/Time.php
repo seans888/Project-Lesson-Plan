@@ -9,6 +9,9 @@ use Yii;
  *
  * @property integer $id
  * @property string $time
+ *
+ * @property Schedule[] $schedules
+ * @property Schedule[] $schedules0
  */
 class Time extends \yii\db\ActiveRecord
 {
@@ -39,5 +42,21 @@ class Time extends \yii\db\ActiveRecord
             'id' => 'ID',
             'time' => 'Time',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchedules()
+    {
+        return $this->hasMany(Schedule::className(), ['sub_time_start' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchedules0()
+    {
+        return $this->hasMany(Schedule::className(), ['sub_time_end' => 'id']);
     }
 }

@@ -4,21 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Quarter */
+/* @var $model common\models\City */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="quarter-form">
+<div class="city-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'academic_year')->textInput() ?>
-
-    <?= $form->field($model, 'quarter')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'quarter_start')->textInput() ?>
-
-    <?= $form->field($model, 'quarter_end')->textInput() ?>
+    <?= $form->field($model, 'city_name')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

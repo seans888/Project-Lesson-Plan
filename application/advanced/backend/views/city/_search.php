@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\QuarterSeach */
+/* @var $model common\models\CitySearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="quarter-search">
+<div class="city-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,13 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'academic_year') ?>
-
-    <?= $form->field($model, 'quarter') ?>
-
-    <?= $form->field($model, 'quarter_start') ?>
-
-    <?= $form->field($model, 'quarter_end') ?>
+    <?= $form->field($model, 'city_name') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -19,6 +19,7 @@ use Yii;
  * @property Student $stud
  * @property Employee $emp
  * @property Subject $sub
+ * @property Quarter $quarter0
  */
 class Grade extends \yii\db\ActiveRecord
 {
@@ -42,6 +43,7 @@ class Grade extends \yii\db\ActiveRecord
             [['stud_id'], 'exist', 'skipOnError' => true, 'targetClass' => Student::className(), 'targetAttribute' => ['stud_id' => 'id']],
             [['emp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['emp_id' => 'id']],
             [['sub_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['sub_id' => 'id']],
+            [['quarter'], 'exist', 'skipOnError' => true, 'targetClass' => Quarter::className(), 'targetAttribute' => ['quarter' => 'id']],
         ];
     }
 
@@ -53,9 +55,9 @@ class Grade extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'acad_year_id' => 'Academic Year',
-            'stud_id' => 'Stud ID',
-            'emp_id' => 'Emp ID',
-            'sub_id' => 'Sub ID',
+            'stud_id' => 'Student',
+            'emp_id' => 'Employee',
+            'sub_id' => 'Subject',
             'grade' => 'Grade',
             'quarter' => 'Quarter',
         ];
@@ -91,5 +93,13 @@ class Grade extends \yii\db\ActiveRecord
     public function getSub()
     {
         return $this->hasOne(Subject::className(), ['id' => 'sub_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuarter0()
+    {
+        return $this->hasOne(Quarter::className(), ['id' => 'quarter']);
     }
 }

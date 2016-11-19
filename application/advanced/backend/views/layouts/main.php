@@ -37,6 +37,8 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+         ['label' => 'Employee', 'url' => ['/employee/index']],
+            ['label' => 'Job', 'url' => ['/job/index']],
 
     ];
     if (Yii::$app->user->isGuest) {
@@ -59,6 +61,10 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
+
+
+
+
 
     <div class="container">
         <?= Breadcrumbs::widget([

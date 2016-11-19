@@ -6,7 +6,6 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\AcademicYear */
 
-$this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Academic Years', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
