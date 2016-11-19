@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\AcademicYear;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Quarter */
@@ -12,7 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'academic_year')->textInput() ?>
+        <?= $form->field($model, 'academic_year')->dropDownList(
+        ArrayHelper::map(AcademicYear::find()->all(),'id','School_Year'),
+        ['prompt' => 'Choose Academic Year']
+        ) ?> 
 
     <?= $form->field($model, 'quarter')->textInput(['maxlength' => true]) ?>
 

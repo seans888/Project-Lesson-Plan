@@ -6,7 +6,6 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\SectionStudent */
 
-$this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Section Students', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'section_name',
+            //'id',
+            'sectionName.sec_name',
             'section_student',
         ],
     ]) ?>

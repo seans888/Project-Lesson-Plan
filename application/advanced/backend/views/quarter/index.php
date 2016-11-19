@@ -24,13 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-<<<<<<< HEAD
-            'id',
-            'academic_year',
-=======
+
             //'id',
-            'School_Year',
->>>>>>> a5f0003cee29df763bf8e251733535bedd689285
+            'academicYear.School_Year',
             'quarter',
             'quarter_start',
             'quarter_end',

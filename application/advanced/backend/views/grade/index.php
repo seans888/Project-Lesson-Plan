@@ -26,19 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'acadYear.School_Year',
-<<<<<<< HEAD
-            'stud_id',
-            'emp_id',
-            'sub_id',
-=======
-            'stud.stud_lname',
-            'stud.stud_fname',
-            //'stud_id',
-            //'emp_id',
+            'quarter',
             'sub.sub_name',
->>>>>>> a5f0003cee29df763bf8e251733535bedd689285
+            'stud_id',
             'grade',
-            // 'quarter',
+            'emp_id',
+            //'stud.stud_lname',
+            //'stud.stud_fname',
+            //'stud_id',
+        
+            
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

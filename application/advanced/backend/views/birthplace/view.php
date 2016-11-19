@@ -4,12 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\AcademicYear */
+/* @var $model common\models\Birthplace */
 
-$this->params['breadcrumbs'][] = ['label' => 'Academic Years', 'url' => ['index']];
+
+$this->params['breadcrumbs'][] = ['label' => 'Birthplaces', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="academic-year-view">
+<div class="birthplace-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -28,9 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'id',
-            'School_Year',
-            'acad_year_start',
-            'acad_year_end',
+            'birthplace',
         ],
     ]) ?>
 

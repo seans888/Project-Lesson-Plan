@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\SectionStudentSearch */
+/* @var $searchModel common\models\BirthplaceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Section Students';
+$this->title = 'Birthplaces';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="section-student-index">
+<div class="birthplace-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Section Student', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Birthplace', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,8 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-             'sectionName.sec_name',
-            'section_student',
+            'birthplace',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

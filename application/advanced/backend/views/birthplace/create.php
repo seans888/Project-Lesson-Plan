@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\SectionStudent */
+/* @var $model common\models\Birthplace */
 
-$this->title = 'Add Student to Section';
-$this->params['breadcrumbs'][] = ['label' => 'Section Students', 'url' => ['index']];
+$this->title = 'Create Birthplace';
+$this->params['breadcrumbs'][] = ['label' => 'Birthplaces', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="section-student-create">
+<div class="birthplace-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
