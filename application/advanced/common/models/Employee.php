@@ -54,11 +54,9 @@ class Employee extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'emp_id_num' => 'ID Number',
-<<<<<<< HEAD
+
             'emp_job' => 'Emp Job',
-=======
             'emp_job' => 'Job Description',
->>>>>>> a5f0003cee29df763bf8e251733535bedd689285
             'emp_fname' => 'First Name',
             'emp_lname' => 'Last Name',
             'emp_mname' => 'Middle Name',
