@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use common\models\Student;
 
 /**
- * StudentSearch represents the model behind the search form about `common\models\Student`.
+ * StudentPost represents the model behind the search form about `common\models\Student`.
  */
-class StudentSearch extends Student
+class StudentPost extends Student
 {
     /**
      * @inheritdoc

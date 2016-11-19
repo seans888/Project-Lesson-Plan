@@ -54,10 +54,17 @@ class Grade extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+<<<<<<< HEAD
             'acad_year_id' => 'Academic Year',
             'stud_id' => 'Student',
             'emp_id' => 'Employee',
             'sub_id' => 'Subject',
+=======
+            'acad_year_id' => 'Acad Year ID',
+            'stud_id' => 'Stud ID',
+            'emp_id' => 'Emp ID',
+            'sub_id' => 'Sub ID',
+>>>>>>> a5f0003cee29df763bf8e251733535bedd689285
             'grade' => 'Grade',
             'quarter' => 'Quarter',
         ];

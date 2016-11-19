@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Grade', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add Grades', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,9 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'acadYear.School_Year',
+<<<<<<< HEAD
             'stud_id',
             'emp_id',
             'sub_id',
+=======
+            'stud.stud_lname',
+            'stud.stud_fname',
+            //'stud_id',
+            //'emp_id',
+            'sub.sub_name',
+>>>>>>> a5f0003cee29df763bf8e251733535bedd689285
             'grade',
             // 'quarter',
 

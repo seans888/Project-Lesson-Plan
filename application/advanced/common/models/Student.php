@@ -74,12 +74,19 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+<<<<<<< HEAD
             'stud_id_num' => 'Student Number',
             'stud_fname' => 'Firstname',
             'stud_lname' => 'Lastname',
             'stud_mname' => 'Middlename',
+=======
+            'stud_id_num' => 'ID Number',
+            'stud_fname' => 'First Name',
+            'stud_lname' => 'Last Name',
+            'stud_mname' => 'Middle Name',
+>>>>>>> a5f0003cee29df763bf8e251733535bedd689285
             'home_number' => 'Home Number',
-            'city_name' => 'City Name',
+            'city_name' => 'City',
             'province' => 'Province',
             'zip_code' => 'Zip Code',
             'birthdate' => 'Birthdate',

@@ -2,12 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+<<<<<<< HEAD
 use yii\helpers\ArrayHelper;
 use common\models\AcademicYear;
 use common\models\Student;
 use common\models\Employee;
 use common\models\Subject;
 use common\models\Quarter;
+=======
+>>>>>>> a5f0003cee29df763bf8e251733535bedd689285
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Grade */
@@ -18,6 +21,7 @@ use common\models\Quarter;
 
     <?php $form = ActiveForm::begin(); ?>
 
+<<<<<<< HEAD
         <?= $form->field($model, 'acad_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->all(),'id','School_Year'),
         ['prompt' => 'Choose Academic Year']
@@ -45,6 +49,19 @@ use common\models\Quarter;
         ArrayHelper::map(Quarter::find()->all(),'id','quarter'),
         ['prompt' => 'Choose Quarter']
         ) ?>
+=======
+    <?= $form->field($model, 'acad_year_id')->textInput() ?>
+
+    <?= $form->field($model, 'stud_id')->textInput() ?>
+
+    <?= $form->field($model, 'emp_id')->textInput() ?>
+
+    <?= $form->field($model, 'sub_id')->textInput() ?>
+
+    <?= $form->field($model, 'grade')->textInput() ?>
+
+    <?= $form->field($model, 'quarter')->textInput() ?>
+>>>>>>> a5f0003cee29df763bf8e251733535bedd689285
 
         <?= $form->field($model, 'grade')->textInput() ?>
 

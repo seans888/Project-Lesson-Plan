@@ -44,7 +44,11 @@ class Section extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'sec_name' => 'Section Name',
+<<<<<<< HEAD
             'advise_emp_id' => 'Advise Emp ID',
+=======
+            'advise_emp_id' => 'Adviser',
+>>>>>>> a5f0003cee29df763bf8e251733535bedd689285
         ];
     }
 
