@@ -16,14 +16,10 @@ use common\models\Job;
 
     <?= $form->field($model, 'emp_id_num')->textInput() ?>
 
-<<<<<<< HEAD
-=======
     <?= $form->field($model, 'emp_job')->dropDownList(
         ArrayHelper::map(Job::find()->all(),'id','job_description'),
         ['prompt' => 'Select Job']
         ) ?>
-
->>>>>>> a5f0003cee29df763bf8e251733535bedd689285
     <?= $form->field($model, 'emp_fname')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'emp_lname')->textInput(['maxlength' => true]) ?>
