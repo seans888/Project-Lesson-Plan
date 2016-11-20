@@ -30,11 +30,6 @@ use common\models\Job;
 
     <?= $form->field($model, 'contact_number')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'emp_job')->dropDownList(
-        ArrayHelper::map(Job::find()->all(),'id','job_description'),
-        ['prompt' => 'Choose Job']
-        ) ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Add Employee' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

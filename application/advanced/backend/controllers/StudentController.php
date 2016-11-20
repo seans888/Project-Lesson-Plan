@@ -69,7 +69,7 @@ class StudentController extends Controller
             //return $this->redirect(['view', 'id' => $model->id]);
             return $this->redirect(['section-student/create']);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
