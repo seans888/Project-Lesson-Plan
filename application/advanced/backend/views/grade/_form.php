@@ -30,7 +30,7 @@ use common\models\Quarter;
         ) ?>
 
         <?= $form->field($model, 'sub_id')->dropDownList(
-        ArrayHelper::map(Subject::find()->all(),'id','subject_name'),
+        ArrayHelper::map(Subject::find()->all(),'id','sub_name'),
         ['prompt' => 'Choose Subject']
         ) ?>
 
