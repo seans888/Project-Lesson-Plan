@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
-
+<body style="font-family: Andale Mono; background-color:#F9EE81"> 
     <p>Please fill out the following fields to signup:</p>
 
     <div class="row">

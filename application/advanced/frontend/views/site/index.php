@@ -18,7 +18,7 @@ $this->title = 'VILLE ST. JOHN ACADEMY';
 </style>
 <body>
 
-		<img src ="http://i63.tinypic.com/2znph6p.png">
+		<img src ="http://i63.tinypic.com/2znph6p.png"><br><br><br>
 		
 <div class="w3-content w3-section" style="max-width:500px">
   <img class="mySlides" src="http://i64.tinypic.com/zn5smb.jpg" style="width:215%">
