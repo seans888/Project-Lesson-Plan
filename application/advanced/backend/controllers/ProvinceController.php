@@ -37,6 +37,7 @@ class ProvinceController extends Controller
     {
         if(yii::$app->user->can('admin')){
              $searchModel = new ProvinceSearch();
+        $searchModel = new ProvinceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,6 +49,7 @@ class ProvinceController extends Controller
         throw new NotFoundHttpException;
     }
        
+
     }
 
     /**

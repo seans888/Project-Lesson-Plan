@@ -34,10 +34,16 @@ $this->title = 'VILLE ST. JOHN ACADEMY';
 
     <div class="body-content">
     <img src ="http://i63.tinypic.com/2znph6p.png">
+
 		<img src="http://i67.tinypic.com/2vxm9va.jpg">
 		<br>
 		<br>
         <br>
+
+	<br><br><br>
+		<img src="http://i67.tinypic.com/2vxm9va.jpg">
+		<br><br><br>
+
     <font size="5">
 <table border="4" align="left">
 <th>ACADEMIC RESOURCES</th>

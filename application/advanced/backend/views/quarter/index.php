@@ -18,7 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
+
        <?= Html::button('Set Quarter', ['value'=>Url::to('index.php?r=quarter/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
+
+       
     </p>
 
 

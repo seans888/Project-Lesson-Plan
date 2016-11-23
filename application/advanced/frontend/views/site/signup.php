@@ -6,14 +6,19 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+
 use yii\helpers\ArrayHelper;
 $this->title = 'Signup';
+
+
+$this->title = 'Sign-up';
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to signup:</p>
+<body style="font-family: Andale Mono; background-color:#F9EE81"> 
+    <p>Please fill-out the following fields to signup:</p>
 
     <div class="row">
         <div class="col-lg-5">
@@ -32,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                  <?= $form-> field($model,'permissions')->checkboxList($authItem);?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('Sign-up', ['class' => 'btn btn-primary', 'name' => 'sign-up-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

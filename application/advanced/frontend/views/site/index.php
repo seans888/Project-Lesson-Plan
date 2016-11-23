@@ -11,35 +11,48 @@ $this->title = 'VILLE ST. JOHN ACADEMY';
 	
     <body style="font-family: Andale Mono; background-color:#F9EE81"> 
 	
-		<img src ="http://i63.tinypic.com/2znph6p.png">
-		<img src="http://i67.tinypic.com/2vxm9va.jpg">
+
+
+<style>
+.mySlides {display:none;}
+</style>
+<body>
+
+		<img src ="http://i63.tinypic.com/2znph6p.png"><br><br><br>
+		
+<div class="w3-content w3-section" style="max-width:500px">
+  <img class="mySlides" src="http://i64.tinypic.com/zn5smb.jpg" style="width:215%">
+  <img class="mySlides" src="http://i67.tinypic.com/1zcj1fo.jpg" style="width:215%">
+  <img class="mySlides" src="http://i67.tinypic.com/20hlbvb.jpg" style="width:215%">
+  <img class="mySlides" src="http://i67.tinypic.com/2vxm9va.jpg" style="width:215%">
+</div>
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 3000); // Change image every 2 seconds
+}
+</script>
+		
+		
 		<font color="#4B925C">
-        <h1><br><b>WELCOME TO VILLE ST. JOHN ACADEMY</b></h1>
+        <h1><b>WELCOME TO VILLE ST. JOHN ACADEMY</b></h1>
         </font>
         </body>
     </div>
 
     <div class="body-content">
 	<font color="black">
-<font size="4">
 	
-             
-                <p>Ville St. John Academy is a Catholic school owned and managed by the Sisters of St. John the Baptist. 
-                It is situated in the most tranquil end of Marcelo Green Village, Maharlika Avenue, Phase V, Parañaque City.
-                 It has the utmost conducive atmosphere free from the hassle of the city. It fosters the “Family Spirit” which 
-                 is clearly seen in the various activities set forth in and outside the school campus.
-                </p>
-
-                <p>The Baptistine Education apostolate first started in the small town of Angri, Salerno, South of Italy,
-                 by the Sisters of St. John the Baptist through the paternal guidance of its Founder, Blessed Father Father
-                  Alfonso with the purpose to educate and evangelize the orphan of war with gospel values and to liberate them
-                   from ignorance, exploitation so they wouldn’t become problems of society. This tiny seed has spread throughout 
-                   (17) seventeen countries namely, United States, Brazil, Zambia, Canada, Chile, Israel, Botswana, India, Poland, 
-                   Korea, Argentina, Philippines, Mexico, Albania, Romania, South Africa and ameron.</p>
-				   
-            </div>
-        </font>
-		
             </div>
         </div>
 

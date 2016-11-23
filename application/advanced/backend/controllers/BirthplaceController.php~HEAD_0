@@ -8,6 +8,7 @@ use common\models\BirthplaceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * BirthplaceController implements the CRUD actions for Birthplace model.
@@ -36,17 +37,17 @@ class BirthplaceController extends Controller
     public function actionIndex()
     {
         if(yii::$app->user->can('admin')){
-        $searchModel = new BirthplaceSearch();
+            $searchModel = new BirthplaceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }else{
+    }else
+    {
         throw new NotFoundHttpException;
     }
-        
     }
 
     /**

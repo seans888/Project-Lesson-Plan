@@ -3,16 +3,17 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\SectionSchedule;
-use common\models\SectionScheduleSearch;
+use common\models\Birthplace;
+use common\models\BirthplaceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
- * SectionScheduleController implements the CRUD actions for SectionSchedule model.
+ * BirthplaceController implements the CRUD actions for Birthplace model.
  */
-class SectionScheduleController extends Controller
+class BirthplaceController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,27 +31,27 @@ class SectionScheduleController extends Controller
     }
 
     /**
-     * Lists all SectionSchedule models.
+     * Lists all Birthplace models.
      * @return mixed
      */
     public function actionIndex()
     {
         if(yii::$app->user->can('admin')){
-            $searchModel = new SectionScheduleSearch();
+            $searchModel = new BirthplaceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }else{
+    }else
+    {
         throw new NotFoundHttpException;
     }
-        
     }
 
     /**
-     * Displays a single SectionSchedule model.
+     * Displays a single Birthplace model.
      * @param integer $id
      * @return mixed
      */
@@ -62,13 +63,13 @@ class SectionScheduleController extends Controller
     }
 
     /**
-     * Creates a new SectionSchedule model.
+     * Creates a new Birthplace model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new SectionSchedule();
+        $model = new Birthplace();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -80,7 +81,7 @@ class SectionScheduleController extends Controller
     }
 
     /**
-     * Updates an existing SectionSchedule model.
+     * Updates an existing Birthplace model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,7 +100,7 @@ class SectionScheduleController extends Controller
     }
 
     /**
-     * Deletes an existing SectionSchedule model.
+     * Deletes an existing Birthplace model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -112,15 +113,15 @@ class SectionScheduleController extends Controller
     }
 
     /**
-     * Finds the SectionSchedule model based on its primary key value.
+     * Finds the Birthplace model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return SectionSchedule the loaded model
+     * @return Birthplace the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = SectionSchedule::findOne($id)) !== null) {
+        if (($model = Birthplace::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
