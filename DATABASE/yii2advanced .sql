@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2016 at 06:52 AM
+-- Generation Time: Nov 23, 2016 at 01:49 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -48,7 +48,7 @@ INSERT INTO `academic_year` (`id`, `School_Year`, `acad_year_start`, `acad_year_
 
 CREATE TABLE IF NOT EXISTS `auth_assignment` (
   `item_name` varchar(64) NOT NULL,
-  `user_id` varchar(64) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `created_at` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -57,9 +57,11 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
 --
 
 INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
-('add section', '4', NULL),
-('registrar', '5', NULL),
-('student', '6', NULL);
+('admin', 4, NULL),
+('admin', 10, NULL),
+('registrar', 5, NULL),
+('registrar', 10, NULL),
+('student', 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -90,6 +92,7 @@ INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `cr
 ('add section', 7, 'allowed to add section', NULL, NULL, NULL, NULL),
 ('add student', 1, 'allowed to add student', NULL, NULL, NULL, NULL),
 ('add subject', 8, 'allowed to add subject', NULL, NULL, NULL, NULL),
+('admin', 15, NULL, NULL, NULL, NULL, NULL),
 ('department_head', 11, 'dept.head can add schedule', NULL, NULL, NULL, NULL),
 ('HR', 14, 'HR can add job and employee', NULL, NULL, NULL, NULL),
 ('registrar', 10, 'registrar can add schedule, quarter, student,and section.', NULL, NULL, NULL, NULL),
@@ -112,14 +115,23 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
 --
 
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
+('admin', 'add academic year'),
+('admin', 'add employee'),
 ('HR', 'add employee'),
+('admin', 'add job'),
 ('HR', 'add job'),
+('admin', 'add quarter'),
 ('registrar', 'add quarter'),
+('admin', 'add schedule'),
 ('department_head', 'add schedule'),
 ('registrar', 'add schedule'),
+('admin', 'add section'),
 ('registrar', 'add section'),
+('admin', 'add student'),
 ('registrar', 'add student'),
-('registrar', 'add subject');
+('admin', 'add subject'),
+('registrar', 'add subject'),
+('admin', 'teacher');
 
 -- --------------------------------------------------------
 
@@ -305,14 +317,14 @@ CREATE TABLE IF NOT EXISTS `quarter` (
   `quarter` varchar(20) NOT NULL,
   `quarter_start` date NOT NULL,
   `quarter_end` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quarter`
 --
 
 INSERT INTO `quarter` (`id`, `academic_year`, `quarter`, `quarter_start`, `quarter_end`) VALUES
-(1, 4, '4', '0000-00-00', '0000-00-00');
+(2, 4, '3', '2016-11-17', '2016-11-28');
 
 -- --------------------------------------------------------
 
@@ -382,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `fathers_contact_number` varchar(11) DEFAULT NULL,
   `guardians_contact_number` varchar(11) NOT NULL,
   `birth_place` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
@@ -390,7 +402,9 @@ CREATE TABLE IF NOT EXISTS `student` (
 
 INSERT INTO `student` (`id`, `stud_id_num`, `stud_fname`, `stud_lname`, `stud_mname`, `home_number`, `city_name`, `province`, `zip_code`, `birthdate`, `religion`, `gender`, `nationality`, `email`, `mothers_name`, `fathers_name`, `guardians_name`, `mothers_contact_number`, `fathers_contact_number`, `guardians_contact_number`, `birth_place`) VALUES
 (5, 2014100356, 'Jonathan', 'Abalon', 'Dawal', 'L. 5 Blk. 5, Countryside Village, Sunvalley', 1, 1, 1700, '1998-09-18', 'Roman Catholic', 1, 'Filipino', 'odabalon@student.apc.edu.ph', 'Eva Abalon', '', 'Eva Abalon', '09122517593', '', '09122517593', 1),
-(6, 2014100377, 'Neil', 'Cueto', 'Reyes', '1234124', 1, 1, 12345, '1996-12-07', 'Roman Catholic', 1, 'Filipino', 'neilcueto101@gmail.com', 'qwe', '23424', 'wer', 'qwe', '1231', 'qewweqw', 1);
+(6, 2014100377, 'Neil', 'Cueto', 'Reyes', '1234124', 1, 1, 12345, '1996-12-07', 'Roman Catholic', 1, 'Filipino', 'neilcueto101@gmail.com', 'qwe', '23424', 'wer', 'qwe', '1231', 'qewweqw', 1),
+(8, 1, 'sam', 'samp', 'samp', 'weqe', 3, 1, 4324234, '2016-11-24', 'qweqw', 1, 'ewrwr', 'dfdsf', '', '', 'erwrw', '', '', 'dfgdgdf', 1),
+(9, 121212, 'asdasd', 'a', 'a', 'a', 1, 1, 1700, '2016-11-02', 'sasa', 1, 'a', 'q', '', '', 'asa', '', '', 'dadasda', 2);
 
 -- --------------------------------------------------------
 
@@ -439,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `status` smallint(6) NOT NULL DEFAULT '10',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user`
@@ -448,7 +462,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `permission`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
 (4, 'odabalon', '3D62-ROIetdzJbDapRJWUbuwAh3u16fN', '$2y$13$YO8mJ0DDUaOgUqxBZruhcevMbLx0gTTX0HhoFAjguUgtl/9hyZVM2', '', NULL, 'odabalon@student.apc.edu.ph', 10, 1477217057, 1477217057),
 (5, 'nrcueto', 'Q9H6XJy0YxuwLR52DPl1MT9blEItGOSx', '$2y$13$j8R/F0ODaNCh.nZ.7m.dF.5dB1M20ud13wwErWhg5RYuYSIxXKQt6', '', NULL, 'nrcueto@gmail.com', 10, 1477263960, 1477263960),
-(6, 'rcdagatan', 'n3LEIEqTzm-6ysS835IgoHBsFwlwgbDp', '$2y$13$QOPrStvSh6V.0EF/i9X99u6SRRvvLZkEnu8BqrhGW2tWp8hs5fi.u', '', NULL, 'rcdagatan@gmail.com', 10, 1477266616, 1477266616);
+(6, 'rcdagatan', 'n3LEIEqTzm-6ysS835IgoHBsFwlwgbDp', '$2y$13$QOPrStvSh6V.0EF/i9X99u6SRRvvLZkEnu8BqrhGW2tWp8hs5fi.u', '', NULL, 'rcdagatan@gmail.com', 10, 1477266616, 1477266616),
+(7, 'cnlavarro', 'nygV9A4cOCMxSFcDrA-UaaDoJw4vOCY4', '$2y$13$t.oIKRWV.etBPpSu3vG0NOAvScoDXx2GHDo1G6jK/FqmoaUpb1goe', '', NULL, 'odabalon@gmail.com', 10, 1479831762, 1479831762),
+(8, 'cnlavarro1', 'QKIMr_x09XQmHk7TCAh5vIpCSwNGCVNE', '$2y$13$p04uxGfFqeYK9JwOEzl/MeA4DTOlZhRSlcEy4YohFa/TXzsa9QhLG', '', NULL, 'cnlavarro@gmail.com', 10, 1479832047, 1479832047),
+(9, 'cnlavarro11', 'IaTmPeXfL8sPdQqRSuAYH4CdWh1jvpjV', '$2y$13$0A0o08s61k/Dc79n88HsTuEwH.as/o7oYIIGS.ImUFOW1fk9BbxZS', '', NULL, 'cnlavarro1@gmail.com', 10, 1479832130, 1479832130),
+(10, 'jajajajajajaj', 'YnCcK1QiUi6oyRqsz_sLOkTESLoXBM1U', '$2y$13$hTAK/IONANP3FFjMkR.tsuOZ3xVK5TBVUU4QYEXwqhAB76VQp.ul.', '', NULL, 'jaja@gmail.com', 10, 1479832444, 1479832444);
 
 --
 -- Indexes for dumped tables
@@ -628,7 +646,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT for table `quarter`
 --
 ALTER TABLE `quarter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
@@ -648,7 +666,7 @@ ALTER TABLE `section_student`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `subject`
 --
@@ -663,7 +681,7 @@ ALTER TABLE `time`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --
