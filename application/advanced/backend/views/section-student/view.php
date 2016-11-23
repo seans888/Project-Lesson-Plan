@@ -29,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             //'id',
             'sectionName.sec_name',
-            'section_student',
+            'sectionStudent.stud_fname',
+            'sectionStudent.stud_lname',
         ],
     ]) ?>
 

@@ -40,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
              'sectionName.sec_name',
-            'section_student',
+              'sectionStudent.stud_fname',
+            'sectionStudent.stud_lname',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

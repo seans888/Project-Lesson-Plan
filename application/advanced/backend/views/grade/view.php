@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Grade */
 
-$this->title = $model->id;
+
 $this->params['breadcrumbs'][] = ['label' => 'Grades', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,13 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'acadYear.School_Year',
-            'quarter',
+            'quarter0.quarter',
             'sub.sub_name',
-            'stud_id',
+            'stud.stud_lname',
+               'stud.stud_fname',
             'grade',
-            'emp_id',
+            //'emp_id',
         ],
     ]) ?>
 
