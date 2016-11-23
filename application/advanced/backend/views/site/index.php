@@ -40,9 +40,7 @@ $this->title = 'VILLE ST. JOHN ACADEMY';
 		<br>
         <br>
 
-	<br><br><br>
-		<img src="http://i67.tinypic.com/2vxm9va.jpg">
-		<br><br><br>
+		
 
     <font size="5">
 <table border="4" align="left">
