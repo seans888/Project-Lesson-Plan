@@ -35,13 +35,19 @@ class CityController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CitySearch();
+        if(yii::$app->user->can('teacher')){
+          $searchModel = new CitySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ]);  
+    }else{
+        throw new NotFoundHttpException;
+        
+    }
+        
     }
 
     /**

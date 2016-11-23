@@ -8,6 +8,7 @@ use common\models\GradeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHTTPException;
 
 /**
  * GradeController implements the CRUD actions for Grade model.
@@ -35,6 +36,8 @@ class GradeController extends Controller
      */
     public function actionIndex()
     {
+        if(yii::$app->user->can('teacher'))
+        {
         $searchModel = new GradeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -42,6 +45,10 @@ class GradeController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+        }else
+        {
+            throw new NotFoundHttpException;;
+        }
     }
 
     /**
@@ -68,7 +75,7 @@ class GradeController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

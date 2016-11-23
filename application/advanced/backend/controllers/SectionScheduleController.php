@@ -35,13 +35,18 @@ class SectionScheduleController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SectionScheduleSearch();
+        if(yii::$app->user->can('admin')){
+            $searchModel = new SectionScheduleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }else{
+        throw new NotFoundHttpException;
+    }
+        
     }
 
     /**

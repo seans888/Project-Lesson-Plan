@@ -35,13 +35,19 @@ class TimeController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new TimeSearch();
+        if(yii::$app->user->can('admin')){
+            $searchModel = new TimeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }else
+    {
+        throw new NotFoundHttpException;
+    }
+        
     }
 
     /**
@@ -68,7 +74,7 @@ class TimeController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

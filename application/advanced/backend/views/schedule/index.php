@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ScheduleSearch */
@@ -16,20 +18,32 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Schedule', ['create'], ['class' => 'btn btn-success']) ?>
+       <?= Html::button('Add Schedule', ['value'=>Url::to('index.php?r=schedule/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
+
+
+ <?php
+    Modal::begin([
+        'header'=>'<h4>Schedule</h4>',
+        'id' => 'modal',
+        'size' => 'modal-lg',
+        ]);
+
+     echo "<div id='modalContent'></div>";
+     Modal::end();
+     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
-            'sub.sub_name',
+            'id',
+            'sub_id',
             'sub_time_start:datetime',
             'sub_time_end:datetime',
-            //'teach_id',
-            'acad_year_id',
+            'teach_id',
+            // 'acad_year_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

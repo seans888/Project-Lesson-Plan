@@ -8,6 +8,7 @@ use common\models\JobSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHTTPException;
 
 /**
  * JobController implements the CRUD actions for Job model.
@@ -35,14 +36,20 @@ class JobController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new JobSearch();
+        if(yii::$app->user->can('add job')){
+            $searchModel = new JobSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }
+
+            }else
+            {
+               throw new NotFoundHttpException;
+            }
+        }
 
     /**
      * Displays a single Job model.
@@ -68,7 +75,7 @@ class JobController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

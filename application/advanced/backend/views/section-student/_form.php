@@ -16,7 +16,7 @@ use common\models\Student;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'section_name')->dropDownList(
-        ArrayHelper::map(Section::find()->all(),'id','section_name'),
+        ArrayHelper::map(Section::find()->all(),'id','sec_name'),
         ['prompt' => 'Select Section']
         ) ?>
 

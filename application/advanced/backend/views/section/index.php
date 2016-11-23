@@ -2,12 +2,15 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
+use yii\bootstrap\Modal;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\SectionPost */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sections';
+$this->title = 'Section';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="section-index">
@@ -16,8 +19,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Add Section', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Add Section', ['value'=>Url::to('index.php?r=section/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
+
+
+ <?php
+    Modal::begin([
+        'header'=>'<h4>Section</h4>',
+        'id' => 'modal',
+        'size' => 'modal-lg',
+        ]);
+
+     echo "<div id='modalContent'></div>";
+     Modal::end();
+     ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

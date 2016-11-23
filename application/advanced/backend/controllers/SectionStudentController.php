@@ -8,6 +8,7 @@ use common\models\SectionStudentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * SectionStudentController implements the CRUD actions for SectionStudent model.
@@ -35,13 +36,19 @@ class SectionStudentController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SectionStudentSearch();
+       if (yii::$app->user->can('add student')){
+         $searchModel = new SectionStudentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+       }else
+       {
+        throw new ForbiddenHTTPException;
+        
+       }
     }
 
     /**
@@ -68,7 +75,7 @@ class SectionStudentController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

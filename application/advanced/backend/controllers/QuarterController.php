@@ -8,6 +8,7 @@ use common\models\QuarterSeach;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHTTPException;
 
 /**
  * QuarterController implements the CRUD actions for Quarter model.
@@ -35,13 +36,18 @@ class QuarterController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new QuarterSeach();
+        if(yii::$app->user->can('add quarter')){
+            $searchModel = new QuarterSeach();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+        }else
+        {
+            throw new NotFoundHttpException;
+        }
     }
 
     /**
@@ -68,7 +74,7 @@ class QuarterController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

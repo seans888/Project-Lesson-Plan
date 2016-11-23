@@ -8,6 +8,7 @@ use common\models\AcademicYearSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHTTPException;
 
 /**
  * AcademicYearController implements the CRUD actions for AcademicYear model.
@@ -35,13 +36,19 @@ class AcademicYearController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AcademicYearSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+       if (yii::$app->user->can('add academic year'))
+       {
+         $searchModel = new AcademicYearSearch();
+         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+       }else
+       {
+        throw new NotFoundHttpException;
+       }
     }
 
     /**
@@ -68,7 +75,7 @@ class AcademicYearController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

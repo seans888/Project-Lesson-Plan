@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\AcademicYear;
+use common\models\Subject;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Schedule */
@@ -14,7 +15,10 @@ use common\models\AcademicYear;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'sub_id')->textInput() ?>
+      <?= $form->field($model, 'sub_id')->dropDownList(
+        ArrayHelper::map(Subject::find()->all(),'id','sub_name'),
+        ['prompt' => 'Choose Subject']
+        ) ?>
 
     <?= $form->field($model, 'sub_time_start')->textInput() ?>
 
@@ -22,14 +26,14 @@ use common\models\AcademicYear;
 
     <?= $form->field($model, 'teach_id')->textInput() ?>
 
-    
-     <?= $form->field($model, 'acad_year_id')->dropDownList(
+
+        <?= $form->field($model, 'acad_year_id')->dropDownList(
         ArrayHelper::map(AcademicYear::find()->all(),'id','School_Year'),
-        ['prompt' => 'Select Academic Year']
-        ) ?>
+        ['prompt' => 'Choose Academic Year']
+        ) ?> 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Add Schedule' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

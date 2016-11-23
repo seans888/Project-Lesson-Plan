@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Quarter */
 
-$this->title = 'Create Quarter';
+$this->title = 'Set Quarter';
 $this->params['breadcrumbs'][] = ['label' => 'Quarters', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

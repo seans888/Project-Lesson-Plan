@@ -7,6 +7,8 @@ use common\models\City;
 use common\models\Gender;
 use common\models\Province;
 use common\models\Birthplace;
+use dosamigos\datepicker\DatePicker;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Student */
 /* @var $form yii\widgets\ActiveForm */
@@ -43,7 +45,17 @@ use common\models\Birthplace;
 
     <?= $form->field($model, 'zip_code')->textInput() ?>
 
-    <?= $form->field($model, 'birthdate')->textInput() ?>
+    <?= $form->field($model, 'birthdate')->widget(
+    DatePicker::className(), [
+        // inline too, not bad
+         'inline' => false, 
+         // modify template for custom rendering
+        //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'yyyy-m-dd'
+        ]
+]);?>
 
     <?= $form->field($model, 'birth_place')->dropDownList(
         ArrayHelper::map(Birthplace::find()->all(),'id','birthplace'),

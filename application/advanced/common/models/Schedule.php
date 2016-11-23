@@ -56,7 +56,7 @@ class Schedule extends \yii\db\ActiveRecord
             'sub_id' => 'Subject Name',
             'sub_time_start' => 'Subject Time Start',
             'sub_time_end' => 'Subject Time End',
-            'teach_id' => 'Teach ID',
+            'teach_id' => 'Teacher',
             'acad_year_id' => 'Academic Year',
         ];
     }

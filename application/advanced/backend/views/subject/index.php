@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
+use yii\bootstrap\Modal;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\SubjectPost */
@@ -16,8 +19,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Add Subject', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Add Subject', ['value'=>Url::to('index.php?r=subject/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
+
+
+ <?php
+    Modal::begin([
+        'header'=>'<h4>Subject</h4>',
+        'id' => 'modal',
+        'size' => 'modal-lg',
+        ]);
+
+     echo "<div id='modalContent'></div>";
+     Modal::end();
+     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -26,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'sub_name',
-            'subject_description',
+            //'subject_description',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
