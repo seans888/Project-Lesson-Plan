@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
        <?= Html::button('Add Schedule', ['value'=>Url::to('index.php?r=schedule/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
 
-       <?= Html::button('Create Schedule', ['value'=>Url::to('index.php?r=schedule/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
 
 
