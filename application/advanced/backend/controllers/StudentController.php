@@ -35,13 +35,19 @@ class StudentController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new StudentPost();
+        if(yii::$app->user->can('add student'))
+        {
+            $searchModel = new StudentPost();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+        }else
+        {
+            throw new NotFoundHttpException;
+        }
     }
 
     /**

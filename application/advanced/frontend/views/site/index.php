@@ -19,6 +19,10 @@ $this->title = 'VILLE ST. JOHN ACADEMY';
 <body>
 
 		<img src ="http://i63.tinypic.com/2znph6p.png"><br><br><br>
+
+    <font color="#4B925C">
+        <h1><b>WELCOME TO VILLE ST. JOHN ACADEMY</b></h1>
+        </font>
 		
 <div class="w3-content w3-section" style="max-width:500px">
   <img class="mySlides" src="http://i64.tinypic.com/zn5smb.jpg" style="width:215%">
@@ -43,10 +47,6 @@ function carousel() {
 }
 </script>
 		
-		
-		<font color="#4B925C">
-        <h1><b>WELCOME TO VILLE ST. JOHN ACADEMY</b></h1>
-        </font>
         </body>
     </div>
 

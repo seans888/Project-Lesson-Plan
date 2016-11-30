@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                 $authItem = ArrayHelper::map($authItem,'name','name');
                 ?>
-                 <?= $form-> field($model,'permissions')->checkboxList($authItem);?>
+                 <?= $form-> field($model,'permissions')->dropDownList($authItem);?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Sign-up', ['class' => 'btn btn-primary', 'name' => 'sign-up-button']) ?>

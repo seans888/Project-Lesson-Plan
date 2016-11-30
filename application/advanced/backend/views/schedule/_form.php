@@ -1,11 +1,9 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\AcademicYear;
 use common\models\Subject;
-
 /* @var $this yii\web\View */
 /* @var $model common\models\Schedule */
 /* @var $form yii\widgets\ActiveForm */
