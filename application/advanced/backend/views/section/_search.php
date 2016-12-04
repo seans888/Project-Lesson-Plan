@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\SectionPost */
+/* @var $model common\models\ScheduleSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="section-search">
+<div class="schedule-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,9 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'sec_name') ?>
+    <?= $form->field($model, 'sub_id') ?>
 
-    <?= $form->field($model, 'advise_emp_id') ?>
+    <?= $form->field($model, 'sub_time_start') ?>
+
+    <?= $form->field($model, 'sub_time_end') ?>
+
+    <?= $form->field($model, 'teach_id') ?>
+
+    <?php // echo $form->field($model, 'acad_year_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

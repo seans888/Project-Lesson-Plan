@@ -1,9 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use common\models\ScheduleSearch;
+use yii\widgets\pjax;
+
 
 
 /* @var $this yii\web\View */
@@ -35,17 +38,35 @@ $this->params['breadcrumbs'][] = $this->title;
      echo "<div id='modalContent'></div>";
      Modal::end();
      ?>
+     <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'export'=>false,
+        'hover'=>true,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+           'class' => 'kartik\grid\ExpandRowColumn',
+            'value' => function($model, $key, $index, $column){
+                return GridView::ROW_COLLAPSED;
+            },
+            'detail' => function ($model,$key,$index,$column){
+                
+                $searchModel = new ScheduleSearch();
+                $searchModel ->sub_id= $model->id;
+                $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            //'id',
+                return Yii::$app->controller->renderPartial('_submaster',[
+                       'searchModel'=>$searchModel,
+                       'dataProvider'=>$dataProvider, 
+                    ]);
+            },
+            ],
             'sub_name',
-            //'subject_description',
+            
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end(); ?>
 </div>

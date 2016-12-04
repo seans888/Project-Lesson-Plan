@@ -27,6 +27,8 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'acad_year_id') ?>
 
+    <?php // echo $form->field($model, 'section') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

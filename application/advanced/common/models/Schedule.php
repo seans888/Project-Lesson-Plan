@@ -13,12 +13,15 @@ use Yii;
  * @property integer $sub_time_end
  * @property integer $teach_id
  * @property integer $acad_year_id
+ * @property integer $section
  *
  * @property Subject $sub
  * @property AcademicYear $acadYear
  * @property Employee $teach
  * @property Time $subTimeStart
  * @property Time $subTimeEnd
+ * @property Section $section0
+ * @property SectionSchedule[] $sectionSchedules
  */
 class Schedule extends \yii\db\ActiveRecord
 {
@@ -36,14 +39,27 @@ class Schedule extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sub_id', 'sub_time_start', 'sub_time_end', 'teach_id', 'acad_year_id'], 'required'],
-            [['sub_id', 'sub_time_start', 'sub_time_end', 'teach_id', 'acad_year_id'], 'integer'],
+            [['sub_id', 'sub_time_start', 'sub_time_end', 'teach_id', 'acad_year_id', 'section'], 'required'],
+            [['sub_id', 'sub_time_start', 'sub_time_end', 'teach_id', 'acad_year_id', 'section'], 'integer'],
             [['sub_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['sub_id' => 'id']],
             [['acad_year_id'], 'exist', 'skipOnError' => true, 'targetClass' => AcademicYear::className(), 'targetAttribute' => ['acad_year_id' => 'id']],
             [['teach_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['teach_id' => 'id']],
             [['sub_time_start'], 'exist', 'skipOnError' => true, 'targetClass' => Time::className(), 'targetAttribute' => ['sub_time_start' => 'id']],
             [['sub_time_end'], 'exist', 'skipOnError' => true, 'targetClass' => Time::className(), 'targetAttribute' => ['sub_time_end' => 'id']],
+            ['sub_time_end','checkTime'],
+            [['section'], 'exist', 'skipOnError' => true, 'targetClass' => Section::className(), 'targetAttribute' => ['section' => 'id']],
         ];
+    }
+
+    public function checkTime($attribute,$params)
+    {
+        $selectedTime = time($this->sub_time_end);
+        $timeCheck = time($this->sub_time_start);
+
+        if($timeCheck>=$selectedTime)
+        {
+            $this->addError($attribute,'End Time Should be Greater than Start Time');
+        }
     }
 
     /**
@@ -53,11 +69,12 @@ class Schedule extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'sub_id' => 'Subject Name',
-            'sub_time_start' => 'Subject Time Start',
-            'sub_time_end' => 'Subject Time End',
+            'sub_id' => 'Subject',
+            'sub_time_start' => 'Start Time',
+            'sub_time_end' => 'End Time',
             'teach_id' => 'Teacher',
-            'acad_year_id' => 'Academic Year',
+            'acad_year_id' => 'School Year',
+            'section' => 'Section',
         ];
     }
 
@@ -99,5 +116,21 @@ class Schedule extends \yii\db\ActiveRecord
     public function getSubTimeEnd()
     {
         return $this->hasOne(Time::className(), ['id' => 'sub_time_end']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSection0()
+    {
+        return $this->hasOne(Section::className(), ['id' => 'section']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSectionSchedules()
+    {
+        return $this->hasMany(SectionSchedule::className(), ['schedule' => 'id']);
     }
 }

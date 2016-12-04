@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use yii\widgets\pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\QuarterSeach */
@@ -35,16 +36,19 @@ $this->params['breadcrumbs'][] = $this->title;
      echo "<div id='modalContent'></div>";
      Modal::end();
      ?>
-
+<?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            [
+            'attribute'=>'academic_year',
+            'value'=>'academicYear.School_Year'
+            ],
 
             //'id',
-            'academicYear.School_Year',
+            
             'quarter',
             'quarter_start',
             'quarter_end',
@@ -52,4 +56,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end(); ?>
 </div>

@@ -1,10 +1,10 @@
-<?php
 
+<?php
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\helpers\Url;
-use yii\bootstrap\Modal;
-
+use common\models\SectionScheduleSearch;
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ScheduleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,36 +18,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-
-       <?= Html::button('Add Schedule', ['value'=>Url::to('index.php?r=schedule/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
-
+        <?= Html::a('Create Schedule', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-
- <?php
-    Modal::begin([
-        'header'=>'<h4>Schedule</h4>',
-        'id' => 'modal',
-        'size' => 'modal-lg',
-        ]);
-
-     echo "<div id='modalContent'></div>";
-     Modal::end();
-     ?>
+    <?php Pjax::begin(); ?>
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+       'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+        
+        'columns' => [
+        
+           ['class' => 'yii\grid\SerialColumn'],
+            
+
             'sub.sub_name',
-            'sub_time_start:datetime',
-            'sub_time_end:datetime',
-            'teach_id',
-            // 'acad_year_id',
+            'subTimeStart.time',
+            'subTimeEnd.time',
+            'section0.sec_name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end(); ?>
 </div>

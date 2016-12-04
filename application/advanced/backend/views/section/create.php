@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Section */
+/* @var $model common\models\Schedule */
 
-$this->title = 'Create Section';
-$this->params['breadcrumbs'][] = ['label' => 'Sections', 'url' => ['index']];
+$this->title = 'Create Schedule';
+$this->params['breadcrumbs'][] = ['label' => 'Schedules', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="section-create">
+<div class="schedule-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

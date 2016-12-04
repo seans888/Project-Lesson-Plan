@@ -1,10 +1,10 @@
 <?php
-
+use kartik\grid\GridView;
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
-
+use common\models\SectionStudentSearch;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\SectionPost */
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::button('Add Section', ['value'=>Url::to('index.php?r=section/create'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
 
-
+<?php Pjax::begin(); ?>
  <?php
     Modal::begin([
         'header'=>'<h4>Section</h4>',
@@ -37,16 +37,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'export'=>false,
+        'hover'=>true,
+        
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        [
+           'class' => 'kartik\grid\ExpandRowColumn',
+            'value' => function($model, $key, $index, $column){
+                return GridView::ROW_COLLAPSED;
+            },
+            'detail' => function ($model,$key,$index,$column){
+                
+                $searchModel = new SectionStudentSearch();
+                $searchModel ->section_name= $model ->id;
+                $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            //'id',
+                return Yii::$app->controller->renderPartial('_sectionstudent',[
+                       'searchModel'=>$searchModel,
+                       'dataProvider'=>$dataProvider, 
+                    ]);
+            },
+            ],
+
             'sec_name',
             'adviseEmp.emp_lname',
             'adviseEmp.emp_fname',
-            
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+            ['class' => 'yii\grid\ActionColumn' ],
+            ],
+    ]);  ?>
+    <?php Pjax::end(); ?>
 </div>
+  

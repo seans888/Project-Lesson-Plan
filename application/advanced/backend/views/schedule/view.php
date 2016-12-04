@@ -1,12 +1,13 @@
+
 <?php
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\subject;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Schedule */
 
-$this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Schedules', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,12 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'sub_id',
-            'sub_time_start:datetime',
-            'sub_time_end:datetime',
-            'teach_id',
-            'acad_year_id',
+            //'id',
+            'sub.sub_name',
+            'subTimeEnd.time',
+            'subTimeStart.time',
+            'teach.emp_lname',
+            'acadYear.School_Year',
+        
         ],
     ]) ?>
 
