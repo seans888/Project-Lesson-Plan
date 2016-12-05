@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2016 at 01:49 AM
+-- Generation Time: Dec 05, 2016 at 01:09 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -201,14 +201,15 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `emp_mname` varchar(60) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `contact_number` varchar(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`id`, `emp_id_num`, `emp_job`, `emp_fname`, `emp_lname`, `emp_mname`, `email`, `contact_number`) VALUES
-(2, 2014200600, 3, 'Aaron', 'Dagatan', 'Cadpa', 'rcdagatan@student.apc.edu.ph', '09177756644');
+(2, 2014200600, 3, 'Aaron', 'Dagatan', 'Cadpa', 'rcdagatan@student.apc.edu.ph', '09177756644'),
+(3, 2147483647, 3, 'Joshua', 'Lavarro', 'Norte', 'cjlavarro@gmail.com', '09122345655');
 
 -- --------------------------------------------------------
 
@@ -339,8 +340,16 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `sub_time_end` int(11) NOT NULL,
   `teach_id` int(11) NOT NULL,
   `acad_year_id` int(11) NOT NULL,
-  `section_name` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `section` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `sub_id`, `sub_time_start`, `sub_time_end`, `teach_id`, `acad_year_id`, `section`) VALUES
+(11, 2, 4, 4, 2, 4, 3),
+(12, 2, 3, 4, 2, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -352,7 +361,27 @@ CREATE TABLE IF NOT EXISTS `section` (
   `id` int(11) NOT NULL,
   `sec_name` varchar(35) NOT NULL,
   `advise_emp_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`id`, `sec_name`, `advise_emp_id`) VALUES
+(3, 'St.John', 2),
+(4, 'jojo', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section_schedule`
+--
+
+CREATE TABLE IF NOT EXISTS `section_schedule` (
+  `id` int(11) NOT NULL,
+  `schedule` int(11) NOT NULL,
+  `section` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -364,7 +393,15 @@ CREATE TABLE IF NOT EXISTS `section_student` (
   `id` int(11) NOT NULL,
   `section_name` int(11) NOT NULL,
   `section_student` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `section_student`
+--
+
+INSERT INTO `section_student` (`id`, `section_name`, `section_student`) VALUES
+(5, 3, 6),
+(6, 4, 6);
 
 -- --------------------------------------------------------
 
@@ -394,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `fathers_contact_number` varchar(11) DEFAULT NULL,
   `guardians_contact_number` varchar(11) NOT NULL,
   `birth_place` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
@@ -402,9 +439,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 
 INSERT INTO `student` (`id`, `stud_id_num`, `stud_fname`, `stud_lname`, `stud_mname`, `home_number`, `city_name`, `province`, `zip_code`, `birthdate`, `religion`, `gender`, `nationality`, `email`, `mothers_name`, `fathers_name`, `guardians_name`, `mothers_contact_number`, `fathers_contact_number`, `guardians_contact_number`, `birth_place`) VALUES
 (5, 2014100356, 'Jonathan', 'Abalon', 'Dawal', 'L. 5 Blk. 5, Countryside Village, Sunvalley', 1, 1, 1700, '1998-09-18', 'Roman Catholic', 1, 'Filipino', 'odabalon@student.apc.edu.ph', 'Eva Abalon', '', 'Eva Abalon', '09122517593', '', '09122517593', 1),
-(6, 2014100377, 'Neil', 'Cueto', 'Reyes', '1234124', 1, 1, 12345, '1996-12-07', 'Roman Catholic', 1, 'Filipino', 'neilcueto101@gmail.com', 'qwe', '23424', 'wer', 'qwe', '1231', 'qewweqw', 1),
-(8, 1, 'sam', 'samp', 'samp', 'weqe', 3, 1, 4324234, '2016-11-24', 'qweqw', 1, 'ewrwr', 'dfdsf', '', '', 'erwrw', '', '', 'dfgdgdf', 1),
-(9, 121212, 'asdasd', 'a', 'a', 'a', 1, 1, 1700, '2016-11-02', 'sasa', 1, 'a', 'q', '', '', 'asa', '', '', 'dadasda', 2);
+(6, 2014100377, 'Neil', 'Cueto', 'Reyes', '1234124', 1, 1, 12345, '1996-12-07', 'Roman Catholic', 1, 'Filipino', 'neilcueto101@gmail.com', 'qwe', '23424', 'wer', 'qwe', '1231', 'qewweqw', 1);
 
 -- --------------------------------------------------------
 
@@ -416,7 +451,15 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `id` int(11) NOT NULL,
   `sub_name` varchar(35) NOT NULL,
   `subject_description` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`id`, `sub_name`, `subject_description`) VALUES
+(1, 'Math', 'Algebra Math'),
+(2, 'Algebra ', 'IV-Algebra');
 
 -- --------------------------------------------------------
 
@@ -427,14 +470,15 @@ CREATE TABLE IF NOT EXISTS `subject` (
 CREATE TABLE IF NOT EXISTS `time` (
   `id` int(11) NOT NULL,
   `time` time(5) NOT NULL DEFAULT '00:00:00.00000'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `time`
 --
 
 INSERT INTO `time` (`id`, `time`) VALUES
-(3, '07:30:00.00000');
+(3, '07:30:00.00000'),
+(4, '08:30:00.00000');
 
 -- --------------------------------------------------------
 
@@ -560,13 +604,19 @@ ALTER TABLE `quarter`
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `acad_year_id` (`acad_year_id`), ADD KEY `teach_id` (`teach_id`), ADD KEY `sub_time_end` (`sub_time_end`), ADD KEY `sub_time_start` (`sub_time_start`), ADD KEY `section_name` (`section_name`);
+  ADD PRIMARY KEY (`id`), ADD KEY `sub_id` (`sub_id`), ADD KEY `acad_year_id` (`acad_year_id`), ADD KEY `teach_id` (`teach_id`), ADD KEY `sub_time_end` (`sub_time_end`), ADD KEY `sub_time_start` (`sub_time_start`), ADD KEY `section` (`section`), ADD KEY `section_2` (`section`);
 
 --
 -- Indexes for table `section`
 --
 ALTER TABLE `section`
   ADD PRIMARY KEY (`id`), ADD KEY `advise_emp_id` (`advise_emp_id`);
+
+--
+-- Indexes for table `section_schedule`
+--
+ALTER TABLE `section_schedule`
+  ADD PRIMARY KEY (`id`), ADD KEY `schedule` (`schedule`), ADD KEY `section` (`section`), ADD KEY `schedule_2` (`schedule`), ADD KEY `section_2` (`section`);
 
 --
 -- Indexes for table `section_student`
@@ -621,7 +671,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `gender`
 --
@@ -651,32 +701,37 @@ ALTER TABLE `quarter`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `section_schedule`
+--
+ALTER TABLE `section_schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `section_student`
 --
 ALTER TABLE `section_student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `time`
 --
 ALTER TABLE `time`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -731,18 +786,25 @@ ADD CONSTRAINT `quarter_ibfk_1` FOREIGN KEY (`academic_year`) REFERENCES `academ
 -- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
-ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`),
-ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_year` (`id`),
-ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`teach_id`) REFERENCES `employee` (`id`),
-ADD CONSTRAINT `schedule_ibfk_5` FOREIGN KEY (`sub_time_start`) REFERENCES `time` (`id`),
-ADD CONSTRAINT `schedule_ibfk_6` FOREIGN KEY (`sub_time_end`) REFERENCES `time` (`id`),
-ADD CONSTRAINT `schedule_ibfk_7` FOREIGN KEY (`section_name`) REFERENCES `section` (`id`);
+ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subject` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`acad_year_id`) REFERENCES `academic_year` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`teach_id`) REFERENCES `employee` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `schedule_ibfk_5` FOREIGN KEY (`sub_time_start`) REFERENCES `time` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `schedule_ibfk_6` FOREIGN KEY (`sub_time_end`) REFERENCES `time` (`id`) ON UPDATE CASCADE,
+ADD CONSTRAINT `schedule_ibfk_7` FOREIGN KEY (`section`) REFERENCES `section` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `section`
 --
 ALTER TABLE `section`
 ADD CONSTRAINT `section_ibfk_1` FOREIGN KEY (`advise_emp_id`) REFERENCES `employee` (`id`);
+
+--
+-- Constraints for table `section_schedule`
+--
+ALTER TABLE `section_schedule`
+ADD CONSTRAINT `section_schedule_ibfk_1` FOREIGN KEY (`schedule`) REFERENCES `schedule` (`id`),
+ADD CONSTRAINT `section_schedule_ibfk_2` FOREIGN KEY (`section`) REFERENCES `section` (`id`);
 
 --
 -- Constraints for table `section_student`
