@@ -57,9 +57,13 @@ class SectionController extends Controller
      */
     public function actionView($id)
     {
+         if(yii::$app->user->can('add section')){
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
@@ -69,6 +73,7 @@ class SectionController extends Controller
      */
     public function actionCreate()
     {
+         if(yii::$app->user->can('add section')){
         $model = new Section();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -77,6 +82,8 @@ class SectionController extends Controller
             return $this->renderAjax('create', [
                 'model' => $model,
             ]);
+        }}else{
+            throw new NotFoundHttpException;
         }
     }
 
@@ -88,6 +95,7 @@ class SectionController extends Controller
      */
     public function actionUpdate($id)
     {
+         if(yii::$app->user->can('add section')){
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -96,6 +104,8 @@ class SectionController extends Controller
             return $this->render('update', [
                 'model' => $model,
             ]);
+        }}else{
+            throw new NotFoundHttpException;
         }
     }
 
@@ -107,9 +117,13 @@ class SectionController extends Controller
      */
     public function actionDelete($id)
     {
+         if(yii::$app->user->can('add section')){
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**

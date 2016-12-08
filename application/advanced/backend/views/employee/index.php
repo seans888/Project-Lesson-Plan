@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use yii\widgets\Pjax;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EmployeeSearch */
@@ -32,7 +33,19 @@ $this->params['breadcrumbs'][] = $this->title;
      echo "<div id='modalContent'></div>";
      Modal::end();
      ?>
+<?php
+     $gridColumns =[
+           'emp_id_num',
+            'empJob.job_description',
+            'emp_fname',
+            'emp_lname',
+     ];
 
+     echo ExportMenu::widget([
+        'dataProvider'=>$dataProvider,
+        'columns'=>$gridColumns
+        ]);
+     ?>
 <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

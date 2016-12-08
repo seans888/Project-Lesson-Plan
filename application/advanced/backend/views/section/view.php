@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Schedule */
+/* @var $model common\models\Section */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Schedules', 'url' => ['index']];
+
+$this->params['breadcrumbs'][] = ['label' => 'Sections', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="schedule-view">
+<div class="section-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -28,12 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'sub_id',
-            'sub_time_start:datetime',
-            'sub_time_end:datetime',
-            'teach_id',
-            'acad_year_id',
+            //'id',
+            'sec_name',
+            'adviseEmp.emp_lname','adviseEmp.emp_fname',
         ],
     ]) ?>
 

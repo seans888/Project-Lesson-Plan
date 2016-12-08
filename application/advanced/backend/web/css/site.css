@@ -8,17 +8,21 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
+    background-color:#F9EE81;
+
 }
 
 .wrap > .container {
     padding: 70px 15px 20px;
+    background-color: white;
 }
 
 .footer {
     height: 60px;
-    background-color: #f5f5f5;
+    background-color: #800000;
     border-top: 1px solid #ddd;
     padding-top: 20px;
+    
 }
 
 .jumbotron {
@@ -32,7 +36,7 @@ body {
 }
 
 .not-set {
-    color: #c55;
+    color: #c55\;
     font-style: italic;
 }
 
@@ -98,6 +102,7 @@ a.desc:after {
 /* align the logout "link" (button in form) of the navbar */
 .nav > li > form {
     padding: 8px;
+
 }
 
 @media(max-width:768px) {
@@ -108,4 +113,10 @@ a.desc:after {
 
 .nav > li > form > button:hover {
     text-decoration: none;
+}
+.my-navbar {
+    background-color: #800000;
+}
+.navbar-inner{
+    color: 
 }

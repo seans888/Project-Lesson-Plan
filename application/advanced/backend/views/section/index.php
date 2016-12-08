@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'adviseEmp.emp_lname',
             'adviseEmp.emp_fname',
 
-            ['class' => 'yii\grid\ActionColumn' ],
+            ['class' => 'yii\grid\ActionColumn'],
             ],
     ]);  ?>
     <?php Pjax::end(); ?>

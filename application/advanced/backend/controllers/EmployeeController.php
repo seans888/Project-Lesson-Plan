@@ -58,9 +58,13 @@ class EmployeeController extends Controller
      */
     public function actionView($id)
     {
+        if(yii::$app->user->can('add employee')){
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }else {
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
@@ -89,6 +93,7 @@ class EmployeeController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(yii::$app->user->can('add employee')){
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -98,6 +103,10 @@ class EmployeeController extends Controller
                 'model' => $model,
             ]);
         }
+    }else
+    {
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
@@ -108,9 +117,13 @@ class EmployeeController extends Controller
      */
     public function actionDelete($id)
     {
+        if(yii::$app->user->can('add employee')){
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**

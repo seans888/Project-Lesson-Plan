@@ -7,6 +7,7 @@ use common\models\Schedule;
 use common\models\ScheduleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 
 /**
@@ -35,13 +36,17 @@ class ScheduleController extends Controller
      */
     public function actionIndex()
     {
+        if(yii::$app->user->can('add schedule')){
         $searchModel = new ScheduleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ]);}
+        else{
+            throw new NotFoundHttpException;
+        }
     }
 
     /**
@@ -51,9 +56,13 @@ class ScheduleController extends Controller
      */
     public function actionView($id)
     {
+        if(yii::$app->user->can('add schedule')){
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
@@ -63,6 +72,7 @@ class ScheduleController extends Controller
      */
     public function actionCreate()
     {
+        if(yii::$app->user->can('add schedule')){
         $model = new Schedule();
 
         if(Yii::$app->request->isAjax&& $model->load($_POST)){
@@ -77,6 +87,9 @@ class ScheduleController extends Controller
                 'model' => $model,
             ]);
         }
+    }else {
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
