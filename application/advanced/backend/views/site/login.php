@@ -14,7 +14,7 @@ $this->title = 'Login';
     <img src ="http://i63.tinypic.com/2znph6p.png">
 
 
-	<body style="background-color:#F9EE81"> 
+	
 <div class="site-login">
     <h3><?= Html::encode($this->title) ?></h3>
 

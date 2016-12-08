@@ -7,13 +7,18 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+use yii\helpers\ArrayHelper;
 $this->title = 'Signup';
+
+
+$this->title = 'Sign-up';
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to signup:</p>
+    <p>Please fill-out the following fields to signup:</p>
 
     <div class="row">
         <div class="col-lg-5">
@@ -25,12 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
+               
                 <?php
-                 
-                 ?>
+                $authItem = ArrayHelper::map($authItem,'name','name');
+                ?>
+                 <?= $form-> field($model,'permissions')->checkBoxList($authItem);?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('Sign-up', ['class' => 'btn btn-primary', 'name' => 'sign-up-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

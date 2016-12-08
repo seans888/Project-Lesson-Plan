@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'stud_fname',
             'stud_lname',
             'stud_mname',
-            'gender',
+            'gender0.gender',
      ];
 
      echo ExportMenu::widget([

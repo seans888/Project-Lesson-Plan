@@ -46,7 +46,7 @@ class SubjectController extends Controller
         ]);
     }else
     {
-        throw new ForbiddenHTTPException;
+        throw new NotFoundHttpException;
     }
     }
 

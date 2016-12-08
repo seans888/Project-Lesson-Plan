@@ -56,7 +56,7 @@ class Schedule extends \yii\db\ActiveRecord
         $selectedTime = time($this->sub_time_end);
         $timeCheck = time($this->sub_time_start);
 
-        if($timeCheck>=$selectedTime)
+        if($timeCheck>$selectedTime)
         {
             $this->addError($attribute,'End Time Should be Greater than Start Time');
         }

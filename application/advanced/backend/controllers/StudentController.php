@@ -57,9 +57,13 @@ class StudentController extends Controller
      */
     public function actionView($id)
     {
+        if(yii::$app->user->can('add student')){
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
@@ -69,6 +73,7 @@ class StudentController extends Controller
      */
     public function actionCreate()
     {
+        if(yii::$app->user->can('add student')){
         $model = new Student();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -79,6 +84,9 @@ class StudentController extends Controller
                 'model' => $model,
             ]);
         }
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
@@ -89,6 +97,7 @@ class StudentController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(yii::$app->user->can('add student')){
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -98,7 +107,11 @@ class StudentController extends Controller
                 'model' => $model,
             ]);
         }
+   }else{
+    throw new NotFoundHttpException;
+   }
     }
+
 
     /**
      * Deletes an existing Student model.
@@ -108,9 +121,13 @@ class StudentController extends Controller
      */
     public function actionDelete($id)
     {
+        if(yii::$app->user->can('add student')){
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index']);}
+        else{
+            throw new NotFoundHttpException;
+        }
     }
 
     /**

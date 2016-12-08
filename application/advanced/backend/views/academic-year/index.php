@@ -14,6 +14,9 @@ $this->title = 'Academic Year';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="academic-year-index">
+<body style="background-color:#F9EE81"> 
+</body>
+
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -33,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
      Modal::end();
      ?>
 <?php Pjax::begin(); ?>
-
+</div class='academic-year-index'>
+<div class='back'>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -49,4 +53,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
     <?php Pjax::end(); ?>
-</div>
+</div class='back'>

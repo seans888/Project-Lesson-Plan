@@ -28,10 +28,11 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
+        
         'brandLabel' => 'VSJA Management System',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'my-navbar navbar-fixed-top',
         ],
     ]);
     $menuItems = [
@@ -40,7 +41,70 @@ AppAsset::register($this);
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
+    }else if (yii::$app->user->can('admin')){
+            $menuItems[] = ['label' => 'Add User', 'url' => ['/site/signup']];
+            $menuItems[] = ['label' => 'Students', 'url' => ['/student/index']];
+              $menuItems[] = ['label' => 'Quarter', 'url' => ['/quarter/index']];
+              $menuItems[] = ['label' => 'Section', 'url' => ['/section/index']];
+              $menuItems[] = ['label' => 'Schedule', 'url' => ['/subject/index']];
+                 $menuItems[] = ['label' => 'Schedule Assignment', 'url' => ['/schedule/index']];
+             $menuItems[] = ['label' => 'Subject', 'url' => ['/subject/index']];
+             $menuItems[] = ['label' => 'Academic Year', 'url' => ['/academic-year/index']];
+
+
+            $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link']
+            )
+            . Html::endForm()
+            . '</li>';
+            
+        } 
+        else if(yii::$app->user->can('registrar')){
+             $menuItems[] = ['label' => 'Students', 'url' => ['/student/index']];
+              $menuItems[] = ['label' => 'Quarter', 'url' => ['/quarter/index']];
+              $menuItems[] = ['label' => 'Section', 'url' => ['/section/index']];
+              $menuItems[] = ['label' => 'Schedule', 'url' => ['/subject/index']];
+               $menuItems[] = ['label' => 'Academic Year', 'url' => ['/academic-year/index']];
+
+             $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link']
+            )
+            . Html::endForm()
+            . '</li>';
+        }
+        else if(yii::$app->user->can('department_head')){
+            $menuItems[] = ['label' => 'Schedule Assignment', 'url' => ['/schedule/index']];
+             $menuItems[] = ['label' => 'Section', 'url' => ['/subject/index']];
+
+            $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link']
+            )
+            . Html::endForm()
+            . '</li>';
+        }
+        else if(yii::$app->user->can('HR')){
+            $menuItems[] = ['label' => 'Employee', 'url' => ['/employee/index']];
+             $menuItems[] = ['label' => 'Job', 'url' => ['/job/index']];
+
+            $menuItems[] = '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link']
+            )
+            . Html::endForm()
+            . '</li>';
+        }
+    else  {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -49,7 +113,10 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
-    }
+            
+    } 
+
+    
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
@@ -73,6 +140,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <center>
+        <font color="white">
         &copy; VILLE ST. JOHN ACADEMY <?= date('Y') ?>
     </div>
 </footer>

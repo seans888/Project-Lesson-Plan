@@ -57,9 +57,13 @@ class QuarterController extends Controller
      */
     public function actionView($id)
     {
+        if(yii::$app->user->can('add quarter')){
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+        ]);}
+        else{
+            throw new NotFoundHttpException;
+        }
     }
 
     /**
@@ -69,6 +73,7 @@ class QuarterController extends Controller
      */
     public function actionCreate()
     {
+        if(yii::$app->user->can('add quarter')){
         $model = new Quarter();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -78,6 +83,9 @@ class QuarterController extends Controller
                 'model' => $model,
             ]);
         }
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
@@ -88,6 +96,7 @@ class QuarterController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(yii::$app->user->can('add quarter')){
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -97,6 +106,9 @@ class QuarterController extends Controller
                 'model' => $model,
             ]);
         }
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
@@ -107,9 +119,13 @@ class QuarterController extends Controller
      */
     public function actionDelete($id)
     {
+        if(yii::$app->user->can('add quarter')){
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }else{
+        throw new NotFoundHttpException;
+    }
     }
 
     /**
